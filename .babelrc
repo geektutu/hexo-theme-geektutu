@@ -1,6 +1,6 @@
 {
   "presets": ["es2015", "stage-0", "react"],
-  "plugins": ["add-module-exports", "transform-runtime", "react-hot-loader/babel"],
+  "plugins": ["add-module-exports", "transform-runtime", "react-hot-loader/babel", "transform-decorators-legacy"],
   "env": {
     "production": {
       "optional": ["optimisation", "minification"]

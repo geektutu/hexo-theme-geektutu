@@ -12,6 +12,10 @@ export default (state = initState, action) => {
       return {
         count: state.count - 1
       }
+    case  'UPDATE_COUNT':
+      return {
+        count: action.payload.count
+      }
     default:
       return state
   }

@@ -6,15 +6,15 @@ const router = require('koa-router')();
 const logger = require('koa-logger');
 const serve = require('koa-static');
 const path = require('path');
+const { scanRoute, chooseRoute } = require('./router');
 
 const app = new Koa();
-const scanController = require('./controller');
 
-scanController(router)
+scanRoute(router)
 
+app.use(chooseRoute);
 app.use(bodyParser());
 app.use(router.routes());
-
 app.use(serve(path.resolve(__dirname, '../build')));
 
 app.listen(3001);

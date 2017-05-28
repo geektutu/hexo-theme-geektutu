@@ -1,17 +1,20 @@
 import React from "react";
+import {Route} from 'react-router-dom'
+import Counter from './Counter'
 
-class HelloPage extends React.Component {
+export default class HelloPage extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    let {match} = this.props;
     return (
         <div>
           <p>Hello World</p>
+          <Route path={`${match.url}/one`} component={Counter}/>
+          <Route path={`${match.url}/two`}/>
         </div>
     )
   }
 }
-
-export default HelloPage

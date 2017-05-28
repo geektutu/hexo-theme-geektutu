@@ -2,12 +2,16 @@ var React = require('react');
 var ReactDOMServer = require("react-dom/server");
 import {StaticRouter} from 'react-router'
 import {Provider} from 'react-redux'
-import store from '../app/store'
-import App from '../app/routes'
+import configureStore from '../app/configureStore'
+import App from '../app/App'
 
-module.exports = function (url) {
+import {fetchCount} from '../app/actions'
+
+module.exports = async function (url) {
 
   var context = {}
+  var store = configureStore()
+
   var content = ReactDOMServer.renderToString(
       <Provider store={store}>
         <StaticRouter location={url} context={context}>
@@ -16,10 +20,7 @@ module.exports = function (url) {
       </Provider>
   );
 
-  console.log(context)
-
-  var propsScript = 'var APP_PROPS = ' + JSON.stringify(store.getState());
-
+  var propsScript = 'window.__REDUX_DATA__ = ' + JSON.stringify(store.getState());
   var html = ReactDOMServer.renderToStaticMarkup(
       <html>
       <head>
