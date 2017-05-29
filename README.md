@@ -16,5 +16,5 @@ a blog site based on nodejs, koa 2, webpack 4, react, react-router 4, react-redu
 - react-dom/server 15.x
 - isomorphic-fetch
 
-# LICENSE
+## LICENSE
 MIT
