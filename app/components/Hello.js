@@ -1,6 +1,6 @@
 import React from "react";
-import {Route} from 'react-router-dom'
-import Counter from './Counter'
+import {Link} from 'react-router-dom'
+import {renderRoutes} from 'react-router-config'
 
 export default class HelloPage extends React.Component {
   constructor(props) {
@@ -8,12 +8,23 @@ export default class HelloPage extends React.Component {
   }
 
   render() {
-    let {match} = this.props;
+    let {match, route} = this.props;
     return (
         <div>
-          <p>Hello World</p>
-          <Route path={`${match.url}/one`} component={Counter}/>
-          <Route path={`${match.url}/two`}/>
+          <h2>Links</h2>
+          <ul>
+            <li>
+              <Link to={`${match.url}/three`}>
+                Hello
+              </Link>
+            </li>
+            <li>
+              <Link to={`${match.url}/four`}>
+                Counter
+              </Link>
+            </li>
+          </ul>
+          {renderRoutes(route.routes)}
         </div>
     )
   }

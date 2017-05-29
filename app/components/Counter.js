@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {increment, decrement, fetchCount} from '../actions'
+import {increment, decrement, updateCount} from '../actions'
 import {bindActionCreators} from 'redux';
 
 function mapStateToProps(state) {
@@ -13,7 +13,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators({
       increment,
       decrement,
-      fetchCount
+      updateCount
     }, dispatch)
   }
 }
@@ -29,8 +29,19 @@ class Counter extends React.Component {
     actions: PropTypes.object.isRequired,
   };
 
+  static fetchData(store) {
+    return store.dispatch(updateCount())
+  }
+
+
   componentWillMount() {
-    this.props.actions.fetchCount()
+  }
+
+  componentDidMount() {
+    var {count, actions} = this.props
+    if (count < 100) {
+      actions.updateCount();
+    }
   }
 
   render() {

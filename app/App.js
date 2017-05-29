@@ -1,13 +1,10 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
-import Hello from './components/Hello'
-import Counter from './components/Counter'
-
+import routes from './routes'
+import {renderRoutes} from 'react-router-config'
 
 const App = () => (
     <div>
-      <Route path="/hello" component={Hello}/>
-      <Route path="/counter" component={Counter}/>
+      {renderRoutes(routes)}
     </div>
 )
 

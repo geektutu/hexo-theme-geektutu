@@ -1,9 +1,9 @@
-import React from 'react';
-import reactDOM from 'react-dom'
-import App from './App'
-import configureStore from './configureStore'
-import {Provider} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
+import React from "react";
+import reactDOM from "react-dom";
+import App from "./App";
+import configureStore from "./configureStore";
+import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
 
 
 reactDOM.render(

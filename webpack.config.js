@@ -12,7 +12,7 @@ const config = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'build/static/js'),
     filename: '[name].js',
     publicPath: '/build'
   },
