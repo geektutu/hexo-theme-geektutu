@@ -35,8 +35,6 @@ export default {
     let _id = body._id, post
 
     body.tags = await tagNames2TagIds(body.tags)
-    console.log('body tags ', body.tags)
-
     if (_id) {
       post =  await Post.findOne({_id})
     }

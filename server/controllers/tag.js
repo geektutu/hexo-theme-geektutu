@@ -1,4 +1,4 @@
-import { Tag } from '../models'
+import { Tag, Post } from '../models'
 
 export default {
   'GET /tags': async(ctx, next) => {
@@ -11,6 +11,11 @@ export default {
     let  id = ctx.params.id;
     ctx.response.body = {
       'tag': await Tag.findOne({id})
+    };
+  },
+  'GET /tags/:id/posts': async(ctx, next) => {
+    ctx.response.body = {
+      'posts': await Post.find({tags: {$in: [ctx.params.id]}})
     };
   },
 

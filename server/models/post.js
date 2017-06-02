@@ -40,7 +40,7 @@ let PostSchema = new Schema({
   },
   tags: [
     {
-      type: Types.ObjectId,
+      type: String,
       index: true,
       ref: 'Tag',
       required: true,
