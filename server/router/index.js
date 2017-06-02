@@ -3,6 +3,8 @@ import path from 'path'
 import fs from 'fs'
 
 let chooseRoute = async  (ctx, next) => {
+  ctx.response.type = 'application/json';
+
   if(!ctx.url.startsWith("/api") && !ctx.url.startsWith("/static") && !ctx.url.startsWith("/favicon.ico")) {
     console.log('render page: ', ctx.url)
     ctx.response.type = 'text/html';

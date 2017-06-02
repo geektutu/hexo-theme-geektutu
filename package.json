@@ -30,14 +30,17 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "bluebird": "^3.5.0",
     "es6-promise": "^4.1.0",
+    "highlight.js": "^9.12.0",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-logger": "^3.0.0",
     "koa-router": "^7.2.0",
     "koa-static": "^3.0.0",
-    "monk": "^5.0.2",
+    "markdown-x": "^0.4.0-beta.2",
+    "mongoose": "^4.10.4",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
