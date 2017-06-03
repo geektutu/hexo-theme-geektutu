@@ -4,7 +4,7 @@ import {StaticRouter} from "react-router";
 import {Provider} from "react-redux";
 import {matchRoutes} from "react-router-config";
 import configureStore from "../app/configureStore";
-import App from "../app/App";
+import App from "../app/components/App/index";
 import routes from "../app/routes";
 
 module.exports = async function (url) {

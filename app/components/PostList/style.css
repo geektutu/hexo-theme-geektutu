@@ -1,0 +1,15 @@
+.post-list-item {
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #fff;
+  padding: 20px 0 10px;
+}
+.post-list-item h1 {
+  font-size: 1.8em;
+  margin-top: 0;
+  font-weight: normal;
+}
+.meta {
+  padding-top: 5px;
+}
+.content {
+}

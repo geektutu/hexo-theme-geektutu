@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
@@ -14,21 +15,32 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'build/static/js'),
     filename: '[name].js',
-    publicPath: '/build'
+    publicPath: '/build/'
   },
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.html/, loader: 'html-loader' },
-      { test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader' },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.(gif|png|jpe?g)$/i, loader: 'file-loader?name=dist/images/[name].[ext]' },
-      { test: /\.woff2?$/, loader: 'url-loader?name=dist/fonts/[name].[ext]&limit=10000&mimetype=application/font-woff' },
-      { test: /\.(ttf|eot|svg)$/, loader: 'file-loader?name=dist/fonts/[name].[ext]' }
+      {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+      {test: /\.json$/, loader: 'json-loader'},
+      {test: /\.html/, loader: 'html-loader'},
+      {test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader'},
+      {
+        test: /\.css$/,
+        exclude: [path.resolve(__dirname, 'app/style')],
+        loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[local]_[hash:base64:3]'
+      }, {
+        test: /\.css$/,
+        include: [path.resolve(__dirname, 'app/style')],
+        loader: 'style-loader!css-loader'
+      },
+      {test: /\.(gif|png|jpe?g)$/i, loader: 'file-loader?name=static/images/[name].[ext]'},
+      {
+        test: /\.woff2?$/,
+        loader: 'url-loader?name=static/fonts/[name].[ext]&limit=10000&mimetype=application/font-woff'
+      },
+      {test: /\.(ttf|eot|svg)$/, loader: 'file-loader?name=dist/fonts/[name].[ext]'}
     ]
   },
   plugins: [

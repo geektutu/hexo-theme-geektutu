@@ -1,21 +1,26 @@
-import Hello from './components/Hello'
-import Counter from './components/Counter'
-import fetch from 'isomorphic-fetch'
+import Hello from './components/Hello/index'
+import * as component from './components'
+
+
 
 const routes = [
   {
-    path: '/hello',
-    component: Hello,
+    path: '/',
+    component: component.PostList,
     routes: [{
-      path: '/hello/three',
-      component: Counter
+      path: '/index',
+      component: component.Hello
     }, {
-      path: '/hello/four',
-      component: Hello
+      path: '/series',
+      component: component.Series
+    }, {
+      path: '/archives',
+      component: component.Archive
+
+    }, {
+      path: '/about',
+      component: component.About
     }]
-  }, {
-    path: '/counter',
-    component: Counter
   }
 ]
 

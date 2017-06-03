@@ -1,0 +1,55 @@
+.icon {
+  border-radius: 50%;
+  height: 170px;
+  width: 170px;
+  margin: 40px auto;
+  background-image: url("../../static/img/icon.png");
+  background-size: cover;
+}
+
+.main-link ul {
+  padding: 0;
+}
+
+.main-link a {
+  color: white;
+  font-size: 18px;
+  text-shadow: 0 1px #666;
+}
+
+.main-link a:hover,
+.main-link a:focus {
+  color: #e6e6e6;
+}
+.main-link li {
+  margin-bottom: 10px;
+}
+
+.sub-link li {
+  display: inline-block;
+  padding: 5px;
+}
+
+.name a {
+  color: white;
+  font-size: 24px;
+}
+
+.sub-link a {
+  width: 30px;
+  height: 30px;
+  display: block;
+  border-radius: 50%;
+}
+
+.sub-link .icon-search {
+  border: 1px solid #afb6ca;
+  background: #afb6ca url("../../static/img/search.png") no-repeat center;
+  background-size: 90%;
+}
+
+.sub-link .icon-github {
+  border: 1px solid #24282d;
+  background: #24282d url("../../static/img/github.png") no-repeat center;
+  background-size: 90%;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {increment, decrement, updateCount} from '../actions'
+import {increment, decrement, updateCount} from '../../actions'
 import {bindActionCreators} from 'redux';
 
 function mapStateToProps(state) {

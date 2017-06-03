@@ -108,7 +108,7 @@ PostSchema.pre('save', async function (next) {
   if (this.isModified('content') && !this.isModified('excerpt')) {
     this.set('excerpt', content.substr(0, 100))
   }
-  // 更新
+  // 更新标签
   if (this.isModified('tags')) {
     let tags = this.get('tags')
     let oldTags = this.$_oldTags
