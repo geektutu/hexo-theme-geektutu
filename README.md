@@ -17,4 +17,4 @@ a blog site based on nodejs, koa 2, webpack 4, react, react-router 4, react-redu
 - isomorphic-fetch
 
 ## LICENSE
-MIT
+[MIT](./LICENSE)
