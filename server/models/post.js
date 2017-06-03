@@ -2,9 +2,10 @@ import {Schema} from 'mongoose'
 import createModel from './createModel'
 import MarkdownX from 'markdown-x'
 import MarkdownXNode from 'markdown-x/dist/node'
-import {Tag} from './index'
+import { Tag } from '../models'
 
 const Types = Schema.Types
+const MAX_TAG_COUNT = 10
 
 let PostSchema = new Schema({
   // slug
@@ -84,14 +85,44 @@ let toMarkdown = (data) => {
   new MarkdownX(data).toNode(node)
   return node.toHtml()
 }
+
+PostSchema.path('tags').set(function (tags) {
+  if (!this.$_oldTags) {
+    this.$_oldTags = this.get('tags')
+  }
+  return tags
+})
+
+PostSchema.path('tags').validate(function (tags) {
+  console.log('path tags validate ', tags)
+  return tags.length <= MAX_TAG_COUNT
+}, `标签数不能大于 ${MAX_TAG_COUNT} 个 ({PATH})`)
+
 PostSchema.pre('save', async function (next) {
   let content = this.get('content')
+  // 更新HTML文本
   if (this.isModified('content') && !this.isModified('htmlContent')) {
     this.set('htmlContent', toMarkdown(content))
   }
+  // 更新摘要
   if (this.isModified('content') && !this.isModified('excerpt')) {
     this.set('excerpt', content.substr(0, 100))
   }
+  // 更新
+  if (this.isModified('tags')) {
+    let tags = this.get('tags')
+    let oldTags = this.$_oldTags
+    let addTags = tags.filter(id => oldTags.indexOf(id) === -1)
+    let delTags = oldTags.filter(id => tags.indexOf(id) === -1)
+    if (addTags.length) {
+      await Tag.update({_id: {$in: addTags}}, {$inc: {count: 1}}, {multi: true})
+    }
+    if (delTags.length) {
+      await Tag.update({_id: {$in: delTags}, count: {$gt: 0}}, {$inc: {count: -1}}, {multi: true})
+      await Tag.remove({_id: {$in: delTags}, count: {$lte: 0}}).exec()
+    }
+  }
+
   next()
 });
 

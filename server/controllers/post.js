@@ -2,8 +2,11 @@ import { Post, Tag } from '../models'
 
 let tagNames2TagIds = async (tagNames) => {
   let tags = []
-  for(let i = 0; i < tagNames.length; i++) {
-    let name = tagNames[i]
+  // 去重
+  let _tagNames = tagNames.filter((item, pos) => tagNames.indexOf(item) === pos)
+  // 外键引用
+  for(let i = 0; i < _tagNames.length; i++) {
+    let name = _tagNames[i]
     if (name.length === 24) {
       tags.push(name)
       continue
@@ -22,6 +25,11 @@ export default {
       'posts': await Post.find({}).populate('tags')
     };
   },
+  'GET /posts/tags/:id': async(ctx, next) => {
+    ctx.response.body = {
+      'posts': await Post.find({tags: {$in: [ctx.params.id]}}).populate('tags')
+    };
+  },
 
   'GET /posts/:id': async(ctx, next) => {
     let  id = ctx.params.id;
@@ -37,6 +45,7 @@ export default {
     body.tags = await tagNames2TagIds(body.tags)
     if (_id) {
       post =  await Post.findOne({_id})
+      Post.find({tags: {$in: [_id]}}).populate('tags')
     }
     if(!post) {
       post = new Post(body)
