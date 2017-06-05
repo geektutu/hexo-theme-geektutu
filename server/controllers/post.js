@@ -47,7 +47,7 @@ export default {
           }
         ])
         data.forEach(item => {
-          data.tag = data._id
+          item.tag = item._id
           delete item._id
         })
         data = await Tag.populate(data, {path: 'tag'})

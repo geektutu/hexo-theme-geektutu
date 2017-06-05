@@ -9,7 +9,7 @@ import styles from './style.css'
 import CSSModules from 'react-css-modules'
 
 const updatePosts = actions.updatePosts
-const mapStateToProps = (state) => ({posts: state.posts})
+const mapStateToProps = (state) => ({series: state.series})
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     updatePosts
@@ -24,37 +24,38 @@ class Series extends React.Component {
   }
 
   static propTypes = {
-    posts: PropTypes.array.isRequired,
+    series: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
   };
 
   static fetchData(store) {
-    return store.dispatch(actions.updatePosts)
+    return store.dispatch(actions.updatePosts('tag'))
   }
 
   componentDidMount() {
-    var {posts, actions} = this.props
-    if (posts && posts.length === 0) {
-      actions.updatePosts();
+    var {series, actions} = this.props
+    if (series && series.length === 0) {
+      actions.updatePosts('tag');
     }
   }
 
   render() {
-    var {posts, actions} = this.props
+    var {series} = this.props
+    var renderPosts = (posts) => posts.map(post => (<li key={post._id}>{post.title}</li>))
+
     return (
         <div className="col-xs-12">
+          <h1>专题</h1>
           {
-            posts.map(item => (
-                <article key={item._id} styleName="post-list-item" className="col-xs-12 padding-lr-0">
-                  <div styleName="meta" className="float-right">
-                    <time className="text-gray">{item.createdAt}</time>
-                  </div>
-                  <h1><a href="/" className="text-default">{item.title}</a></h1>
-                  <div styleName="content" className="text-default">
-                    <p>{item.excerpt}</p>
-                    <p><a href="/" className="read-more">阅读全文 »</a></p>
-                  </div>
-                </article>
+            series.map(item => (
+                <section key={item.tag.name}>
+                  <h2>{item.tag.name}</h2>
+                  <ul>
+                    {
+                      renderPosts(item.posts)
+                    }
+                  </ul>
+                </section>
             ))
           }
         </div>

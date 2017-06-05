@@ -1,6 +1,4 @@
-// reducer count
-export const INCREMENT = "INCREMENT"
-export const DECREMENT = "DECREMENT"
-export const UPDATE_COUNT = "UPDATE_COUNT"
 // reducer postList
 export const UPDATE_POSTS = "UPDATE_POSTS"
+export const UPDATE_ARCHIVES = "UPDATE_ARCHIVES"
+export const UPDATE_SERIES = "UPDATE_SERIES"
