@@ -1,5 +1,5 @@
-import counter from './reducers/'
+import appReducer from './reducers'
 import thunkMiddleware from 'redux-thunk'
 import {createStore, applyMiddleware} from 'redux'
 
-export default (initState) => createStore(counter, initState || {}, applyMiddleware(thunkMiddleware))
+export default (initState) => createStore(appReducer, initState || {}, applyMiddleware(thunkMiddleware))

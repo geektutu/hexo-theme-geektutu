@@ -37,7 +37,7 @@ module.exports = async function (url) {
         <script dangerouslySetInnerHTML={
         {__html: propsScript}
         }></script>
-        <script src={"/static/js/app.js"}></script>
+        <script src={"/app.js"}></script>
         </body>
         </html>
     );

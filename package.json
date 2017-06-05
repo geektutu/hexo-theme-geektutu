@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node webpack.server.js",
-    "start": "webpack && node server/main.js"
+    "dev": "node build/dev-server",
+    "start": "webpack --config build/webpack.server.conf.js && webpack --config build/webpack.client.conf.js && node dist/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +22,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
+    "eventsource-polyfill": "^0.9.6",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "html-loader": "^0.4.5",
@@ -30,6 +31,7 @@
     "react-hot-loader": "^3.0.0-beta.6",
     "react-router-redux": "^4.0.8",
     "style-loader": "^0.18.1",
+    "url-loader": "^0.5.8",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5",
     "webpack-merge": "^4.1.0"

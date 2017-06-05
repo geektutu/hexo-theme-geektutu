@@ -5,3 +5,4 @@ if (typeof window === 'undefined') {
 }
 
 export const GET_COUNT = baseDir + '/api/count'
+export const GET_POSTS = baseDir + '/api/posts'
