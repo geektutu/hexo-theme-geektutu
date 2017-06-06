@@ -13,7 +13,7 @@ class Navigator extends React.Component {
         <div className="col-xs-12 text-center">
           <div styleName="icon"></div>
           <h1 styleName="name">
-            <Link to="/">呆尐兔兔</Link>
+            <Link to="/" className="no-text-decoration">呆尐兔兔</Link>
           </h1>
           <nav styleName="main-link">
             <ul>

@@ -12,6 +12,7 @@
 }
 
 .main-link a {
+  text-decoration: none;
   color: white;
   font-size: 18px;
   text-shadow: 0 1px #666;

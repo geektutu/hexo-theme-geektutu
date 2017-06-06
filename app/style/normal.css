@@ -7,6 +7,9 @@
 .text-right {
   text-align: right;
 }
+.no-text-decoration {
+  text-decoration: none;
+}
 .float-left {
   float: left;
 }
