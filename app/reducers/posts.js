@@ -1,32 +1,37 @@
 import * as types from '../actions/types'
 
-const posts = (state = [], action) => {
+export const posts = (state = [], action) => {
   switch (action.type) {
-    case  types.UPDATE_POSTS:
+    case  types.GET_POSTS:
       return action.payload
     default:
       return state
   }
 }
 
-const archives = (state = [], action) => {
+export const post = (state = {}, action) => {
   switch (action.type) {
-    case  types.UPDATE_ARCHIVES:
+    case  types.GET_POST:
       return action.payload
     default:
       return state
   }
 }
 
-const series = (state = [], action) => {
+export const archives = (state = [], action) => {
   switch (action.type) {
-    case  types.UPDATE_SERIES:
+    case  types.GET_ARCHIVES:
       return action.payload
     default:
       return state
   }
 }
 
-export {
-    posts, archives, series
+export const series = (state = [], action) => {
+  switch (action.type) {
+    case  types.GET_SERIES:
+      return action.payload
+    default:
+      return state
+  }
 }

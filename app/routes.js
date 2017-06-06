@@ -12,8 +12,14 @@ const routes = [{
   path: '/archives',
   component: component.Archive
 }, {
-  path: '/about',
-  component: component.About
+  path: '/post/:slug',
+  component: component.Post
+}, {
+  path: '/search',
+  component: component.Search
+}, {
+  path: '/admin',
+  component: component.Admin
 }]
 
 export default routes

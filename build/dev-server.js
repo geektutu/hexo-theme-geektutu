@@ -12,7 +12,11 @@ var proxyTable = config.dev.proxyTable
 
 new WebpackDevServer(webpack(webpackConfig), {
   hot: true,
-  historyApiFallback: true,
+  historyApiFallback: {
+    rewrites: [
+      { from: /./, to: 'index.html' },
+    ],
+  },
   stats: {
     colors: true
   },

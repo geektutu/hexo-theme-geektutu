@@ -1,7 +1,4 @@
-import {posts, archives, series} from './posts'
-
+import * as posts from './posts'
 import { combineReducers } from 'redux';
 
-export default combineReducers({
-  posts, archives, series
-})
+export default combineReducers(Object.assign({}, posts))

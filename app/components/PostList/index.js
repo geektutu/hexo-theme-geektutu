@@ -8,11 +8,11 @@ import {bindActionCreators} from 'redux';
 import styles from './style.css'
 import CSSModules from 'react-css-modules'
 
-const updatePosts = actions.updatePosts
+const getPosts = actions.getPosts
 const mapStateToProps = (state) => ({posts: state.posts})
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    updatePosts
+    getPosts
   }, dispatch)
 })
 
@@ -29,18 +29,18 @@ class PostList extends React.Component {
   };
 
   static fetchData(store) {
-    return store.dispatch(actions.updatePosts)
+    return store.dispatch(actions.getPosts)
   }
 
   componentDidMount() {
     var {posts, actions} = this.props
     if (posts && posts.length === 0) {
-      actions.updatePosts();
+      actions.getPosts();
     }
   }
 
   render() {
-    var {posts, actions} = this.props
+    var posts = this.props.posts
     return (
         <div className="col-xs-12">
           {
@@ -52,7 +52,7 @@ class PostList extends React.Component {
                   <h1><a href="/" className="text-default">{item.title}</a></h1>
                   <div styleName="content" className="text-default">
                     <p>{item.excerpt}</p>
-                    <p><a href="/" className="read-more">阅读全文 »</a></p>
+                    <p><Link to={'/post/' + item.slug} className="read-more">阅读全文 »</Link></p>
                   </div>
                 </article>
             ))

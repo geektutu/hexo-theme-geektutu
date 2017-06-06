@@ -1,5 +1,6 @@
 import React from 'react'
 import routes from '../../routes'
+import {Switch} from 'react-router-dom'
 import {renderRoutes} from 'react-router-config'
 import CSSModules from 'react-css-modules'
 
@@ -17,7 +18,7 @@ class App extends React.Component {
           <div styleName="left-col">
             <Navigator/>
           </div>
-          <div styleName="right-col">
+          <div styleName="right-col" className="markdown">
             {renderRoutes(routes)}
           </div>
         </div>

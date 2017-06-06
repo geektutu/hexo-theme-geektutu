@@ -9,6 +9,8 @@ import './style/reset.css'
 import './style/normal.css'
 import './style/layout.css'
 import './style/color.css'
+import './style/markdown.css'
+import './style/highlight.css'
 
 reactDOM.render(
     <Provider store={configureStore(window.__REDUX_DATA__)}>

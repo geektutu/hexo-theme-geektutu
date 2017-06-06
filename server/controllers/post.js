@@ -64,10 +64,10 @@ export default {
       'data': await Post.find({tags: {$in: [ctx.params.id]}}).populate('tags')
     };
   },
-  'GET /posts/:id': async(ctx, next) => {
-    let id = ctx.params.id;
+  'GET /posts/:slug': async(ctx, next) => {
+    let slug = ctx.params.slug;
     ctx.response.body = {
-      'data': await Post.findOne({id}).populate('tags')
+      'data': await Post.findOne({slug}).populate('tags')
     };
   },
 
@@ -76,22 +76,29 @@ export default {
     let _id = body._id, post
 
     body.tags = await tagNames2TagIds(body.tags)
-    if (_id) {
+    if (_id && _id.length === 24) {
       post = await Post.findOne({_id})
-      Post.find({tags: {$in: [_id]}}).populate('tags')
     }
-    if (!post) {
+    if(post) {
+      post.set('updatedAt', new Date())
+      post.set('slug', body.slug)
+      post.set('title', body.title)
+      post.set('content', body.content)
+      post.set('tags', body.tags)
+    } else {
+      delete body._id
       post = new Post(body)
     }
-    post.set('updatedAt', new Date())
-    post.set('slug', body.slug)
-    post.set('title', body.title)
-    post.set('content', body.content)
-    post.set('tags', body.tags)
-
-    await post.save()
-    ctx.response.body = {
-      'data': post
-    };
+    try {
+      await post.save()
+      ctx.response.body = {
+        'data': post
+      };
+    } catch (e) {
+      ctx.response.body = {
+        'message': e.message,
+        'data': null
+      };
+    }
   }
 }

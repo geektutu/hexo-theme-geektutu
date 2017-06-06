@@ -8,11 +8,11 @@ import {bindActionCreators} from 'redux';
 import styles from './style.css'
 import CSSModules from 'react-css-modules'
 
-const updatePosts = actions.updatePosts
+const getPosts = actions.getPosts
 const mapStateToProps = (state) => ({archives: state.archives})
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    updatePosts
+    getPosts
   }, dispatch)
 })
 
@@ -29,18 +29,18 @@ class Archive extends React.Component {
   };
 
   static fetchData(store) {
-    return store.dispatch(actions.updatePosts('date'))
+    return store.dispatch(actions.getPosts('date'))
   }
 
   componentDidMount() {
     var {archives, actions} = this.props
     if (archives && archives.length === 0) {
-      actions.updatePosts('date');
+      actions.getPosts('date');
     }
   }
 
   render() {
-    var {archives} = this.props
+    var archives = this.props.archives || []
     archives.map(item =>(item.disDate = `${item.date.year}-${item.date.month}`))
     var renderPosts = (posts) => posts.map(post => (<li key={post._id}>{post.title}</li>))
 

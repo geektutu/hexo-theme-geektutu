@@ -1,11 +1,22 @@
 import {Schema} from 'mongoose'
 import createModel from './createModel'
-import MarkdownX from 'markdown-x'
+import MarkdownIt from 'markdown-it'
+import hljs from 'highlight.js'
 import MarkdownXNode from 'markdown-x/dist/node'
 import { Tag } from '../models'
 
-const Types = Schema.Types
 const MAX_TAG_COUNT = 10
+
+const md = MarkdownIt({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (__) {}
+    }
+    return '';
+  }
+});
 
 let PostSchema = new Schema({
   // slug
@@ -18,26 +29,7 @@ let PostSchema = new Schema({
 
     minlength: [3, 'Slug 长度不能少于 3 位或大于 32 字节'],
     maxlength: [32, 'Slug 长度不能少于 3 位或大于 32 字节'],
-    match: [/^[0-9a-z_-]+$/, 'Slug 只允许使用小写英文，数字和 _-'],
-    set(value) {
-      return value || undefined
-    },
-    validate: [
-      {
-        validator: function (slug) {
-          if (slug.length != 24) {
-            return true
-          }
-          try {
-            new Types.ObjectId(slug)
-          } catch (e) {
-            return true
-          }
-          return false
-        },
-        message: 'Slug 不能是 ID ({PATH})',
-      }
-    ]
+    match: [/^[0-9a-z_-]+\.html$/, 'Slug 只允许使用小写英文，数字和 _-']
   },
   tags: [
     {
@@ -80,16 +72,11 @@ let PostSchema = new Schema({
   }],
 });
 
-let toMarkdown = (data) => {
-  var node = new MarkdownXNode
-  new MarkdownX(data).toNode(node)
-  return node.toHtml()
-}
-
 PostSchema.path('tags').set(function (tags) {
   if (!this.$_oldTags) {
     this.$_oldTags = this.get('tags')
   }
+  console.log('path tags set ', tags)
   return tags
 })
 
@@ -102,7 +89,7 @@ PostSchema.pre('save', async function (next) {
   let content = this.get('content')
   // 更新HTML文本
   if (this.isModified('content') && !this.isModified('htmlContent')) {
-    this.set('htmlContent', toMarkdown(content))
+    this.set('htmlContent', md.render(content))
   }
   // 更新摘要
   if (this.isModified('content') && !this.isModified('excerpt')) {
@@ -111,7 +98,7 @@ PostSchema.pre('save', async function (next) {
   // 更新标签
   if (this.isModified('tags')) {
     let tags = this.get('tags')
-    let oldTags = this.$_oldTags
+    let oldTags = this.$_oldTags || []
     let addTags = tags.filter(id => oldTags.indexOf(id) === -1)
     let delTags = oldTags.filter(id => tags.indexOf(id) === -1)
     if (addTags.length) {
@@ -122,7 +109,6 @@ PostSchema.pre('save', async function (next) {
       await Tag.remove({_id: {$in: delTags}, count: {$lte: 0}}).exec()
     }
   }
-
   next()
 });
 

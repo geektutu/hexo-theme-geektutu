@@ -8,11 +8,11 @@ import {bindActionCreators} from 'redux';
 import styles from './style.css'
 import CSSModules from 'react-css-modules'
 
-const updatePosts = actions.updatePosts
+const getPosts = actions.getPosts
 const mapStateToProps = (state) => ({series: state.series})
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    updatePosts
+    getPosts
   }, dispatch)
 })
 
@@ -29,19 +29,23 @@ class Series extends React.Component {
   };
 
   static fetchData(store) {
-    return store.dispatch(actions.updatePosts('tag'))
+    return store.dispatch(actions.getPosts('tag'))
   }
 
   componentDidMount() {
     var {series, actions} = this.props
     if (series && series.length === 0) {
-      actions.updatePosts('tag');
+      actions.getPosts('tag');
     }
   }
 
   render() {
-    var {series} = this.props
-    var renderPosts = (posts) => posts.map(post => (<li key={post._id}>{post.title}</li>))
+    var series = this.props.series || []
+    var renderPosts = (posts) => posts.map(post => (
+        <li key={post._id}>
+          <Link to={'/post/' + post.slug }>{post.title}</Link>
+        </li>
+    ))
 
     return (
         <div className="col-xs-12">

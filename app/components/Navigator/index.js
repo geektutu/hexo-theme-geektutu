@@ -20,7 +20,7 @@ class Navigator extends React.Component {
               <li><Link to="/">首页</Link></li>
               <li><Link to="/series">专题</Link></li>
               <li><Link to="/archives">归档</Link></li>
-              <li><Link to="/about">关于</Link></li>
+              <li><Link to="/post/about.html">关于</Link></li>
             </ul>
           </nav>
           <nav styleName="sub-link">
