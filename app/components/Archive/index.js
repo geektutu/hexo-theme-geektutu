@@ -42,7 +42,11 @@ class Archive extends React.Component {
   render() {
     var archives = this.props.archives || []
     archives.map(item =>(item.disDate = `${item.date.year}-${item.date.month}`))
-    var renderPosts = (posts) => posts.map(post => (<li key={post._id}>{post.title}</li>))
+    var renderPosts = (posts) => posts.map(post => (
+        <li key={post._id}>
+          <Link to={'/post/' + post.slug}>{post.title}</Link>
+        </li>
+    ))
 
     return (
         <div className="col-xs-12">

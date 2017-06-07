@@ -8,7 +8,8 @@
 }
 
 .main-link ul {
-  padding: 0;
+  padding: 20px 0;
+  list-style: none;
 }
 
 .main-link a {

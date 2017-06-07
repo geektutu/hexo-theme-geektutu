@@ -6,14 +6,14 @@ export default class Admin extends React.Component {
     super(props);
     this.state = {
       _id: '',
-      title: '',
       slug: '',
       tags: ['de','dd'],
       content: '',
     }
   }
   handleChange(e) {
-    this.state[e.target.name] = e.target.value
+    var { name, value } = e.target
+    this.state[name] = name === 'tags' ? (value || '').split(',') : value
     this.setState(this.state);
   }
   handleSubmit(e) {
@@ -25,7 +25,6 @@ export default class Admin extends React.Component {
           <div className="col-xs-12">
             <h1>添加文章</h1>
             <input type="text" name="_id" className="col-xs-12" value={this.state.id} placeholder="id" onChange={this.handleChange.bind(this)} />
-            <input type="text" name="title" className="col-xs-12" value={this.state.title} placeholder="标题" onChange={this.handleChange.bind(this)} />
             <input type="text" name="slug" className="col-xs-12" value={this.state.slug} placeholder="slug，以html结尾" onChange={this.handleChange.bind(this)}/>
             <input type="text" name="tags" className="col-xs-12" value={this.state.tags.join(',')} placeholder="标签"onChange={this.handleChange.bind(this)}/>
             <textarea name="content" className="col-xs-12" rows="50" placeholder="正文" value={this.state.content} onChange={this.handleChange.bind(this)}></textarea>

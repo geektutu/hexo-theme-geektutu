@@ -33,12 +33,20 @@ class Post extends React.Component {
     return store.dispatch(actions.getPost())
   }
 
-  componentDidMount() {
+  fetchPost() {
     var {match, post, actions} = this.props
     var slug = match.params.slug
     if (post && post.slug !== slug) {
       actions.getPost(slug);
     }
+  }
+
+  componentDidUpdate () {
+    this.fetchPost()
+  }
+
+  componentDidMount() {
+    this.fetchPost()
   }
   render() {
     var post = this.props.post || {}

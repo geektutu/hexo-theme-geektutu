@@ -1,15 +1,32 @@
 .post-list-item {
   border-bottom: 1px solid #ddd;
   border-top: 1px solid #fff;
-  padding: 20px 0 10px;
+  padding: 20px 0 0 0;
 }
-.post-list-item h1 {
-  font-size: 1.8em;
-  margin-top: 0;
+
+.post-list-item h1.title {
+  font-size: 1.4em;
+  margin: 0 0 10px 0;
   font-weight: normal;
+  border-bottom: none;
 }
-.meta {
-  padding-top: 5px;
+
+.post-list-item h1.title a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, .7);
+  transition: color .3s;
+}
+
+.post-list-item h1.title a:hover {
+  color: #108ee9;
+}
+.meta time {
+  color: #333333;
+  font-size: 0.85em;
 }
 .content {
+}
+.post-list .direct {
+  margin-top: 10px;
+  margin-bottom: 0;
 }

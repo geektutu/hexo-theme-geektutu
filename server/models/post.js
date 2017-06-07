@@ -51,7 +51,7 @@ let PostSchema = new Schema({
   },
   title: {
     type: String,
-    required: [true, '标题不能为空'],
+    default: '',
     maxlength: [128, '标题不能长度不能大于 128 字节 {PATH}'],
   },
   content: {
@@ -86,7 +86,12 @@ PostSchema.path('tags').validate(function (tags) {
 }, `标签数不能大于 ${MAX_TAG_COUNT} 个 ({PATH})`)
 
 PostSchema.pre('save', async function (next) {
+  this.set('updatedAt', new Date())
   let content = this.get('content')
+  // 更新标题
+  if (this.isModified('content') && !this.isModified('title')) {
+    this.set('title', content.substr(0,content.indexOf('\n')).replace('#', '').trim())
+  }
   // 更新HTML文本
   if (this.isModified('content') && !this.isModified('htmlContent')) {
     this.set('htmlContent', md.render(content))
@@ -106,12 +111,11 @@ PostSchema.pre('save', async function (next) {
     }
     if (delTags.length) {
       await Tag.update({_id: {$in: delTags}, count: {$gt: 0}}, {$inc: {count: -1}}, {multi: true})
-      await Tag.remove({_id: {$in: delTags}, count: {$lte: 0}}).exec()
     }
+    await Tag.remove({count: {$lte: 0}}).exec()
   }
   next()
 });
-
 
 const Post = createModel('Post', PostSchema);
 

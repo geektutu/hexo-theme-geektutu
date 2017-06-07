@@ -1,3 +1,6 @@
+.container {
+  min-height: 100%;
+}
 .left-col {
   width: 270px;
   position: fixed;
@@ -16,7 +19,15 @@
   min-height: 100%;
   padding: 0 10px;
 }
-
+.right-col > div:last-of-type {
+  margin-bottom: 80px;
+}
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 0 15px;
+}
 @media screen and (max-width: 1024px) {
   .left-col {
     width: 210px;

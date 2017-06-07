@@ -80,10 +80,8 @@ export default {
       post = await Post.findOne({_id})
     }
     if(post) {
-      post.set('updatedAt', new Date())
-      post.set('slug', body.slug)
-      post.set('title', body.title)
       post.set('content', body.content)
+      post.set('slug', body.slug)
       post.set('tags', body.tags)
     } else {
       delete body._id
