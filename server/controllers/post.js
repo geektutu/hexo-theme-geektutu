@@ -66,8 +66,17 @@ export default {
   },
   'GET /posts/:slug': async(ctx, next) => {
     let slug = ctx.params.slug;
+    let post = await Post.findOne({slug}).populate('tags')
+    if (post && post._id && post.isArticle) {
+      let fields = {title: 1, slug: 1}
+      let tags = []
+      post.tags.forEach(item => tags.push(item._id))
+      post._doc.previous = (await Post.find({_id: {$lt: post._id}}, fields).sort({_id: 1 }).limit(1))[0]
+      post._doc.next = (await Post.find({_id: {$gt: post._id}}, fields).sort({_id: 1 }).limit(1))[0]
+      post._doc.related = await Post.find({tags: {$in: tags}, _id: {$ne: post._id}}, fields)
+    }
     ctx.response.body = {
-      'data': await Post.findOne({slug}).populate('tags')
+      'data': post
     };
   },
 
@@ -83,6 +92,8 @@ export default {
       post.set('content', body.content)
       post.set('slug', body.slug)
       post.set('tags', body.tags)
+      post.set('canComment', body.canComment !== false)
+      post.set('isArticle', body.isArticle !== false)
     } else {
       delete body._id
       post = new Post(body)

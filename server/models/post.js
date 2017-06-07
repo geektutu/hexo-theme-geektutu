@@ -26,7 +26,6 @@ let PostSchema = new Schema({
     trim: true,
     lowercase: true,
     unique: true,
-
     minlength: [3, 'Slug 长度不能少于 3 位或大于 32 字节'],
     maxlength: [32, 'Slug 长度不能少于 3 位或大于 32 字节'],
     match: [/^[0-9a-z_-]+\.html$/, 'Slug 只允许使用小写英文，数字和 _-']
@@ -70,6 +69,14 @@ let PostSchema = new Schema({
     type: String,
     required: true,
   }],
+  canComment: {
+    type: Boolean,
+    default: true
+  },
+  isArticle: {
+    type: Boolean,
+    default: true
+  }
 });
 
 PostSchema.path('tags').set(function (tags) {

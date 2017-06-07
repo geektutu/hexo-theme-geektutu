@@ -22,7 +22,7 @@ class App extends React.Component {
             <Navigator/>
           </div>
           <div styleName="right-col" className="markdown-it padding-0">
-            <div className="col-xs-12 padding-0">
+            <div className="col-xs-12">
               {renderRoutes(routes)}
             </div>
             <footer className="text-center" styleName="footer">
