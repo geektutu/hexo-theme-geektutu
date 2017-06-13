@@ -27,13 +27,17 @@ export const getPost = (slug) => {
 }
 
 export const addPost = (post) => {
-  return fetch(api.POST_POSTS, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(post)
-  }).then(res => res.json()).then(body => {
-    console.log(body)
-  })
+  return dispatch => {
+    return fetch(api.POST_POSTS, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+    }).then(res => res.json()).then(body => {
+      if (body && body.data) {
+        window.alert('添加/修改成功')
+      }
+    })
+  }
 }

@@ -10,9 +10,9 @@ import routes from "../app/routes";
 module.exports = async function (url) {
   let store = configureStore()
   const branch = matchRoutes(routes, url)
-  const promises = branch.map(({route}) => {
+  const promises = branch.map(({route, match}) => {
     var fetchData = route.component.fetchData
-    return fetchData instanceof Function ? fetchData(store) : Promise.resolve(null)
+    return fetchData instanceof Function ? fetchData(store, match) : Promise.resolve(null)
   })
 
   return Promise.all(promises).then(() => {

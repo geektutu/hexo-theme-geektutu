@@ -29,8 +29,9 @@ class Post extends React.Component {
     actions: PropTypes.object.isRequired,
   };
 
-  static fetchData(store) {
-    return store.dispatch(actions.getPost())
+  static fetchData(store, match) {
+    var slug = match.params.slug
+    return store.dispatch(actions.getPost(slug))
   }
 
   fetchPost() {
