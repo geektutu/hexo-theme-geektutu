@@ -2,7 +2,6 @@ import {Schema} from 'mongoose'
 import createModel from './createModel'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
-import MarkdownXNode from 'markdown-x/dist/node'
 import { Tag } from '../models'
 
 const MAX_TAG_COUNT = 10
