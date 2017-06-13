@@ -1,6 +1,5 @@
 import React from "react";
 import {Link} from 'react-router-dom'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import actions from '../../actions'
 import {bindActionCreators} from 'redux'
@@ -24,11 +23,6 @@ class Post extends React.Component {
     super(props);
   }
 
-  static propTypes = {
-    post: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
-  };
-
   static fetchData(store, match) {
     var slug = match.params.slug
     return store.dispatch(actions.getPost(slug))
@@ -51,7 +45,7 @@ class Post extends React.Component {
   }
 
   render() {
-    var post = this.props.post || {}
+    var post = this.props.post
     var tags = post.tags || []
     var related = post.related || []
     var pre = post.previous || {}
@@ -69,7 +63,6 @@ class Post extends React.Component {
             {pre._id && <Link className="float-left" to={'/post/' + pre.slug}>« {pre.title}</Link>}
             {next._id && <Link className="float-right" to={'/post/' + next.slug}>{next.title} »</Link>}
           </div>
-
         </div>
     )
   }

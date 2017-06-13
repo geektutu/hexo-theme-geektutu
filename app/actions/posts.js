@@ -20,7 +20,10 @@ export const getPost = (slug) => {
     return fetch(api.GET_POST_BY_SLUG + slug).then(res => res.json()).then(body => {
       dispatch({
         type: types.GET_POST,
-        payload: body.data || {}
+        payload: body.data || {
+          slug: slug,
+          htmlContent: '<p class="text-center">Not Found</p>'
+        }
       })
     })
   }
