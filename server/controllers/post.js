@@ -25,12 +25,14 @@ export default {
     let data
     switch (groupBy) {
       case 'date':
-        data = await Post.aggregate([{
-          $group: {
-            _id: {month: {$month: "$createdAt"}, year: {$year: "$createdAt"}},
-            posts: {$push: {_id: "$_id", title: "$title", slug: "$slug"}}
-          }
-        }])
+        data = await Post.aggregate([
+          {$match: {isArticle: true}},
+          {
+            $group: {
+              _id: {month: {$month: "$createdAt"}, year: {$year: "$createdAt"}},
+              posts: {$push: {_id: "$_id", title: "$title", slug: "$slug"}}
+            }
+          }])
         data.forEach(item => {
           item.date = item._id
           delete item._id
@@ -38,6 +40,7 @@ export default {
         break
       case 'tag':
         data = await Post.aggregate([
+          {$match: {isArticle: true}},
           {$unwind: '$tags'},
           {
             $group: {
@@ -53,7 +56,7 @@ export default {
         data = await Tag.populate(data, {path: 'tag'})
         break
       default:
-        data = await Post.find({}).populate('tags')
+        data = await Post.find({isArticle: true}).populate('tags')
     }
     ctx.response.body = {
       'data': data
@@ -71,9 +74,9 @@ export default {
       let fields = {title: 1, slug: 1}
       let tags = []
       post.tags.forEach(item => tags.push(item._id))
-      post._doc.previous = (await Post.find({_id: {$lt: post._id}}, fields).sort({_id: 1 }).limit(1))[0]
-      post._doc.next = (await Post.find({_id: {$gt: post._id}}, fields).sort({_id: 1 }).limit(1))[0]
-      post._doc.related = await Post.find({tags: {$in: tags}, _id: {$ne: post._id}}, fields)
+      post._doc.previous = (await Post.find({_id: {$lt: post._id}, isArticle: true}, fields).sort({_id: 1}).limit(1))[0]
+      post._doc.next = (await Post.find({_id: {$gt: post._id}, isArticle: true}, fields).sort({_id: 1}).limit(1))[0]
+      post._doc.related = await Post.find({tags: {$in: tags}, _id: {$ne: post._id}, isArticle: true}, fields)
     }
     ctx.response.body = {
       'data': post
@@ -88,7 +91,7 @@ export default {
     if (_id && _id.length === 24) {
       post = await Post.findOne({_id})
     }
-    if(post) {
+    if (post) {
       post.set('content', body.content)
       post.set('slug', body.slug)
       post.set('tags', body.tags)
