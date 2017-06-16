@@ -36,10 +36,13 @@ export const addPost = (post) => {
       headers: {
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify(post)
-    }).then(res => res.json()).then(body => {
+    }).then(res => res.status >= 200 && res.status < 300 ? res.json() : {}).then(body => {
       if (body && body.data) {
         window.alert('添加/修改成功')
+      } else {
+        window.alert('失败')
       }
     })
   }

@@ -83,7 +83,7 @@ export default {
     };
   },
 
-  'POST /posts': async(ctx, next) => {
+  'POST /admin/posts': async(ctx, next) => {
     let body = ctx.request.body
     let _id = body._id, post
 
