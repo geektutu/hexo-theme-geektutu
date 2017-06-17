@@ -11,7 +11,7 @@ const auth = require('koa-basic-auth')
 const mount = require('koa-mount')
 
 const app = new Koa();
-const authInfo = auth({ name: 'admin', pass: 'admin123' });
+const authInfo = auth({ name: config.ADMIN_USER_NAME, pass: config.ADMIN_PASSWORD });
 
 scanRoute(router)
 
@@ -22,7 +22,7 @@ app.use(async function(ctx, next) {
     if (err.status === 401) {
       ctx.status = 401;
       ctx.set('WWW-Authenticate', 'Basic realm="sign in"');
-      ctx.body = 'cant haz that';
+      ctx.body = 'authenticate';
     } else {
       throw err;
     }
