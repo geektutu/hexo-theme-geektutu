@@ -30,10 +30,8 @@ module.exports = merge(baseWebpackConfig, {
         test: /\.css$/,
         exclude: [resolve('app/style')],
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: [
-            'css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]'
-          ]
+          fallback: 'style-loader',
+          use: 'css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]'
         })
       }
     ]
