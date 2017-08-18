@@ -3,6 +3,8 @@ var config = require('./config')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 var path = require('path')
 
 function resolve(dir) {
@@ -22,21 +24,32 @@ module.exports = merge(baseWebpackConfig, {
     rules: [
       {
         test: /\.css$/,
-        exclude: [resolve('app/style')],
-        loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[local]_[hash:base64:3]',
+        include: [resolve('app/style')],
+        loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader"})
       }, {
         test: /\.css$/,
-        include: [resolve('app/style')],
-        loader: 'style-loader!css-loader'
+        exclude: [resolve('app/style')],
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: [
+            'css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]'
+          ]
+        })
       }
     ]
   },
   plugins: [
+    new ExtractTextPlugin('[name].css'),
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    // new webpack.HotModuleReplacementPlugin(),
+    // new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',

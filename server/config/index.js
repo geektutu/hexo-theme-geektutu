@@ -1,6 +1,6 @@
 import path from 'path'
 
-export const HOST_PORT = 80
+export const HOST_PORT = 8099
 export const HOST_NAME = 'localhost'
 export const PROTOCOL = 'http'
 export const BASE_URL = PROTOCOL + '://' + HOST_NAME + ':' + HOST_PORT

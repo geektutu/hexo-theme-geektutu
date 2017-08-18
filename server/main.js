@@ -5,6 +5,10 @@ const bodyParser = require('koa-bodyparser');
 const router = require('koa-router')();
 const logger = require('koa-logger');
 const serve = require('koa-static');
+const staticCache = require('koa-static-cache');
+
+//静态文件服务
+
 const { scanRoute, chooseRoute } = require('./router');
 const config = require('./config')
 const auth = require('koa-basic-auth')
@@ -31,7 +35,11 @@ app.use(async function(ctx, next) {
 
 app.use(mount('/api/admin', authInfo));
 app.use(mount('/admin', authInfo));
-app.use(serve(config.STATIC_DIR));
+
+app.use(staticCache(config.STATIC_DIR, {
+  maxAge: 365 * 24 * 60 * 60
+}));
+
 app.use(chooseRoute);
 app.use(bodyParser());
 app.use(router.routes());
