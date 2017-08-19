@@ -1,9 +1,7 @@
 import React from "react"
-import styles from './style.css'
-import CSSModules from 'react-css-modules'
 import {Link} from 'react-router-dom'
 
-class Navigator extends React.Component {
+export default class Navigator extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -11,11 +9,11 @@ class Navigator extends React.Component {
   render() {
     return (
         <div className="col-xs-12 text-center">
-          <div styleName="icon"></div>
-          <h1 styleName="name">
+          <div className="nav-icon"></div>
+          <h1 className="nav-name">
             <Link to="/" className="no-text-decoration">呆尐兔兔</Link>
           </h1>
-          <nav styleName="main-link">
+          <nav className="nav-main-link">
             <ul>
               <li><Link to="/">首页</Link></li>
               <li><Link to="/series">专题</Link></li>
@@ -23,15 +21,13 @@ class Navigator extends React.Component {
               <li><Link to="/post/about.html">关于</Link></li>
             </ul>
           </nav>
-          <nav styleName="sub-link">
+          <nav className="nav-sub-link">
             <ul>
-              <li><a target="_blank" href="https://github.com/gzdaijie/koa-react-server-render-blog" styleName="icon-github"></a></li>
-              <li><Link to="/search" styleName="icon-search"></Link></li>
+              <li><a target="_blank" href="https://github.com/gzdaijie/koa-react-server-render-blog" className="nav-icon-github" /></li>
+              <li><Link to="/search" className="nav-icon-search" /></li>
             </ul>
           </nav>
         </div>
     )
   }
 }
-
-export default CSSModules(Navigator, styles, {allowMultiple: true})

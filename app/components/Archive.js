@@ -2,11 +2,8 @@ import React from "react";
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import actions from '../../actions'
+import actions from '../actions'
 import {bindActionCreators} from 'redux';
-
-import styles from './style.css'
-import CSSModules from 'react-css-modules'
 
 const getPosts = actions.getPosts
 const mapStateToProps = (state) => ({archives: state.archives})
@@ -17,7 +14,6 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 @connect(mapStateToProps, mapDispatchToProps)
-@CSSModules(styles)
 class Archive extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +28,8 @@ class Archive extends React.Component {
     return store.dispatch(actions.getPosts('date'))
   }
 
+  static title = "归档 | 呆兔兔的小站"
+
   componentDidMount() {
     var {archives, actions} = this.props
     if (archives && archives.length === 0) {
@@ -40,6 +38,9 @@ class Archive extends React.Component {
   }
 
   render() {
+    if (typeof window !== 'undefined') {
+      window.document.title = Archive.title
+    }
     var archives = this.props.archives || []
     archives.map(item =>(item.disDate = `${item.date.year}-${item.date.month}`))
     var renderPosts = (posts) => posts.map(post => (

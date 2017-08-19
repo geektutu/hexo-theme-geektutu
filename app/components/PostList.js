@@ -2,12 +2,9 @@ import React from "react";
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import actions from '../../actions'
+import actions from '../actions'
 import {bindActionCreators} from 'redux';
-import * as dateUtil from '../../util/date'
-
-import styles from './style.css'
-import CSSModules from 'react-css-modules'
+import * as dateUtil from '../util/date'
 
 const getPosts = actions.getPosts
 const mapStateToProps = (state) => ({posts: state.posts})
@@ -18,7 +15,6 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 @connect(mapStateToProps, mapDispatchToProps)
-@CSSModules(styles)
 class PostList extends React.Component {
   constructor(props) {
     super(props);
@@ -30,8 +26,10 @@ class PostList extends React.Component {
   };
 
   static fetchData(store) {
-    return store.dispatch(actions.getPosts)
+    return store.dispatch(actions.getPosts())
   }
+
+  static title = "列表 | 呆兔兔的小站"
 
   componentDidMount() {
     var {posts, actions} = this.props
@@ -41,26 +39,29 @@ class PostList extends React.Component {
   }
 
   render() {
+    if (typeof window !== 'undefined') {
+      window.document.title = PostList.title
+    }
     var posts = this.props.posts
     return (
-        <div className="col-xs-12" styleName="post-list">
+        <div className="col-xs-12">
           {
             posts.map(item => (
-                <article key={item._id} styleName="post-list-item" className="col-xs-12 padding-lr-0">
-                  <div styleName="meta" className="float-right">
+                <article key={item._id} className="post-list-item col-xs-12 padding-lr-0">
+                  <div className="post-list-item-meta float-right">
                     <time>{dateUtil.toDateString(item.createdAt)}</time>
                   </div>
-                  <h1 styleName="title">
+                  <h1 className="post-list-item-title">
                     <Link to={'/post/' + item.slug}>{item.title}</Link>
                   </h1>
-                  <div styleName="content">
+                  <div>
                     <p>{item.excerpt}</p>
-                    <p><Link to={'/post/' + item.slug} className="read-more">阅读全文 »</Link></p>
+                    <p><Link to={'/post/' + item.slug} className="text-center">阅读全文 »</Link></p>
                   </div>
                 </article>
             ))
           }
-          <p className="text-center col-xs-12" styleName="direct">
+          <p className="text-center col-xs-12 post-list-link">
             <Link to="/archives">博客归档</Link>
           </p>
         </div>

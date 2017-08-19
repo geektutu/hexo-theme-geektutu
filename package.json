@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node build/dev-server",
+    "build": "webpack --config build/webpack.server.conf.js && webpack --config build/webpack.client.conf.js",
     "start": "webpack --config build/webpack.server.conf.js && webpack --config build/webpack.client.conf.js && node dist/server.js"
   },
   "author": "",
@@ -28,7 +29,6 @@
     "html-loader": "^0.4.5",
     "html-webpack-plugin": "^2.28.0",
     "postcss-loader": "^2.0.6",
-    "react-css-modules": "^4.3.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-router-redux": "^4.0.8",
     "style-loader": "^0.18.1",
@@ -40,7 +40,6 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "es6-promise": "^4.1.0",
-    "extract-text-webpack-plugin": "^2.1.2",
     "highlight.js": "^9.12.0",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.2.0",

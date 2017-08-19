@@ -25,21 +25,30 @@ module.exports = merge(baseWebpackConfig, {
       {
         test: /\.css$/,
         include: [resolve('app/style')],
-        loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader"})
-      }, {
-        test: /\.css$/,
-        exclude: [resolve('app/style')],
         loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]'
+          fallback: "style-loader",
+          use: [
+            {
+              loader: "css-loader",
+              options: {minimize: true}
+            }
+          ]
         })
       }
+      // {
+      //   test: /\.css$/,
+      //   exclude: [resolve('app/style')],
+      //   loader: ExtractTextPlugin.extract({
+      //     fallback: 'style-loader',
+      //     use: 'css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]'
+      //   })
+      // }
     ]
   },
   plugins: [
     new ExtractTextPlugin('[name].css'),
     new webpack.DefinePlugin({
-      'process.env': config.dev.env
+      'process.env': config.build.env
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

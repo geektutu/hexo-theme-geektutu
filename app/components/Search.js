@@ -1,17 +1,17 @@
 import React from "react";
 
-import styles from './style.css'
-import CSSModules from 'react-css-modules'
-
-@CSSModules(styles)
-class PostList extends React.Component {
+export default class PostList extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-  }
+
+  static title = "搜索 | 呆兔兔的小站"
 
   render() {
+    if (typeof window !== 'undefined') {
+      window.document.title = PostList.title
+    }
+
     return (
         <div className="col-xs-12">
           <input type="text" placeholder="搜点啥呢..."/>
@@ -23,4 +23,3 @@ class PostList extends React.Component {
     )
   }
 }
-export default PostList

@@ -1,0 +1,144 @@
+/*******
+ * App *
+ *******/
+.app {
+  min-height: 100%;
+}
+.app-left-col {
+  width: 270px;
+  position: fixed;
+  left: 0;
+  height: 100%;
+  background-image: url("../static/img/background3.jpg");
+  background-size: cover;
+}
+
+.app-right-col {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin-left: 270px;
+  min-height: 100%;
+  padding: 0 10px;
+  max-width: 1024px;
+}
+.app-right-col > div:last-of-type {
+  margin-bottom: 80px;
+}
+.app-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 0 15px;
+}
+@media screen and (max-width: 1024px) {
+  .app-left-col {
+    width: 210px;
+  }
+  .app-right-col {
+    margin-left: 210px;
+  }
+}
+/*************
+ * post list *
+ *************/
+.post-list-link {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.post-list-item {
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #fff;
+  padding: 20px 0 0 0;
+}
+
+.post-list-item .post-list-item-title {
+  font-size: 1.4em;
+  margin: 0 0 10px 0;
+  font-weight: normal;
+  border-bottom: none;
+}
+
+.post-list-item .post-list-item-title a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, .7);
+  transition: color .3s;
+}
+
+.post-list-item .post-list-item-title a:hover {
+  color: #108ee9;
+}
+.post-list-item .post-list-item-meta time {
+  color: #333333;
+  font-size: 0.85em;
+}
+
+/********
+ * POST *
+ ********/
+.post-label {
+  margin-right: 10px !important;
+}
+
+/********
+ * NAV *
+ ********/
+.nav-icon {
+  border-radius: 50%;
+  height: 170px;
+  width: 170px;
+  margin: 40px auto;
+  background-image: url("../static/img/icon.png");
+  background-size: cover;
+}
+
+.nav-main-link ul {
+  padding: 20px 0;
+  list-style: none;
+}
+
+.nav-main-link a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  text-shadow: 0 1px #666;
+}
+
+.nav-main-link a:hover,
+.nav-main-link a:focus {
+  color: #e6e6e6;
+}
+.nav-main-link li {
+  margin-bottom: 10px;
+}
+
+.nav-sub-link li {
+  display: inline-block;
+  padding: 5px;
+}
+
+.nav-name a {
+  color: white;
+  font-size: 24px;
+}
+
+.nav-sub-link a {
+  width: 30px;
+  height: 30px;
+  display: block;
+  border-radius: 50%;
+}
+
+.nav-icon-search {
+  border: 1px solid #afb6ca;
+  background: #afb6ca url("../static/img/search.png") no-repeat center;
+  background-size: 90%;
+}
+
+.nav-icon-github {
+  border: 1px solid #24282d;
+  background: #24282d url("../static/img/github.png") no-repeat center;
+  background-size: 90%;
+}
+

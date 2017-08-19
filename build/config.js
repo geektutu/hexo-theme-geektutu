@@ -9,7 +9,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    productionSourceMap: true,
+    productionSourceMap: false,
     productionGzip: false,
     productionGzipExtensions: ['js', 'css'],
   },
@@ -17,7 +17,7 @@ module.exports = {
     env: {
       NODE_ENV: '"development"'
     },
-    port: 80,
+    port: 3000,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',

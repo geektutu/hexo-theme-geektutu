@@ -4,7 +4,7 @@ import * as component from './components'
 const routes = [{
   path: '/',
   exact: true,
-  component: component.PostList,
+  component: component.PostList
 }, {
   path: '/series',
   component: component.Series
@@ -20,6 +20,9 @@ const routes = [{
 }, {
   path: '/admin',
   component: component.Admin
+}, {
+  path: '*',
+  component: component.PostList
 }]
 
 export default routes

@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <title>代杰兔兔的小站</title>
+    <title>呆兔兔的小站</title>
     <meta charset="UTF-8"/>
     <meta name=renderer content=webkit>
     <meta name=force-rendering content=webkit>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=2,user-scalable=1">
+    <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/app.css">
 </head>
 <body>
 <div id='app' class="col-xs-12 padding-0"></div>
+<script>
+    window.onload = function () {
+        var a_s = document.querySelectorAll('a')
+        a_s.forEach((item) => {
+            if (item.href && !(item.href.startsWith('/') || item.href.indexOf('imtuzi') !== -1)) {
+                item.target = '_blank'
+            }
+        })
+    }
+</script>
 </body>
 </html>

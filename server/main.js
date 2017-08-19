@@ -4,7 +4,6 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const router = require('koa-router')();
 const logger = require('koa-logger');
-const serve = require('koa-static');
 const staticCache = require('koa-static-cache');
 
 //静态文件服务
@@ -37,7 +36,7 @@ app.use(mount('/api/admin', authInfo));
 app.use(mount('/admin', authInfo));
 
 app.use(staticCache(config.STATIC_DIR, {
-  maxAge: 365 * 24 * 60 * 60
+  maxAge: 5
 }));
 
 app.use(chooseRoute);

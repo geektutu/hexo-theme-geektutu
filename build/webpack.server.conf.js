@@ -45,4 +45,11 @@ module.exports = merge(config, {
       }
     ]
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
+  ]
 })
