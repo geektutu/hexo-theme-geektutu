@@ -107,27 +107,24 @@ export default {
     let manifest = JSON.parse(fs.readFileSync(POSTS_BASE_PATH + '/manifest.json'));
     let records = []
     Object.keys(manifest).forEach((category) => {
-       manifest[category].forEach((meta) => {
-         let content = fs.readFileSync(POSTS_BASE_PATH + '/' + meta.path, 'utf-8')
-         let record = {
-           slug: meta.path.split('/').reverse()[0].replace('.md', '.html'),
-           content: content,
-           tags: meta.tags.split(','),
-           isArticle: meta.isArticle || meta.isArticle === undefined,
-           canComment: meta.canComment || meta.canComment === undefined,
-           category: category
-         }
-         shell.cd(POSTS_BASE_PATH)
-         let log = shell.exec('git log --follow --format="%cd" -- ' + meta.path, {silent:true}).stdout.trim()
-         let dates = log.split('\n')
+      manifest[category].forEach((meta) => {
+        let content = fs.readFileSync(POSTS_BASE_PATH + '/' + meta.path, 'utf-8')
+        let record = {
+          slug: meta.path.split('/').reverse()[0].replace('.md', '.html'),
+          content: content,
+          tags: meta.tags.split(','),
+          isArticle: meta.isArticle || meta.isArticle === undefined,
+          canComment: meta.canComment || meta.canComment === undefined,
+          category: category
+        }
+        shell.cd(POSTS_BASE_PATH)
+        let log = shell.exec('git log --follow --format="%cd" -- ' + meta.path, {silent: true}).stdout.trim()
+        let dates = log.split('\n')
 
-         console.log(meta.path)
-         console.log(dates)
-
-         record.updatedAt = new Date(dates[0])
-         record.createdAt = new Date(dates.reverse()[0])
-         record.title = content.substr(0, content.indexOf('\n')).replace('#', '').trim()
-         records.push(record)
+        record.updatedAt = new Date(dates[0])
+        record.createdAt = new Date(dates.reverse()[0])
+        record.title = content.substr(0, content.indexOf('\n')).replace('#', '').trim()
+        records.push(record)
       })
     })
 
@@ -148,16 +145,23 @@ export default {
       }
     })
 
-    for(let i = 0; i < records.length; i++) {
+    let error = []
+    let success = 0
+    let fail = 0
+    for (let i = 0; i < records.length; i++) {
       let item = records[i]
       try {
         item.tags = await tagNames2TagIds(item.tags)
         let post = new Post(item)
-        console.log('then save...')
         await post.save()
+        success += 1
       } catch (e) {
-        console.log(e.message)
+        fail += 1
+        error.push(e.message)
       }
     }
+    ctx.response.body = {
+      'data': {success, fail, error}
+    };
   }
 }
