@@ -5,24 +5,55 @@
   min-height: 100%;
 }
 .app-left-col {
-  width: 270px;
   position: fixed;
   left: 0;
-  height: 100%;
+  top: 0;
   background-image: url("../static/img/background3.jpg");
   background-size: cover;
+  z-index: 2;
 }
-
 .app-right-col {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  margin-left: 270px;
   min-height: 100%;
   padding: 0 10px;
   max-width: 1024px;
+  z-index: 1;
 }
+@media (min-width: 768px) {
+  .app-left-col {
+    width: 270px;
+    height: 100%;
+  }
+
+  .app-right-col {
+    margin-left: 270px;
+    padding: 0 10px;
+    max-width: 1024px;
+  }
+}
+@media (max-width: 1024px) {
+  .app-left-col {
+    width: 210px;
+  }
+  .app-right-col {
+    margin-left: 210px;
+  }
+}
+@media (max-width: 767px){
+  .app-left-col {
+    width: 100%;
+    height: 180px;
+  }
+
+  .app-right-col {
+    margin-left: 0;
+    margin-top: 180px;
+  }
+}
+
 .app-right-col > div:last-of-type {
   margin-bottom: 80px;
 }
@@ -31,14 +62,6 @@
   width: 100%;
   bottom: 0;
   padding: 0 15px;
-}
-@media screen and (max-width: 1024px) {
-  .app-left-col {
-    width: 210px;
-  }
-  .app-right-col {
-    margin-left: 210px;
-  }
 }
 /*************
  * post list *
@@ -142,3 +165,25 @@
   background-size: 90%;
 }
 
+@media (max-width: 767px) {
+  .nav-icon {
+    width: 80px;
+    height: 80px;
+    margin: 20px auto 0;
+  }
+  .nav-main-link li {
+    display: inline-block;
+    padding: 0 10px;
+    margin-bottom: 0;
+  }
+  .nav-main-link ul {
+    padding: 5px 0;
+  }
+  .nav-name {
+    display: none;
+  }
+  .nav-sub-link a {
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -13,6 +13,12 @@
   word-wrap: break-word;
 }
 
+@media (max-width: 767px) {
+  .markdown-it {
+    font-size: 12px;
+  }
+}
+
 .markdown-it * {
   box-sizing: border-box;
 }

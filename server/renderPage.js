@@ -48,7 +48,7 @@ module.exports = async(url) => {
         <meta name="description" content="呆兔兔的小站，复旦计算机学院毕业，分享一些技术教程和有趣的技术实践" />
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=2,user-scalable=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2,user-scalable=1" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/app.css">
       </head>
