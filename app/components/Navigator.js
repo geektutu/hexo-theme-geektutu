@@ -11,7 +11,7 @@ export default class Navigator extends React.Component {
         <div className="col-xs-12 text-center">
           <div className="nav-icon"></div>
           <h1 className="nav-name">
-            <Link to="/" className="no-text-decoration">呆尐兔兔</Link>
+            <Link to="/" className="no-text-decoration">呆兔兔</Link>
           </h1>
           <nav className="nav-main-link">
             <ul>
