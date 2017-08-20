@@ -26,8 +26,8 @@ let PostSchema = new Schema({
     lowercase: true,
     unique: true,
     minlength: [3, 'Slug 长度不能少于 3 位或大于 32 字节'],
-    maxlength: [32, 'Slug 长度不能少于 3 位或大于 32 字节'],
-    match: [/^[0-9a-z_-]+\.html$/, 'Slug 只允许使用小写英文，数字和 _-']
+    maxlength: [100, 'Slug 长度不能少于 3 位或大于 32 字节'],
+    match: [/^[0-9a-zA-Z_-]+\.html$/, 'Slug 只允许使用小写英文，数字和 _-']
   },
   tags: [
     {
