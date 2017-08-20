@@ -33,10 +33,9 @@ app.use(async function(ctx, next) {
 })
 
 app.use(mount('/api/admin', authInfo));
-app.use(mount('/admin', authInfo));
 
 app.use(staticCache(config.STATIC_DIR, {
-  maxAge: 5
+  maxAge: 60 * 60
 }));
 
 app.use(chooseRoute);

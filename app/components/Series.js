@@ -25,14 +25,14 @@ class Series extends React.Component {
   };
 
   static fetchData(store) {
-    return store.dispatch(actions.getPosts('tag'))
+    return store.dispatch(actions.getPosts('category'))
   }
   static title = "专题 | 呆兔兔的小站"
 
   componentDidMount() {
     var {series, actions} = this.props
     if (series && series.length === 0) {
-      actions.getPosts('tag');
+      actions.getPosts('category');
     }
   }
 
@@ -52,8 +52,8 @@ class Series extends React.Component {
           <h1>专题</h1>
           {
             series.map(item => (
-                <section key={item.tag.name}>
-                  <h2>{item.tag.name}</h2>
+                <section key={item.category}>
+                  <h2>{item.category}</h2>
                   <ul>
                     {
                       renderPosts(item.posts)

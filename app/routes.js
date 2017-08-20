@@ -18,9 +18,6 @@ const routes = [{
   path: '/search',
   component: component.Search
 }, {
-  path: '/admin',
-  component: component.Admin
-}, {
   path: '*',
   component: component.PostList
 }]

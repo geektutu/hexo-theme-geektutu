@@ -37,6 +37,11 @@ let PostSchema = new Schema({
       required: true,
     }
   ],
+  category: {
+    type: String,
+    default: '未分类',
+    required: [true, '分类不能为空']
+  },
   createdAt: {
     type: Date,
     index: true,
@@ -64,10 +69,12 @@ let PostSchema = new Schema({
   excerpt: {
     type: String,
   },
-  images: [{
-    type: String,
-    required: true,
-  }],
+  previous: {
+    type: Object
+  },
+  next: {
+    type: Object
+  },
   canComment: {
     type: Boolean,
     default: true
@@ -92,11 +99,12 @@ PostSchema.path('tags').validate(function (tags) {
 }, `标签数不能大于 ${MAX_TAG_COUNT} 个 ({PATH})`)
 
 PostSchema.pre('save', async function (next) {
+  console.log('pre post save')
   this.set('updatedAt', new Date())
   let content = this.get('content')
   // 更新标题
   if (this.isModified('content') && !this.isModified('title')) {
-    this.set('title', content.substr(0,content.indexOf('\n')).replace('#', '').trim())
+    this.set('title', content.substr(0, content.indexOf('\n')).replace('#', '').trim())
   }
   // 更新HTML文本
   if (this.isModified('content') && !this.isModified('htmlContent')) {
@@ -104,7 +112,7 @@ PostSchema.pre('save', async function (next) {
   }
   // 更新摘要
   if (this.isModified('content') && !this.isModified('excerpt')) {
-    this.set('excerpt', content.substr(0, 100))
+    this.set('excerpt', content.substr(content.indexOf('\n') + 1, 150))
   }
   // 更新标签
   if (this.isModified('tags')) {

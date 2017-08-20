@@ -2,9 +2,18 @@ import fetch from 'isomorphic-fetch'
 import * as types from './types'
 import * as api from './api'
 
+const groupBy2Api = {
+  'date': api.GET_ARCHIVES,
+  'category': api.GET_SERIES
+}
+const groupBy2Type = {
+  'date': types.GET_ARCHIVES,
+  'category': types.GET_SERIES
+}
+
 export const getPosts = (groupBy = '') => {
-  var url = groupBy === 'date' ? api.GET_ARCHIVES : groupBy === 'tag' ? api.GET_SERIES : api.GET_POSTS
-  var type = groupBy === 'date' ? types.GET_ARCHIVES : groupBy === 'tag' ? types.GET_SERIES : types.GET_POSTS
+  var url = groupBy2Api[groupBy] || api.GET_POSTS
+  var type = groupBy2Type[groupBy] || types.GET_POSTS
   return dispatch => {
     return fetch(url).then(res => res.json()).then(body => {
       dispatch({

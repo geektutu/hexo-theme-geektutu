@@ -59,8 +59,8 @@ class Post extends React.Component {
           <ul>{related.map(item => (<li key={item._id}><Link to={'/post/' + item.slug}>{item.title}</Link></li>))}</ul>
           <hr/>
           <div>
-            {pre._id && <Link className="float-left" to={'/post/' + pre.slug}>« {pre.title}</Link>}
-            {next._id && <Link className="float-right" to={'/post/' + next.slug}>{next.title} »</Link>}
+            {pre.slug && <Link className="float-left" to={'/post/' + pre.slug}>« {pre.title}</Link>}
+            {next.slug && <Link className="float-right" to={'/post/' + next.slug}>{next.title} »</Link>}
           </div>
         </div>
     )
