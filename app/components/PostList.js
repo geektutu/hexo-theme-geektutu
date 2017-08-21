@@ -45,15 +45,16 @@ class PostList extends React.Component {
     var posts = this.props.posts
     return (
         <div className="col-xs-12">
+          <h1 className="no-display">最近的文章列表</h1>
           {
             posts.map(item => (
                 <article key={item._id} className="post-list-item col-xs-12 padding-lr-0">
                   <div className="post-list-item-meta float-right">
                     <time>{dateUtil.toDateString(item.createdAt)}</time>
                   </div>
-                  <h1 className="post-list-item-title">
+                  <p className="post-list-item-title">
                     <Link to={'/post/' + item.slug}>{item.title}</Link>
-                  </h1>
+                  </p>
                   <div>
                     <p>{item.excerpt}</p>
                     <p><Link to={'/post/' + item.slug} className="text-center">阅读全文 »</Link></p>

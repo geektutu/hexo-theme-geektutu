@@ -10,9 +10,9 @@ export default class Navigator extends React.Component {
     return (
         <div className="col-xs-12 text-center">
           <div className="nav-icon"></div>
-          <h1 className="nav-name">
+          <p className="nav-name">
             <Link to="/" className="no-text-decoration">呆兔兔</Link>
-          </h1>
+          </p>
           <nav className="nav-main-link">
             <ul>
               <li><Link to="/">首页</Link></li>
