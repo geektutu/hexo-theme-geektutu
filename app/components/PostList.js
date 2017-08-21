@@ -29,7 +29,7 @@ class PostList extends React.Component {
     return store.dispatch(actions.getPosts())
   }
 
-  static title = "最近 | 呆兔兔的小站"
+  static title = "呆兔兔的小站"
 
   componentDidMount() {
     var {posts, actions} = this.props

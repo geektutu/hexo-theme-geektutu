@@ -46,6 +46,8 @@ module.exports = async(url) => {
         <meta name="force-rendering" content="webkit" />
         <meta name="keywords" content="博客,呆兔兔,Python"/>
         <meta name="description" content="呆兔兔的小站，复旦计算机学院毕业，分享一些技术教程和有趣的技术实践" />
+        <meta name="baidu-site-verification" content="FGUxdLf926" />
+        <meta name="google-site-verification" content="19ixTFj-X-rXuvZFvR1PMkqSHMXZ5GjN7nhYdYYFm-c" />
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2,user-scalable=1" />
@@ -58,7 +60,7 @@ module.exports = async(url) => {
         window.onload = function () {
           var a_s = document.querySelectorAll('a')
           a_s.forEach((item) => {
-            if (item.href && item.href.indexOf('imtuzi') === -1) {
+            if (item.href && item.href.indexOf(window.location.host) === -1) {
                 item.target = '_blank'
             }
           })

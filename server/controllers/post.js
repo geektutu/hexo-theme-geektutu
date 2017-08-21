@@ -1,5 +1,5 @@
 import {Post, Tag} from '../models'
-import {POSTS_BASE_PATH} from '../config/'
+import {POSTS_BASE_PATH, STATIC_DIR, DOMAIN_NAME} from '../config/'
 import fs from 'fs'
 import shell from 'shelljs'
 
@@ -148,6 +148,7 @@ export default {
     let error = []
     let success = 0
     let fail = 0
+    let urls = ['/', '/series', '/archives']
     for (let i = 0; i < records.length; i++) {
       let item = records[i]
       try {
@@ -155,11 +156,18 @@ export default {
         let post = new Post(item)
         await post.save()
         success += 1
+        urls.push('/post/' + item.slug)
       } catch (e) {
         fail += 1
         error.push(e.message)
       }
     }
+
+    if (fail === 0) {
+      urls = urls.map(url => DOMAIN_NAME + url)
+      fs.writeFileSync(STATIC_DIR + '/sitemap.txt', urls.join('\n'))
+    }
+
     ctx.response.body = {
       'data': {success, fail, error}
     };

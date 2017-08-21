@@ -10,3 +10,4 @@ export const MONGO_DB_URL = 'mongodb://localhost/blog'
 
 export const ADMIN_USER_NAME = 'admin'
 export const ADMIN_PASSWORD = 'admin123'
+export const DOMAIN_NAME = 'http://imtuzi.com'

@@ -3,8 +3,7 @@ import controllers from '../controllers'
 
 let chooseRoute = async(ctx, next) => {
   ctx.response.type = 'application/json';
-
-  if (!ctx.url.startsWith("/api") && !ctx.url.startsWith("/favicon.ico")) {
+  if (!ctx.url.startsWith("/api") && !/\.(xml|txt|ico)$/.test(ctx.url)) {
     console.log('render page: ', ctx.url)
     ctx.response.type = 'text/html';
     ctx.response.body = await renderPage(ctx.url)
