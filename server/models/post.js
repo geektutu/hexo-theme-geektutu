@@ -102,17 +102,13 @@ PostSchema.pre('save', async function (next) {
   console.log('pre post save')
   this.set('updatedAt', new Date())
   let content = this.get('content')
-  // 更新标题
-  if (this.isModified('content') && !this.isModified('title')) {
-    this.set('title', content.substr(0, content.indexOf('\n')).replace('#', '').trim())
-  }
   // 更新HTML文本
   if (this.isModified('content') && !this.isModified('htmlContent')) {
     this.set('htmlContent', md.render(content))
   }
   // 更新摘要
   if (this.isModified('content') && !this.isModified('excerpt')) {
-    this.set('excerpt', content.substr(content.indexOf('\n') + 1, 150))
+    this.set('excerpt', content.substr(content.indexOf('\n') + 1, 200).replace(/#/gm, '').replace(/\n|"|`|'/gm, ' '))
   }
   // 更新标签
   if (this.isModified('tags')) {

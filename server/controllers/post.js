@@ -76,7 +76,7 @@ export default {
         data = await Tag.populate(data, {path: 'tag'})
         break
       default:
-        data = await Post.find({isArticle: true}).populate('tags')
+        data = await Post.find({isArticle: true}).sort({'createdAt': -1}).limit(20).populate('tags')
     }
     ctx.response.body = {
       'data': data
