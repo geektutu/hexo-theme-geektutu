@@ -6,9 +6,9 @@
 .markdown-it {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  line-height: 1.5;
-  color: rgba(0, 0, 0, 0.65);;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.8;
+  color: #333333;
+  font-family: Arial,'Hiragino Sans GB',冬青黑,'Microsoft YaHei',微软雅黑,SimSun,宋体,Helvetica,Tahoma,'Arial sans-serif';
   font-size: 16px;
   word-wrap: break-word;
 }
@@ -55,7 +55,7 @@
 .markdown-it table,
 .markdown-it pre {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 1em;
 }
 
 .markdown-it code,
@@ -86,12 +86,10 @@
   text-decoration: none;
 }
 .markdown-it blockquote {
-  margin: 0;
-}
-.markdown-it blockquote {
+  margin: 1em 0;
   padding: 0 1em;
-  color: #6a737d;
-  border-left: 0.25em solid #dfe2e5;
+  color: #666666;
+  border-left: .25em solid #108ee9;
 }
 
 .markdown-it blockquote>:first-child {
@@ -105,7 +103,6 @@
 .markdown-it code {
   padding: 0.2em 0;
   margin: 0;
-  font-size: 85%;
   background-color: rgba(27,31,35,0.05);
   border-radius: 3px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -140,15 +137,16 @@
 .markdown-it h4,
 .markdown-it h5,
 .markdown-it h6 {
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-weight: 600;
-  line-height: 1.25;
 }
 
 .markdown-it h1 {
+  margin-top: 20px;
   padding-bottom: 0.3em;
-  font-size: 2em;
+  font-size: 1.8em;
+  font-weight: 300;
   border-bottom: 1px solid #eaecef;
 }
 
@@ -224,10 +222,10 @@
 
 .markdown-it pre {
   word-wrap: normal;
-  font: 12px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
   padding: 16px;
   overflow: auto;
-  line-height: 1.2;
+  line-height: 1.5;
   background-color: #f6f8fa;
   border-radius: 3px;
 }
@@ -235,7 +233,7 @@
 .markdown-it pre code {
   padding: 0;
   margin: 0;
-  font-size: 100%;
+  font-size: 0.85em;
   word-break: normal;
   white-space: pre;
   background: transparent;
@@ -287,7 +285,7 @@
 
 .markdown-it ul,
 .markdown-it ol {
-  padding-left: 2em;
+  padding-left: 1em;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -311,11 +309,9 @@
   margin-top: 0;
   margin-bottom: 0;
 }
-
 .markdown-it li>p {
   margin-top: 16px;
 }
-
 .markdown-it li+li {
   margin-top: 0.25em;
 }

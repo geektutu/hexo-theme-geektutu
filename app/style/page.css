@@ -3,6 +3,8 @@
  *******/
 .app {
   min-height: 100%;
+  font-family: "-apple-system","Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+
 }
 .app-left-col {
   position: fixed;
@@ -19,8 +21,8 @@
   right: 0;
   top: 0;
   min-height: 100%;
-  padding: 0 10px;
-  max-width: 1024px;
+  padding: 10px 20px 0;
+  max-width: 900px;
   z-index: 1;
 }
 @media (min-width: 768px) {
@@ -31,8 +33,6 @@
 
   .app-right-col {
     margin-left: 270px;
-    padding: 0 10px;
-    max-width: 1024px;
   }
 }
 @media (max-width: 1024px) {
@@ -75,13 +75,13 @@
 .post-list-item {
   border-bottom: 1px solid #ddd;
   border-top: 1px solid #fff;
-  padding: 20px 0 0 0;
+  padding: 20px 0 10px 0;
 }
 
 .post-list-item .post-list-item-title {
-  font-size: 1.4em;
-  margin: 0 0 10px 0;
-  font-weight: normal;
+  font-size: 1.8em;
+  margin: 0 0 10px;
+  font-weight: 300;
   border-bottom: none;
 }
 
@@ -93,6 +93,9 @@
 
 .post-list-item .post-list-item-title a:hover {
   color: #108ee9;
+}
+.post-list-item .post-list-item-meta {
+  margin-top: 10px;
 }
 .post-list-item .post-list-item-meta time {
   color: #333333;
