@@ -5,6 +5,7 @@ let chooseRoute = async(ctx, next) => {
   ctx.response.type = 'application/json';
   if (!ctx.url.startsWith("/api")) {
     console.log('render page: ', ctx.url)
+    ctx.set('Cache-Control', 'private, max-age=500')
     ctx.response.type = 'text/html';
     ctx.response.body = await renderPage(ctx.url)
   }

@@ -20,6 +20,7 @@ scanRoute(router)
 app.use(async function(ctx, next) {
   try {
     await next();
+    ctx.set('X-Frame-Options', 'DENY')
   } catch (err) {
     if (err.status === 401) {
       ctx.status = 401;
@@ -32,9 +33,8 @@ app.use(async function(ctx, next) {
 })
 
 app.use(mount('/api/admin', authInfo));
-
 app.use(staticCache(config.STATIC_DIR, {
-  maxAge: 24 * 60 * 60
+  maxAge: 60 * 60
 }));
 
 app.use(chooseRoute);

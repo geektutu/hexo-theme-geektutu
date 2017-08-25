@@ -100,12 +100,23 @@ export default {
       'data': post
     };
   },
+  'GET /admin/git-pull': async(ctx, next) => {
+    console.log('git pull')
+    try {
+      shell.cd(POSTS_BASE_PATH)
+      let gitPull = shell.exec('git pull', {silent: true}).stdout
+      ctx.response.body = {'data': gitPull}
+    } catch (e) {
+      ctx.response.body = {'data': e};
+    }
+  },
   'GET /admin/posts': async(ctx, next) => {
     await Tag.remove().exec()
     await Post.remove().exec()
 
     let manifest = JSON.parse(fs.readFileSync(POSTS_BASE_PATH + '/manifest.json'));
     let records = []
+    shell.cd(POSTS_BASE_PATH)
     Object.keys(manifest).forEach((category) => {
       manifest[category].forEach((meta) => {
         let content = fs.readFileSync(POSTS_BASE_PATH + '/' + meta.path, 'utf-8')
@@ -117,7 +128,6 @@ export default {
           canComment: meta.canComment || meta.canComment === undefined,
           category: category
         }
-        shell.cd(POSTS_BASE_PATH)
         let log = shell.exec('git log --follow --format="%cd" -- ' + meta.path, {silent: true}).stdout.trim()
         let dates = log.split('\n')
 
