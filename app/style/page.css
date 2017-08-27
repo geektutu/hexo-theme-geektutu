@@ -193,3 +193,19 @@
     height: 24px;
   }
 }
+/************
+ * archives *
+ ************/
+/************
+ *  series  *
+ ************/
+/**********
+ * post   *
+ **********/
+.post .post-created-time,
+.series .post-created-time,
+.archives .post-created-time {
+  margin-left: 10px;
+  color: rgba(180,180,180, 0.9);
+  font-size: 0.85em;
+}

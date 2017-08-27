@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import actions from '../actions'
 import {bindActionCreators} from 'redux';
+import * as dateUtil from '../util/date'
 
 const getPosts = actions.getPosts
 const mapStateToProps = (state) => ({series: state.series})
@@ -44,11 +45,12 @@ class Series extends React.Component {
     var renderPosts = (posts) => posts.map(post => (
         <li key={post._id}>
           <Link to={'/post/' + post.slug }>{post.title}</Link>
+          <span className="post-created-time">({dateUtil.toDateString(post.createdAt)})</span>
         </li>
     ))
 
     return (
-        <div className="col-xs-12">
+        <div className="col-xs-12 series">
           <h1>专题</h1>
           {
             series.map(item => (

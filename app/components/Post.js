@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import actions from '../actions'
 import {bindActionCreators} from 'redux'
+import * as dateUtil from '../util/date'
 
 const getPost = actions.getPost
 const addPost = actions.addPost
@@ -47,16 +48,21 @@ class Post extends React.Component {
     var pre = post.previous || {}
     var next = post.next || {}
     if (typeof window !== 'undefined') {
-      window.document.title = post.title +  " | 呆兔兔的小站"
+      window.document.title = post.title + " | 呆兔兔的小站"
     }
     return (
-        <div className="col-xs-12">
+        <div className="col-xs-12 post">
           <div dangerouslySetInnerHTML={{__html: post.htmlContent}}/>
           <hr/>
           <p><span>标签：</span>{tags.map(item => (<code key={item._id} className="post-label">{item.name}</code>))}</p>
           <p>本站使用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">署名 4.0 国际</a> 创作共享协议，转载请注明出处</p>
           {related.length > 0 && <h3>相关文章</h3> }
-          <ul>{related.map(item => (<li key={item._id}><Link to={'/post/' + item.slug}>{item.title}</Link></li>))}</ul>
+          <ul>{related.map(item => (
+              <li key={item._id}>
+                <Link to={'/post/' + item.slug}>{item.title}</Link>
+                <span className="post-created-time">({dateUtil.toDateString(item.createdAt)})</span>
+              </li>
+          ))}</ul>
           <hr/>
           <div>
             {pre.slug && <Link className="float-left" to={'/post/' + pre.slug}>« {pre.title}</Link>}

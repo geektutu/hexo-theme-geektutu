@@ -82,6 +82,10 @@ let PostSchema = new Schema({
   isArticle: {
     type: Boolean,
     default: true
+  },
+  index: {
+    type: Number,
+    default: 9999
   }
 });
 

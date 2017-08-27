@@ -26,16 +26,17 @@ export default {
   'GET /posts': async(ctx, next) => {
     let groupBy = ctx.query.groupBy
     let data
-
+    let push_data = {_id: "$_id", title: "$title", slug: "$slug", createdAt: "$createdAt"}
     console.log(`get posts group by ${groupBy}`)
     switch (groupBy) {
       case 'date':
         data = await Post.aggregate([
           {$match: {isArticle: true}},
+          {$sort: {index: 1}},
           {
             $group: {
               _id: {month: {$month: "$createdAt"}, year: {$year: "$createdAt"}},
-              posts: {$push: {_id: "$_id", title: "$title", slug: "$slug"}}
+              posts: {$push: push_data}
             }
           }])
         data.forEach(item => {
@@ -46,10 +47,11 @@ export default {
       case 'category':
         data = await Post.aggregate([
           {$match: {isArticle: true}},
+          {$sort: {index: 1}},
           {
             $group: {
               _id: '$category',
-              posts: {$push: {_id: "$_id", title: "$title", slug: "$slug"}}
+              posts: {$push: push_data}
             }
           }
         ])
@@ -61,11 +63,12 @@ export default {
       case 'tag':
         data = await Post.aggregate([
           {$match: {isArticle: true}},
+          {$sort: {index: 1}},
           {$unwind: '$tags'},
           {
             $group: {
               _id: '$tags',
-              posts: {$push: {_id: "$_id", title: "$title", slug: "$slug"}}
+              posts: {$push: push_data}
             }
           }
         ])
@@ -76,7 +79,8 @@ export default {
         data = await Tag.populate(data, {path: 'tag'})
         break
       default:
-        data = await Post.find({isArticle: true}).sort({'createdAt': -1}).limit(20).populate('tags')
+        let fields = {title: 1, slug: 1, createdAt: 1, excerpt: 1, index: 1}
+        data = await Post.find({isArticle: true}, fields).sort({'index': -1}).limit(20).populate('tags')
     }
     ctx.response.body = {
       'data': data
@@ -91,7 +95,7 @@ export default {
     let slug = ctx.params.slug;
     let post = await Post.findOne({slug}).populate('tags')
     if (post && post._id && post.isArticle) {
-      let fields = {title: 1, slug: 1}
+      let fields = {title: 1, slug: 1, createdAt: 1}
       let tags = []
       post.tags.forEach(item => tags.push(item._id))
       post._doc.related = await Post.find({tags: {$in: tags}, _id: {$ne: post._id}, isArticle: true}, fields)
@@ -117,6 +121,7 @@ export default {
     let manifest = JSON.parse(fs.readFileSync(POSTS_BASE_PATH + '/manifest.json'));
     let records = []
     shell.cd(POSTS_BASE_PATH)
+
     Object.keys(manifest).forEach((category) => {
       manifest[category].forEach((meta) => {
         let content = fs.readFileSync(POSTS_BASE_PATH + '/' + meta.path, 'utf-8')
@@ -138,13 +143,12 @@ export default {
       })
     })
 
-    let needRecords = records.filter((item) => item.isArticle).sort((o1, o2) => {
-      return o1.createdAt - o2.createdAt
-    })
+    let needRecords = records.filter((item) => item.isArticle)
 
     needRecords.forEach((item, index, arr) => {
       let _pre = arr[index - 1]
       let _next = arr[index + 1]
+      item.index = index
       item.previous = arr[index - 1] === undefined ? null : {
         slug: _pre.slug,
         title: _pre.title
