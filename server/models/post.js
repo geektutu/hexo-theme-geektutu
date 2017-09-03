@@ -2,11 +2,13 @@ import {Schema} from 'mongoose'
 import createModel from './createModel'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
+import content from '../plugin/markdown-it-toc'
 import { Tag } from '../models'
 
 const MAX_TAG_COUNT = 10
 
 const md = MarkdownIt({
+  html: true,
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
@@ -15,6 +17,9 @@ const md = MarkdownIt({
     }
     return '';
   }
+}).use(content, {
+  depth: 3,
+  className: 'table-of-contents'
 });
 
 let PostSchema = new Schema({
@@ -108,7 +113,8 @@ PostSchema.pre('save', async function (next) {
   let content = this.get('content')
   // 更新HTML文本
   if (this.isModified('content') && !this.isModified('htmlContent')) {
-    this.set('htmlContent', md.render(content))
+    let _content = '{!toc}\n' + content
+    this.set('htmlContent', md.render(_content))
   }
   // 更新摘要
   if (this.isModified('content') && !this.isModified('excerpt')) {

@@ -209,3 +209,29 @@
   color: rgba(180,180,180, 0.9);
   font-size: 0.85em;
 }
+/*******
+ * toc *
+ *******/
+@media (max-width: 991px) {
+  #toc {
+    display: none;
+  }
+}
+#toc {
+  min-width: 160px;
+  float: right;
+  margin-top: 100px;
+  margin-left: 20px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  right: 80px;
+
+}
+#toc > p {
+  margin-bottom: 0;
+  border-bottom: 1px solid #ddd;
+  font-weight: 700;
+}
+#toc ul {
+  line-height: 1;
+}

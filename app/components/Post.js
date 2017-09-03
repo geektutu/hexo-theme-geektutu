@@ -52,7 +52,7 @@ class Post extends React.Component {
     }
     return (
         <div className="col-xs-12 post">
-          <div dangerouslySetInnerHTML={{__html: post.htmlContent}}/>
+          <article dangerouslySetInnerHTML={{__html: post.htmlContent}}/>
           <hr/>
           <p><span>标签：</span>{tags.map(item => (<code key={item._id} className="post-label">{item.name}</code>))}</p>
           <p>本站使用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">署名 4.0 国际</a> 创作共享协议，转载请注明出处</p>

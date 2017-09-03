@@ -46,7 +46,7 @@ module.exports = merge(baseWebpackConfig, {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name].[hash].css'),
     new webpack.DefinePlugin({
       'process.env': config.build.env
     }),
