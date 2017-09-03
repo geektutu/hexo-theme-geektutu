@@ -55,11 +55,9 @@
   }
 }
 
-.app-right-col > div:last-of-type {
-  margin-bottom: 90px;
-}
 .app-footer {
-  position: absolute;
+  position: relative;
+  float: left;
   width: 100%;
   bottom: 0;
   line-height: 1.5;
