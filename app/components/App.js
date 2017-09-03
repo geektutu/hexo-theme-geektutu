@@ -34,7 +34,7 @@ export default class App extends React.Component {
           <div className="app-left-col">
             <Navigator/>
           </div>
-          <div className="app-right-col markdown-it padding-0">
+          <div className="app-right-col markdown-it">
             <div className="col-xs-12">
               {renderRoutes(routes)}
             </div>

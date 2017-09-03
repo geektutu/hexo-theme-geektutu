@@ -3,6 +3,7 @@
  *******/
 .app {
   min-height: 100%;
+  overflow: hidden;
   font-family: "-apple-system","Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
 
 }
@@ -21,8 +22,17 @@
   right: 0;
   top: 0;
   min-height: 100%;
-  padding: 10px 20px 0;
-  max-width: 900px;
+  padding: 10px 20px 0 0;
+  max-width: 1180px;
+  margin-bottom: 90px;
+}
+.app-footer {
+  position: absolute;
+  float: left;
+  width: 100%;
+  bottom: 0;
+  line-height: 1.5;
+  padding: 0 15px;
 }
 @media (min-width: 768px) {
   .app-left-col {
@@ -31,7 +41,10 @@
   }
 
   .app-right-col {
-    margin-left: 270px;
+    padding-left: 270px;
+  }
+  .app-footer {
+    margin-left: -135px;
   }
 }
 @media (max-width: 1024px) {
@@ -39,7 +52,10 @@
     width: 210px;
   }
   .app-right-col {
-    margin-left: 210px;
+    padding-left: 210px;
+  }
+  .app-footer {
+    margin-left: -105px;
   }
 }
 @media (max-width: 767px){
@@ -51,17 +67,12 @@
 
   .app-right-col {
     margin-left: 0;
+    padding: 0;
     margin-top: 180px;
   }
-}
-
-.app-footer {
-  position: relative;
-  float: left;
-  width: 100%;
-  bottom: 0;
-  line-height: 1.5;
-  padding: 0 15px;
+  .app-footer {
+    margin-left: 0;
+  }
 }
 /*************
  * post list *
