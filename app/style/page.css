@@ -16,14 +16,13 @@
   z-index: 2;
 }
 .app-right-col {
-  position: absolute;
+  z-index: 9999;
   left: 0;
   right: 0;
   top: 0;
   min-height: 100%;
   padding: 10px 20px 0;
   max-width: 900px;
-  z-index: 1;
 }
 @media (min-width: 768px) {
   .app-left-col {

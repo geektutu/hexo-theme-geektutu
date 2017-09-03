@@ -30,7 +30,7 @@ export default class App extends React.Component {
     }
 
     return (
-        <div className="app">
+        <div className="app col-xs-12 padding-0">
           <div className="app-left-col">
             <Navigator/>
           </div>
