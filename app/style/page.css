@@ -2,6 +2,7 @@
  * App *
  *******/
 .app {
+  max-width: 1180px;
   min-height: 100%;
   overflow: hidden;
   font-family: "-apple-system","Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -22,8 +23,7 @@
   right: 0;
   top: 0;
   min-height: 100%;
-  padding: 10px 20px 0 0;
-  max-width: 1180px;
+  padding-top: 10px;
   margin-bottom: 90px;
 }
 .app-footer {
