@@ -113,7 +113,8 @@ PostSchema.pre('save', async function (next) {
   let content = this.get('content')
   // 更新HTML文本
   if (this.isModified('content') && !this.isModified('htmlContent')) {
-    let _content = '{!toc}\n' + content
+    let i = content.indexOf('\n')
+    let _content = content.substr(0, i) + '\n{!toc}\n' + content.substr(i);
     this.set('htmlContent', md.render(_content))
   }
   // 更新摘要
