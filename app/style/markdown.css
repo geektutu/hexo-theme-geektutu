@@ -9,6 +9,7 @@
   line-height: 1.8;
   color: #333333;
   font-family: Arial,'Hiragino Sans GB',冬青黑,'Microsoft YaHei',微软雅黑,SimSun,宋体,Helvetica,Tahoma,'Arial sans-serif';
+  -webkit-font-smoothing: antialiased;
   font-size: 16px;
   word-wrap: break-word;
 }
@@ -91,6 +92,7 @@
   color: #666666;
   border-left: .25em solid #108ee9;
   background-color: #f0f8ff;
+  overflow: auto;
 }
 
 .markdown-it blockquote>:first-child {

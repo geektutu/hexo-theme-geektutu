@@ -16,6 +16,7 @@ module.exports = async(url) => {
   let store = configureStore()
   let title = "呆兔兔的小站"
   let desc = "呆兔兔的小站，博主毕业于复旦大学计算机学院，致力于分享一些技术教程和有趣的技术实践。"
+  let keywords = "博客,呆兔兔的小站,呆兔兔"
   const branch = matchRoutes(routes, url)
   const promises = branch.map(({route, match}) => {
     var comp = route.component
@@ -42,8 +43,9 @@ module.exports = async(url) => {
     if (url.startsWith('/post')) {
       title = ( post || {title: "文章"}).title + " | 呆兔兔的小站"
       desc = post.excerpt || desc
+      keywords = (post.tags || []).map(item => item.name).join(",") + "," + keywords
     }
 
-    return template.replace('${title}', title).replace('${desc}', desc).replace('${content}', content)
+    return template.replace('${title}', title).replace('${keywords}', keywords).replace('${desc}', desc).replace('${content}', content)
   })
 }
