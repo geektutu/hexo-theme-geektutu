@@ -68,6 +68,7 @@ class Post extends React.Component {
             {pre.slug && <Link className="float-left" to={'/post/' + pre.slug}>« {pre.title}</Link>}
             {next.slug && <Link className="float-right" to={'/post/' + next.slug}>{next.title} »</Link>}
           </div>
+          <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ5Mi85MDUz"></div>
         </div>
     )
   }
