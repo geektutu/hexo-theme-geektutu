@@ -87,9 +87,10 @@
 }
 .markdown-it blockquote {
   margin: 1em 0;
-  padding: 0 1em;
+  padding: 0.5em 1em;
   color: #666666;
   border-left: .25em solid #108ee9;
+  background-color: #f0f8ff;
 }
 
 .markdown-it blockquote>:first-child {
@@ -144,6 +145,7 @@
 
 .markdown-it h1 {
   margin-top: 20px;
+  margin-bottom: 20px;
   padding-bottom: 0.3em;
   font-size: 1.8em;
   font-weight: 300;
@@ -225,9 +227,10 @@
   font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
   padding: 16px;
   overflow: auto;
-  line-height: 1.5;
+  line-height: 1.2;
   background-color: #f6f8fa;
   border-radius: 3px;
+  margin-top: 10px;
 }
 
 .markdown-it pre code {
