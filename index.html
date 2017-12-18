@@ -18,22 +18,37 @@
 </head>
 <body>
 <div id='app' class="col-xs-12 padding-0">${content}</div>
-<script>
+<script type="text/javascript">
     window.onload = function () {
         var a_s = document.querySelectorAll('a')
         a_s.forEach((item) => {
             if (item.href && item.href.indexOf(window.location.host) === -1) {
                 item.target = '_blank'
             }
-        })
+        });
+        (function(d, s) {
+            if (!d.getElementById('lv-container')) {
+                return;
+            }
+            var j, e = d.getElementsByTagName(s)[0];
+    
+            if (typeof LivereTower === 'function') { return; }
+    
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+    
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
     }
 </script>
-<script>
+<script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?9d86bcce84e9def2355f647234b20ce6";
         var s = document.getElementsByTagName("script")[0];
+        s.async = true;
         s.parentNode.insertBefore(hm, s);
     })();
     (function(){
@@ -45,22 +60,10 @@
         else {
             bp.src = 'http://push.zhanzhang.baidu.com/push.js';
         }
+        bp.async = true;
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
-</script>
-<script type="text/javascript">
-    (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
- 
-        if (typeof LivereTower === 'function') { return; }
- 
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
- 
-        e.parentNode.insertBefore(j, e);
-    })(document, 'script');
 </script>
 </body>
 </html>
