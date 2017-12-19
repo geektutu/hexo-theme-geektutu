@@ -21,7 +21,7 @@
 <script type="text/javascript">
     window.onload = function () {
         var a_s = document.querySelectorAll('a')
-        a_s.forEach((item) => {
+        a_s.forEach(function(item) {
             if (item.href && item.href.indexOf(window.location.host) === -1) {
                 item.target = '_blank'
             }
