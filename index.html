@@ -20,12 +20,6 @@
 <div id='app' class="col-xs-12 padding-0">${content}</div>
 <script type="text/javascript">
     window.onload = function () {
-        var a_s = document.querySelectorAll('a')
-        a_s.forEach(function(item) {
-            if (item.href && item.href.indexOf(window.location.host) === -1) {
-                item.target = '_blank'
-            }
-        });
         (function(d, s) {
             if (!d.getElementById('lv-container')) {
                 return;
@@ -62,6 +56,13 @@
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(bp, s);
         })();
+
+        var a_s = document.querySelectorAll('a');
+        a_s.forEach(function(item) {
+            if (item.href && item.href.indexOf(window.location.host) === -1) {
+                item.target = '_blank'
+            }
+        });
     }
 </script>
 </body>
