@@ -117,6 +117,10 @@
   content: "\00a0";
 }
 
+.markdown-it p > code {
+  color: #c7254e;
+}
+
 .markdown-it dd {
   margin-left: 0;
 }
