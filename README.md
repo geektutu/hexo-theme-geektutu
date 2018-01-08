@@ -1,7 +1,7 @@
 # koa-react-server-render-blog
 a blog site based on nodejs, koa 2, webpack 4, react, react-router 4, react-redux, etc.
 
-[呆兔兔的小站](http://imtuzi.com)
+[极客兔兔的小站](http://geektutu.com)
 
 
 ## backend

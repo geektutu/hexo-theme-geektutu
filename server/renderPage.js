@@ -14,9 +14,9 @@ const template = fs.readFileSync(STATIC_DIR + '/index.html', 'utf-8')
 
 module.exports = async(url) => {
   let store = configureStore()
-  let title = "呆兔兔的小站"
-  let desc = "呆兔兔的小站，博主毕业于复旦大学计算机学院，致力于分享一些技术教程和有趣的技术实践。"
-  let keywords = "博客,呆兔兔的小站,呆兔兔"
+  let title = "极客兔兔的小站"
+  let desc = "极客兔兔的小站，博主毕业于复旦大学计算机学院，致力于分享一些技术教程和有趣的技术实践。"
+  let keywords = "极客兔兔的小站,极客兔兔"
   const branch = matchRoutes(routes, url)
   const promises = branch.map(({route, match}) => {
     var comp = route.component
@@ -41,7 +41,7 @@ module.exports = async(url) => {
     let post = store.getState().post
 
     if (url.startsWith('/post')) {
-      title = ( post || {title: "文章"}).title + " | 呆兔兔的小站"
+      title = ( post || {title: "文章"}).title + " | 极客兔兔的小站"
       desc = post.excerpt || desc
       keywords = (post.tags || []).map(item => item.name).join(",") + "," + keywords
     }
