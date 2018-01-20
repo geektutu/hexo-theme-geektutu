@@ -29,7 +29,7 @@ class Archive extends React.Component {
     return store.dispatch(actions.getPosts('date'))
   }
 
-  static title = "归档 | 呆兔兔的小站"
+  static title = "归档 | 极客兔兔的小站"
 
   componentDidMount() {
     var {archives, actions} = this.props

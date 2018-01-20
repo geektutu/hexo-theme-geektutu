@@ -48,7 +48,7 @@ class Post extends React.Component {
     var pre = post.previous || {}
     var next = post.next || {}
     if (typeof window !== 'undefined') {
-      window.document.title = post.title + " | 呆兔兔的小站"
+      window.document.title = post.title + " | 极客兔兔的小站"
     }
     return (
         <div className="col-xs-12 post">

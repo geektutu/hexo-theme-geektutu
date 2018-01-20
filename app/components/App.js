@@ -22,7 +22,7 @@ export default class App extends React.Component {
   componentDidUpdate () {
     App.updateATarget()
   }
-  static title = "呆兔兔的小站"
+  static title = "极客兔兔的小站"
 
   render() {
     if (typeof window !== 'undefined') {

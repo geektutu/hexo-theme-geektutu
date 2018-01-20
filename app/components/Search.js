@@ -5,7 +5,7 @@ export default class PostList extends React.Component {
     super(props);
   }
 
-  static title = "搜索 | 呆兔兔的小站"
+  static title = "搜索 | 极客兔兔的小站"
 
   render() {
     if (typeof window !== 'undefined') {

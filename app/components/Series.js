@@ -28,7 +28,7 @@ class Series extends React.Component {
   static fetchData(store) {
     return store.dispatch(actions.getPosts('category'))
   }
-  static title = "专题 | 呆兔兔的小站"
+  static title = "专题 | 极客兔兔的小站"
 
   componentDidMount() {
     var {series, actions} = this.props
