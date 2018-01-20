@@ -40,8 +40,10 @@ export default class App extends React.Component {
             </div>
             <footer className="app-footer text-center">
               <hr/>
-              <p className="margin-tb-0"><small>© 2018 - 极客兔兔的小站</small></p>
-              <a target="_blank" rel="nofollow noopener" href="http://www.miitbeian.gov.cn/">沪 ICP 备 18001798号-1	</a>
+              <p className="margin-tb-0">
+                <small>© 2018 - 极客兔兔 - </small>
+                <small><a target="_blank" rel="nofollow noopener" href="http://www.miitbeian.gov.cn/">沪ICP备18001798号-1	</a></small>
+              </p>
               <p><small>Powered by <a href="https://github.com/koajs/koa">Koa2</a> & <a href="https://github.com/facebook/react">React</a></small></p>
             </footer>
           </div>

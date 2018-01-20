@@ -34,6 +34,9 @@
   line-height: 1.5;
   padding: 0 15px;
 }
+.app-footer small a {
+  color: #333
+}
 @media (min-width: 768px) {
   .app-left-col {
     width: 270px;
