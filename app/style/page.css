@@ -1,13 +1,6 @@
 /*******
  * App *
  *******/
-.app {
-  max-width: 1180px;
-  min-height: 100%;
-  overflow: hidden;
-  font-family: "-apple-system","Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
-
-}
 .app-left-col {
   position: fixed;
   left: 0;
@@ -26,17 +19,7 @@
   padding-top: 10px;
   margin-bottom: 90px;
 }
-.app-footer {
-  position: absolute;
-  float: left;
-  width: 100%;
-  bottom: 0;
-  line-height: 1.5;
-  padding: 0 15px;
-}
-.app-footer small a {
-  color: #333
-}
+
 @media (min-width: 768px) {
   .app-left-col {
     width: 270px;
@@ -45,9 +28,6 @@
 
   .app-right-col {
     padding-left: 270px;
-  }
-  .app-footer {
-    margin-left: -135px;
   }
 }
 @media (max-width: 1024px) {
@@ -72,9 +52,6 @@
     margin-left: 0;
     padding: 0;
     margin-top: 180px;
-  }
-  .app-footer {
-    margin-left: 0;
   }
 }
 /*************
@@ -124,14 +101,7 @@
 /********
  * NAV *
  ********/
-.nav-icon {
-  border-radius: 50%;
-  height: 170px;
-  width: 170px;
-  margin: 40px auto;
-  background-image: url("../static/img/icon.png");
-  background-size: cover;
-}
+
 
 .nav-main-link ul {
   padding: 20px 0;
@@ -223,26 +193,3 @@
 /*******
  * toc *
  *******/
-@media (max-width: 991px) {
-  #toc {
-    display: none;
-  }
-}
-#toc {
-  min-width: 160px;
-  float: right;
-  margin-top: 10px;
-  margin-left: 20px;
-  border: 1px solid #ddd;
-  padding: 15px;
-  right: 80px;
-
-}
-#toc > p {
-  margin-bottom: 0;
-  border-bottom: 1px solid #ddd;
-  font-weight: 700;
-}
-#toc ul {
-  line-height: 1;
-}

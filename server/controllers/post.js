@@ -98,7 +98,34 @@ export default {
       let fields = {title: 1, slug: 1, createdAt: 1}
       let tags = []
       post.tags.forEach(item => tags.push(item._id))
-      post._doc.related = await Post.find({tags: {$in: tags}, _id: {$ne: post._id}, isArticle: true}, fields)
+      let related = await Post.find({tags: {$in: tags}, isArticle: true}, fields)
+      let filterRelated = []
+      if (related.length > 5) {
+        let pos = related.findIndex(item => item.slug === post.slug)
+
+
+        let left = pos - 1, right = pos + 1
+        while(filterRelated.length < 5 && (left >= 0 || right < related.length)) {
+          if (left >= 0) {
+            filterRelated.unshift(related[left--])
+            if (filterRelated.length >= 5) {
+              break
+            }
+          }
+          if (right < related.length) {
+            filterRelated.push(related[right++])
+          }
+        }
+      } else {
+        filterRelated = related
+      }
+
+      post._doc.related = filterRelated
+    }
+    if (post && post._id) {
+      let index = post.htmlContent.indexOf('</div>');
+      post._doc.toc =  post.htmlContent.substring(0, index + 6);
+      post.htmlContent = post.htmlContent.substring(index + 6);
     }
     ctx.response.body = {
       'data': post

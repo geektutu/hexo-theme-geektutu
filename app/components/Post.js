@@ -1,9 +1,41 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import styled from 'styled-components';
+
 import actions from '../actions'
 import {bindActionCreators} from 'redux'
 import * as dateUtil from '../util/date'
+
+
+const ContentContainer = styled.div`
+  float: left;
+`
+
+const SideBar = styled.div`
+  float: left
+` 
+
+const Toc = styled.div`
+  padding: 30px 10px;
+
+  
+  a {
+    display: block;
+    color: #000;
+    font-size: 1em;
+  }
+
+  li > p {
+    margin: 0;
+  }
+
+  ul {
+    padding-left: 18px;
+    margin: 0;
+    list-style-type: square;
+  }
+`
 
 const getPost = actions.getPost
 const addPost = actions.addPost
@@ -52,23 +84,28 @@ class Post extends React.Component {
     }
     return (
         <div className="col-xs-12 post">
-          <article dangerouslySetInnerHTML={{__html: post.htmlContent}}/>
-          <hr/>
-          <p><span>标签：</span>{tags.map(item => (<code key={item._id} className="post-label">{item.name}</code>))}</p>
-          <p>本站使用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">署名 4.0 国际</a> 创作共享协议，转载请注明出处</p>
-          {related.length > 0 && <h3>相关文章</h3> }
-          <ul>{related.map(item => (
-              <li key={item._id}>
-                <Link to={'/post/' + item.slug}>{item.title}</Link>
-                <span className="post-created-time">({dateUtil.toDateString(item.createdAt)})</span>
-              </li>
-          ))}</ul>
-          <hr/>
-          <div>
-            {pre.slug && <Link className="float-left" to={'/post/' + pre.slug}>« {pre.title}</Link>}
-            {next.slug && <Link className="float-right" to={'/post/' + next.slug}>{next.title} »</Link>}
-          </div>
-          <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ5Mi85MDUz"></div>
+          <ContentContainer className="col-md-9">
+            <article dangerouslySetInnerHTML={{__html: post.htmlContent}}/>
+            <hr/>
+            <p><span>标签：</span>{tags.map(item => (<code key={item._id} className="post-label">{item.name}</code>))}</p>
+            <p>本站使用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">署名 4.0 国际</a> 创作共享协议，转载请注明出处</p>
+            {related.length > 0 && <h3>你可能感兴趣的文章</h3> }
+            <ul>{related.map(item => (
+                <li key={item._id}>
+                  <Link to={'/post/' + item.slug}>{item.title}</Link>
+                  <span className="post-created-time">({dateUtil.toDateString(item.createdAt)})</span>
+                </li>
+            ))}</ul>
+            <hr/>
+            <div>
+              {pre.slug && <Link className="float-left" to={'/post/' + pre.slug}>« {pre.title}</Link>}
+              {next.slug && <Link className="float-right" to={'/post/' + next.slug}>{next.title} »</Link>}
+            </div>
+            <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ5Mi85MDUz"></div>
+          </ContentContainer>
+          <SideBar className="col-md-3">
+            <Toc dangerouslySetInnerHTML={{__html: post.toc}}/>
+          </SideBar>
         </div>
     )
   }

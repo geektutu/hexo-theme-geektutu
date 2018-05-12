@@ -62,6 +62,7 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "shelljs": "^0.7.8"
+    "shelljs": "^0.7.8",
+    "styled-components": "^3.2.6"
   }
 }
