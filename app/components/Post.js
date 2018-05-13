@@ -7,23 +7,31 @@ import actions from '../actions'
 import {bindActionCreators} from 'redux'
 import * as dateUtil from '../util/date'
 
+import BusinessCard from './BusinessCard'
+
 
 const ContentContainer = styled.div`
   float: left;
 `
 
 const SideBar = styled.div`
-  float: left
+  float: left;
+  margin-top: 50px;
+  padding-left: 10px;
 ` 
 
 const Toc = styled.div`
-  padding: 30px 10px;
+  padding: 30px 0;
 
-  
+  #toc {
+    border-left: 1px solid #eaecef;
+    padding-left: 15px;
+  }
+
   a {
     display: block;
     color: #000;
-    font-size: 1em;
+    font-size: 14px;
   }
 
   li > p {
@@ -37,9 +45,21 @@ const Toc = styled.div`
   }
 `
 
+const Related = styled.div`
+  padding: 30px 0 30px 15x;
+  border-left: 1px solid #eaecef;
+  font-size: 14px;
+
+  ul {
+    padding-left: 18px;
+    margin: 0;
+    list-style-type: square;
+  }
+`
+
 const getPost = actions.getPost
 const addPost = actions.addPost
-const mapStateToProps = (state) => ({post: state.post})
+const mapStateToProps = (state) => ({post: state.post, statistics: state.statistics})
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     getPost, addPost
@@ -84,18 +104,11 @@ class Post extends React.Component {
     }
     return (
         <div className="col-xs-12 post">
-          <ContentContainer className="col-md-9">
+          <ContentContainer className="col-md-9 col-xs-12">
             <article dangerouslySetInnerHTML={{__html: post.htmlContent}}/>
             <hr/>
             <p><span>标签：</span>{tags.map(item => (<code key={item._id} className="post-label">{item.name}</code>))}</p>
-            <p>本站使用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">署名 4.0 国际</a> 创作共享协议，转载请注明出处</p>
-            {related.length > 0 && <h3>你可能感兴趣的文章</h3> }
-            <ul>{related.map(item => (
-                <li key={item._id}>
-                  <Link to={'/post/' + item.slug}>{item.title}</Link>
-                  <span className="post-created-time">({dateUtil.toDateString(item.createdAt)})</span>
-                </li>
-            ))}</ul>
+            <p>本站使用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">「署名 4.0 国际」</a> 创作共享协议，转载请注明出处</p>
             <hr/>
             <div>
               {pre.slug && <Link className="float-left" to={'/post/' + pre.slug}>« {pre.title}</Link>}
@@ -103,8 +116,17 @@ class Post extends React.Component {
             </div>
             <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ5Mi85MDUz"></div>
           </ContentContainer>
-          <SideBar className="col-md-3">
-            <Toc dangerouslySetInnerHTML={{__html: post.toc}}/>
+          <SideBar className="col-md-3 hidden-xs hidden-sm">
+            <BusinessCard statistics={this.props.statistics}/>
+            <Toc className="col-xs-12" dangerouslySetInnerHTML={{__html: post.toc}}/>
+            <Related className="col-xs-12">
+              {related.length > 0 && <p>相关文章</p> }
+              <ul>{related.map(item => (
+                  <li key={item._id}>
+                    <Link to={'/post/' + item.slug}>{item.title}</Link>
+                  </li>
+              ))}</ul>
+            </Related>
           </SideBar>
         </div>
     )

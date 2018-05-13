@@ -35,3 +35,12 @@ export const series = (state = [], action) => {
       return state
   }
 }
+
+export const statistics = (state = {}, action) => {
+  switch (action.type) {
+    case  types.GET_STATISTICS:
+      return action.payload
+    default:
+      return state
+  }
+}

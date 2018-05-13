@@ -20,6 +20,10 @@ export const getPosts = (groupBy = '') => {
         type: type,
         payload: body.data
       })
+      dispatch({
+        type: types.GET_STATISTICS,
+        payload: body.statistics
+      })
     })
   }
 }
@@ -31,8 +35,13 @@ export const getPost = (slug) => {
         type: types.GET_POST,
         payload: body.data || {
           slug: slug,
-          htmlContent: '<p class="text-center">Not Found</p>'
+          htmlContent: '<p class="text-center">Not Found</p>',
+          statistics: body.statistics
         }
+      })
+      dispatch({
+        type: types.GET_STATISTICS,
+        payload: body.statistics
       })
     })
   }

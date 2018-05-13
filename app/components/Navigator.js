@@ -31,9 +31,9 @@ const NavList = styled.nav`
 
 const NavIcon = styled.div`
   border-radius: 50%;
-  height: 170px;
-  width: 170px;
-  margin: 40px auto;
+  height: 120px;
+  width: 120px;
+  margin: 10px auto;
   background-image: url(${Icon});
   background-size: cover;
 `
@@ -55,15 +55,10 @@ export default class Navigator extends React.Component {
               <li><Link to="/">首页</Link></li>
               <li><Link to="/series">专题</Link></li>
               <li><Link to="/archives">归档</Link></li>
+              <li><Link to="/post/link.html">友链</Link></li>
               <li><Link to="/post/about.html">关于</Link></li>
             </ul>
           </NavList>
-          <nav className="nav-sub-link">
-            <ul>
-              <li><a target="_blank" href="https://github.com/gzdaijie/koa-react-server-render-blog" className="nav-icon-github" /></li>
-              <li><Link to="/search" className="nav-icon-search" /></li>
-            </ul>
-          </nav>
         </div>
     )
   }

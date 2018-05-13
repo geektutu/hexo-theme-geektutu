@@ -1,12 +1,10 @@
 import React from 'react'
 import routes from '../routes'
 import {renderRoutes} from 'react-router-config'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 import Navigator from './Navigator'
-
 import Background from  '../static/img/background3.jpg'
-
 
 const Header = styled.div`
   font-size: 1.5em;
@@ -29,7 +27,7 @@ const PostContainer = styled.div`
   }
   
   @media (min-width: 992px) {
-    width: 970px;
+    width: 990px;
   }
 `
 
@@ -74,7 +72,7 @@ export default class App extends React.Component {
     if (typeof window !== 'undefined') {
       window.document.title = App.title
     }
-
+    
     return (
         <AppContainer className="col-xs-12 padding-0">
           <Header>
@@ -84,7 +82,6 @@ export default class App extends React.Component {
             {renderRoutes(routes)}
           </PostContainer>
           <Footer className="text-center">
-              <hr/>
               <p className="margin-tb-0">
                 <small>© 2018 - 极客兔兔 - </small>
                 <small><a target="_blank" rel="nofollow noopener" href="http://www.miitbeian.gov.cn/">沪ICP备18001798号-1	</a></small>

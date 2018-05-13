@@ -21,6 +21,40 @@ let tagNames2TagIds = async(tagNames) => {
   return tags
 }
 
+let getStatistics = async() => {
+  let fields = {title: 1, category: 1, tags: 1}
+  let allTags = await Tag.find({})
+  let posts = await Post.find({isArticle: true}, fields)
+
+  let categories = {}
+  let tags = {}
+  let countTags = {}
+  allTags.forEach(tag => {
+    tags[tag._id] = tag.name
+  })
+
+  posts.forEach(post => {
+    if (post.category in categories) {
+      categories[post.category] += 1
+    } else {
+      categories[post.category] = 1
+    }
+    post.tags.forEach(tag => {
+      let name = tags[tag]
+      if (name in countTags) {
+        countTags[name] += 1
+      } else {
+        countTags[name] = 1
+      }
+    })
+  })
+
+  return {
+    'tag': countTags,
+    'post': posts.length,
+    'category': categories
+  }
+}
 
 export default {
   'GET /posts': async(ctx, next) => {
@@ -83,12 +117,18 @@ export default {
         data = await Post.find({isArticle: true}, fields).sort({'index': -1}).limit(20).populate('tags')
     }
     ctx.response.body = {
-      'data': data
+      'data': data,
+      'statistics': await getStatistics()
     };
   },
   'GET /posts/tags/:id': async(ctx, next) => {
     ctx.response.body = {
       'data': await Post.find({tags: {$in: [ctx.params.id]}}).populate('tags')
+    };
+  },
+  'GET /posts/statistics': async(ctx, next) => {
+    ctx.response.body = {
+      'data': await getStatistics()
     };
   },
   'GET /posts/:slug': async(ctx, next) => {
@@ -128,7 +168,8 @@ export default {
       post.htmlContent = post.htmlContent.substring(index + 6);
     }
     ctx.response.body = {
-      'data': post
+      'data': post,
+      'statistics': await getStatistics()
     };
   },
   'GET /admin/git-pull': async(ctx, next) => {

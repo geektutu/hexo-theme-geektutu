@@ -5,9 +5,36 @@ import {connect} from 'react-redux'
 import actions from '../actions'
 import {bindActionCreators} from 'redux';
 import * as dateUtil from '../util/date'
+import BusinessCard from './BusinessCard'
+import styled from 'styled-components';
+
+const SideBar = styled.div`
+  float: left;
+  margin-top: 50px;
+  padding-left: 10px;
+` 
+
+const Toc = styled.div`
+  margin-top: 30px;
+  padding: 0  0 0 15px;
+  border-left: 1px solid #eaecef;
+
+  a {
+    display: block;
+    color: #000;
+    font-size: 14px;
+  }
+
+  ul {
+    padding-left: 18px;
+    margin: 0;
+    list-style-type: square;
+  }
+`
+
 
 const getPosts = actions.getPosts
-const mapStateToProps = (state) => ({series: state.series})
+const mapStateToProps = (state) => ({series: state.series, statistics: state.statistics})
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     getPosts
@@ -51,19 +78,31 @@ class Series extends React.Component {
 
     return (
         <div className="col-xs-12 series">
+        <div className="col-md-9 col-xs-12">
           <h1>专题</h1>
           {
             series.map(item => (
-                <section key={item.category}>
+                <section id={item.category} key={item.category}>
                   <h2>{item.category}</h2>
                   <ul>
-                    {
-                      renderPosts(item.posts)
-                    }
+                    {renderPosts(item.posts)}
                   </ul>
                 </section>
             ))
           }
+        </div>
+        <SideBar className="col-md-3 hidden-xs hidden-sm">
+          <BusinessCard statistics={this.props.statistics}/>
+          <Toc className="col-xs-12">
+            <p>专题列表</p>
+            <ul>
+            {
+              series.map(item => <li><a href={'#' + item.category}>{item.category} </a> </li>) 
+            }
+            </ul>
+          </Toc>
+        </SideBar>
+        
         </div>
     )
   }

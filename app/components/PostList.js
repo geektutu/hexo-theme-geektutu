@@ -5,9 +5,21 @@ import {connect} from 'react-redux'
 import actions from '../actions'
 import {bindActionCreators} from 'redux';
 import * as dateUtil from '../util/date'
+import styled from 'styled-components';
+import BusinessCard from './BusinessCard'
+
+const ReadMore = styled.p`
+  margin-bottom: 0 !important;
+`
+
+const SideBar = styled.div`
+  float: left;
+  margin-top: 50px;
+  padding-left: 10px;
+` 
 
 const getPosts = actions.getPosts
-const mapStateToProps = (state) => ({posts: state.posts})
+const mapStateToProps = (state) => ({posts: state.posts, statistics: state.statistics})
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     getPosts
@@ -45,26 +57,30 @@ class PostList extends React.Component {
     var posts = this.props.posts
     return (
         <div className="col-xs-12">
-          <h1 className="no-display">最近的文章列表</h1>
-          {
-            posts.map(item => (
-                <article key={item._id} className="post-list-item col-xs-12 padding-lr-0">
-                  <div className="post-list-item-meta float-right">
-                    <time>{dateUtil.toDateString(item.createdAt)}</time>
-                  </div>
-                  <p className="post-list-item-title">
-                    <Link to={'/post/' + item.slug}>{item.title}</Link>
-                  </p>
-                  <div>
-                    <p>{item.excerpt}</p>
-                    <p><Link to={'/post/' + item.slug} className="text-center">阅读全文 »</Link></p>
-                  </div>
-                </article>
-            ))
-          }
-          <p className="text-center col-xs-12 post-list-link">
-            <Link to="/archives">博客归档</Link>
-          </p>
+          <div className="col-xs-12 col-md-9">
+            <h1 className="no-display">最近的文章列表</h1>
+            {
+              posts.map(item => (
+                  <article key={item._id} className="post-list-item col-xs-12 padding-lr-0">
+                    <div className="post-list-item-meta float-right">
+                      <time>{dateUtil.toDateString(item.createdAt)}</time>
+                    </div>
+                    <p className="post-list-item-title">
+                      <Link to={'/post/' + item.slug}>{item.title}</Link>
+                    </p>
+                    <div>
+                      <p>{item.excerpt}</p>
+                    </div>
+                  </article>
+              ))
+            }
+            <p className="text-center col-xs-12 post-list-link">
+              <Link to="/series">博客专题</Link>
+            </p>
+          </div>
+          <SideBar className="hidden-xs hidden-sm col-md-3">
+            <BusinessCard statistics={this.props.statistics}/>
+          </SideBar>
         </div>
     )
   }

@@ -3,6 +3,7 @@ import ReactDOMServer from "react-dom/server";
 import {StaticRouter} from "react-router";
 import {Provider} from "react-redux";
 import {matchRoutes} from "react-router-config";
+import { ServerStyleSheet } from 'styled-components'
 import configureStore from "../app/configureStore";
 import App from "../app/components/App";
 import routes from "../app/routes";
@@ -29,13 +30,16 @@ module.exports = async(url) => {
 
   return Promise.all(promises).then(() => {
     let context = {}
+    const sheet = new ServerStyleSheet()
     const content = ReactDOMServer.renderToString(
+      sheet.collectStyles(
         <Provider store={store}>
           <StaticRouter location={url} context={context}>
             <App/>
           </StaticRouter>
-        </Provider>
+        </Provider>)
     );
+    const styleTags = sheet.getStyleTags()
 
     var propsScript = 'window.__REDUX_DATA__ = ' + JSON.stringify(store.getState());
     let post = store.getState().post
@@ -46,6 +50,10 @@ module.exports = async(url) => {
       keywords = (post.tags || []).map(item => item.name).join(",") + "," + keywords
     }
 
-    return template.replace('${title}', title).replace('${keywords}', keywords).replace('${desc}', desc).replace('${content}', content)
+    return template.replace('${styles}', styleTags)
+                  .replace('${title}', title)
+                  .replace('${keywords}', keywords)
+                  .replace('${desc}', desc)
+                  .replace('${content}', content)
   })
 }
