@@ -20,50 +20,50 @@
 ${styles}
 <div id='app' class="col-xs-12 padding-0">${content}</div>
 <script type="text/javascript">
-    // window.onload = function () {
-    //     (function(d, s) {
-    //         if (!d.getElementById('lv-container')) {
-    //             return;
-    //         }
-    //         var j, e = d.getElementsByTagName(s)[0];
+    window.onload = function () {
+        (function(d, s) {
+            if (!d.getElementById('lv-container')) {
+                return;
+            }
+            var j, e = d.getElementsByTagName(s)[0];
     
-    //         if (typeof LivereTower === 'function') { return; }
+            if (typeof LivereTower === 'function') { return; }
     
-    //         j = d.createElement(s);
-    //         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    //         j.async = true;
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
     
-    //         e.parentNode.insertBefore(j, e);
-    //     })(document, 'script');
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
 
-    //     var _hmt = _hmt || [];
-    //     (function() {
-    //         var hm = document.createElement("script");
-    //         hm.src = "https://hm.baidu.com/hm.js?1a0ec38c52c08db815b0046c2783b1aa";
-    //         var s = document.getElementsByTagName("script")[0]; 
-    //         s.parentNode.insertBefore(hm, s);
-    //     })();
-    //     (function(){
-    //         var bp = document.createElement('script');
-    //         var curProtocol = window.location.protocol.split(':')[0];
-    //         if (curProtocol === 'https') {
-    //             bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    //         }
-    //         else {
-    //             bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    //         }
-    //         bp.async = true;
-    //         var s = document.getElementsByTagName("script")[0];
-    //         s.parentNode.insertBefore(bp, s);
-    //     })();
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a0ec38c52c08db815b0046c2783b1aa";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            bp.async = true;
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
 
-    //     var a_s = document.querySelectorAll('a');
-    //     a_s.forEach(function(item) {
-    //         if (item.href && item.href.indexOf(window.location.host) === -1) {
-    //             item.target = '_blank'
-    //         }
-    //     });
-    // }
+        var a_s = document.querySelectorAll('a');
+        a_s.forEach(function(item) {
+            if (item.href && item.href.indexOf(window.location.host) === -1) {
+                item.target = '_blank'
+            }
+        });
+    }
 </script>
 </body>
 </html>

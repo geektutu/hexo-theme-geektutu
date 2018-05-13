@@ -25,7 +25,7 @@ module.exports = merge(config, {
   output: {
     path: resolve('dist'),
     filename: 'server.js',
-    publicPath: resolve('dist'),
+    publicPath: '/',
     libraryTarget: 'commonjs2',
   },
   target: 'node',
