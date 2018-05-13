@@ -1,13 +1,28 @@
 import renderPage from '../renderPage.js'
 import controllers from '../controllers'
+import cache from 'memory-cache'
+
+let pageCache = {}
+const EXPIRE = 60 * 1000
 
 let chooseRoute = async(ctx, next) => {
   ctx.response.type = 'application/json';
   if (!ctx.url.startsWith("/api")) {
-    console.log('render page: ', ctx.url)
+    if (!pageCache[ctx.url]) {
+      cache.put(ctx.url, await renderPage(ctx.url), EXPIRE)
+      pageCache[ctx.url] = cache.get(ctx.url)
+    }
+    
+    if(!cache.get(ctx.url)) {
+      setTimeout(async() => {
+        cache.put(ctx.url, await renderPage(ctx.url), EXPIRE)
+        pageCache[ctx.url] = cache.get(ctx.url)
+      }, 0)
+    }
+
     ctx.set('Cache-Control', 'private, max-age=500')
     ctx.response.type = 'text/html';
-    ctx.response.body = await renderPage(ctx.url)
+    ctx.response.body = pageCache[ctx.url]
   }
   await next()
 }
