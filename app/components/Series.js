@@ -97,7 +97,7 @@ class Series extends React.Component {
             <p>专题列表</p>
             <ul>
             {
-              series.map(item => <li><a href={'#' + item.category}>{item.category} </a> </li>) 
+              series.map(item => <li key={item.category}><a href={'#' + item.category}>{item.category} </a> </li>) 
             }
             </ul>
           </Toc>

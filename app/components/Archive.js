@@ -100,7 +100,7 @@ class Archive extends React.Component {
               <p>归档列表</p>
               <ul>
               {
-                archives.map(item => <li><a href={'#' + item.disDate}>{item.disDate} </a> </li>) 
+                archives.map(item => <li key={item.disDate}><a href={'#' + item.disDate}>{item.disDate} </a> </li>) 
               }
               </ul>
             </Toc>
