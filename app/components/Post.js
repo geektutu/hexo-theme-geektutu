@@ -57,6 +57,10 @@ const Related = styled.div`
   }
 `
 
+const PreNext = styled.div`
+  overflow: hidden;
+`
+
 const getPost = actions.getPost
 const addPost = actions.addPost
 const mapStateToProps = (state) => ({post: state.post, statistics: state.statistics})
@@ -110,11 +114,11 @@ class Post extends React.Component {
             <p><span>标签：</span>{tags.map(item => (<code key={item._id} className="post-label">{item.name}</code>))}</p>
             <p>本站使用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">「署名 4.0 国际」</a> 创作共享协议，转载请注明出处</p>
             <hr/>
-            <div>
+            <PreNext>
               {pre.slug && <Link className="float-left" to={'/post/' + pre.slug}>« {pre.title}</Link>}
               {next.slug && <Link className="float-right" to={'/post/' + next.slug}>{next.title} »</Link>}
-            </div>
-            <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ5Mi85MDUz"></div>
+            </PreNext>
+            <div id="comments"></div>
           </ContentContainer>
           <SideBar className="col-md-3 hidden-xs hidden-sm">
             <BusinessCard statistics={this.props.statistics}/>

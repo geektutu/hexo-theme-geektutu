@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <title>${title}</title>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="renderer" content="webkit" />
     <meta name="force-rendering" content="webkit" />
-    <meta name="keywords" content="${keywords}"/>
+    <meta name="keywords" content="${keywords}" />
     <meta name="description" content="${desc}" />
     <meta name="baidu-site-verification" content="p7Pz3jlx4t" />
     <meta name="google-site-verification" content="19ixTFj-X-rXuvZFvR1PMkqSHMXZ5GjN7nhYdYYFm-c" />
@@ -16,54 +17,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2,user-scalable=1" />
     <link rel="shortcut icon" href="/favicon.ico" />
 </head>
+
 <body>
-${styles}
-<div id='app' class="col-xs-12 padding-0">${content}</div>
-<script type="text/javascript">
-    window.onload = function () {
-        (function(d, s) {
-            if (!d.getElementById('lv-container')) {
-                return;
-            }
-            var j, e = d.getElementsByTagName(s)[0];
-    
-            if (typeof LivereTower === 'function') { return; }
-    
-            j = d.createElement(s);
-            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-            j.async = true;
-    
-            e.parentNode.insertBefore(j, e);
-        })(document, 'script');
+    ${styles}
+    <div id='app' class="col-xs-12 padding-0">${content}</div>
+    <link rel="stylesheet" href="/gitment/default.css">
+    <script src="/gitment/gitment.browser.js"></script>
+    <script type="text/javascript">
+        geektutu = {
+            baidu: function () {
+                var _hmt = _hmt || [];
+                (function () {
+                    var hm = document.createElement("script");
+                    hm.src = "https://hm.baidu.com/hm.js?1a0ec38c52c08db815b0046c2783b1aa";
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(hm, s);
+                })();
+                (function () {
+                    var bp = document.createElement('script');
+                    var curProtocol = window.location.protocol.split(':')[0];
+                    if (curProtocol === 'https') {
+                        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                    }
+                    else {
+                        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                    }
+                    bp.async = true;
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            },
+            addA: function () {
+                var a_s = document.querySelectorAll('a');
+                a_s.forEach(function (item) {
+                    if (item.href && item.href.indexOf(window.location.host) === -1) {
+                        item.target = '_blank'
+                    }
+                });
+            },
 
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?1a0ec38c52c08db815b0046c2783b1aa";
-            var s = document.getElementsByTagName("script")[0]; 
-            s.parentNode.insertBefore(hm, s);
-        })();
-        (function(){
-            var bp = document.createElement('script');
-            var curProtocol = window.location.protocol.split(':')[0];
-            if (curProtocol === 'https') {
-                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            gitment: function () {
+                if (document.getElementById('comments')) {
+                    console.log(window.location.pathname)
+                    new Gitment({
+                        id: window.location.pathname,
+                        owner: 'gzdaijie',
+                        repo: 'koa-react-server-render-blog',
+                        oauth: {
+                            client_id: 'c1fdd456a4caae5f7df0',
+                            client_secret: 'b2674451e21feae50520f99337ec15d2aebe7879',
+                        }
+                    }).render('comments')
+                }
             }
-            else {
-                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-            }
-            bp.async = true;
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(bp, s);
-        })();
+        }
 
-        var a_s = document.querySelectorAll('a');
-        a_s.forEach(function(item) {
-            if (item.href && item.href.indexOf(window.location.host) === -1) {
-                item.target = '_blank'
-            }
-        });
-    }
-</script>
+        window.onload = function () {
+            geektutu.addA();
+            geektutu.baidu();
+            geektutu.gitment();
+        }
+    </script>
 </body>
+
 </html>
