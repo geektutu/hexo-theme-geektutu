@@ -1,9 +1,9 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import actions from '../actions'
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import * as dateUtil from '../util/date'
 import styled from 'styled-components';
 import BusinessCard from './BusinessCard'
@@ -12,7 +12,7 @@ const SideBar = styled.div`
   float: left;
   margin-top: 50px;
   padding-left: 10px;
-` 
+`
 
 const Toc = styled.div`
   margin-top: 30px;
@@ -33,7 +33,7 @@ const Toc = styled.div`
 `
 
 const getPosts = actions.getPosts
-const mapStateToProps = (state) => ({archives: state.archives, statistics: state.statistics})
+const mapStateToProps = (state) => ({ archives: state.archives, statistics: state.statistics })
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     getPosts
@@ -58,7 +58,7 @@ class Archive extends React.Component {
   static title = "归档 | 极客兔兔的小站"
 
   componentDidMount() {
-    var {archives, actions} = this.props
+    var { archives, actions } = this.props
     if (archives && archives.length === 0) {
       actions.getPosts('date');
     }
@@ -69,43 +69,50 @@ class Archive extends React.Component {
       window.document.title = Archive.title
     }
     var archives = this.props.archives || []
-    archives.map(item =>(item.disDate = `${item.date.year}年${item.date.month}月`))
-    var renderPosts = (posts) => posts.map(post => (
+    
+    let date2int = date => date.year * 100 + date.month
+
+    archives.sort((o1, o2) => date2int(o2.date) - date2int(o1.date))
+    archives.map(item => (item.disDate = `${item.date.year}年${('' + item.date.month).padStart(2, '0')}月`))
+    var renderPosts = (posts) => {
+      posts.sort((o1, o2) => dateUtil.dateStr2time(o2.createdAt) - dateUtil.dateStr2time(o1.createdAt))
+      return posts.map(post => (
         <li key={post._id}>
           <Link to={'/post/' + post.slug}>{post.title}</Link>
           <span className="post-created-time">({dateUtil.toDateString(post.createdAt)})</span>
         </li>
-    ))
+      ))
+    }
 
     return (
-        <div className="col-xs-12 archives">
-          <div className="col-xs-12 col-md-9">
-            <h1>归档</h1>
-            {
-              archives.map(item => (
-                  <section key={item.disDate} id={item.disDate}>
-                    <h2>{item.disDate}</h2>
-                    <ul>
-                      {
-                        renderPosts(item.posts)
-                      }
-                    </ul>
-                  </section>
-              ))
-            }
-          </div>
-          <SideBar className="col-md-3 hidden-xs hidden-sm">
-            <BusinessCard statistics={this.props.statistics}/>
-            <Toc className="col-xs-12">
-              <p>归档列表</p>
-              <ul>
-              {
-                archives.map(item => <li key={item.disDate}><a href={'#' + item.disDate}>{item.disDate} </a> </li>) 
-              }
-              </ul>
-            </Toc>
-          </SideBar>
+      <div className="col-xs-12 archives">
+        <div className="col-xs-12 col-md-9">
+          <h1>归档</h1>
+          {
+            archives.map(item => (
+              <section key={item.disDate} id={item.disDate}>
+                <h2>{item.disDate}</h2>
+                <ul>
+                  {
+                    renderPosts(item.posts)
+                  }
+                </ul>
+              </section>
+            ))
+          }
         </div>
+        <SideBar className="col-md-3 hidden-xs hidden-sm">
+          <BusinessCard statistics={this.props.statistics} />
+          <Toc className="col-xs-12">
+            <p>归档列表</p>
+            <ul>
+              {
+                archives.map(item => <li key={item.disDate}><a href={'#' + item.disDate}>{item.disDate} </a> </li>)
+              }
+            </ul>
+          </Toc>
+        </SideBar>
+      </div>
     )
   }
 }

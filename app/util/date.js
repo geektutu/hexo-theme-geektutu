@@ -3,3 +3,5 @@ export const toDateString = (str) => {
   date = date.split(' ')
   return date[1] + ' ' + date[2] + ', ' + date[3]
 }
+
+export const dateStr2time = str => new Date(str).getTime()
