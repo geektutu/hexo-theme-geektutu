@@ -60,7 +60,7 @@ export default {
   'GET /posts': async (ctx, next) => {
     let groupBy = ctx.query.groupBy
     let data
-    let push_data = { _id: "$_id", title: "$title", slug: "$slug", createdAt: "$createdAt" }
+    let push_data = { _id: "$_id", title: "$title", slug: "$slug", createdAt: "$createdAt", index: '$index' }
     console.log(`get posts group by ${groupBy}`)
     switch (groupBy) {
       case 'date':
@@ -114,7 +114,7 @@ export default {
         break
       default:
         let fields = { title: 1, slug: 1, createdAt: 1, excerpt: 1, index: 1 }
-        data = await Post.find({ isArticle: true }, fields).sort({ 'index': -1 }).limit(20).populate('tags')
+        data = await Post.find({ isArticle: true }, fields).sort({ 'index': 1 }).limit(20).populate('tags')
     }
     ctx.response.body = {
       'data': data,
@@ -202,16 +202,27 @@ export default {
       if (line.startsWith('*')) {
         const path = line.substring(line.lastIndexOf('(') + 1, line.lastIndexOf(')')).trim()
         let content = fs.readFileSync(POSTS_BASE_PATH + '/' + path, 'utf-8')
-        let tags = content.split('\n')[2].replace(new RegExp('`', 'g'), '').split(' ')
+        let rows = content.split('\n')
+        let tags = rows[2].replace(new RegExp('`', 'g'), '').split(' ')
         tags = tags.filter(tag => !!tag).map(tag => tag.trim())
 
         let isArticle = category !== '关于我'
         let canComment = true
+        let title = rows[0].replace('#', '').trim()
         
+        rows.splice(2, 1)
+        content = rows.join('\n')
+
         let record = {
           slug: path.split('/').reverse()[0].replace('.md', '.html'),
-          content, tags, category, isArticle, canComment
+          content, tags, category, isArticle, canComment, title
         }
+
+        let log = shell.exec('git log --follow --format="%cd" -- ' + path, {silent: true}).stdout.trim()
+        let dates = log.split('\n')
+
+        record.updatedAt = new Date(dates[0])
+        record.createdAt = new Date(dates.reverse()[0])
 
         records.push(record)
         
