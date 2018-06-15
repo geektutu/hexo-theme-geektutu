@@ -98,17 +98,14 @@ PostSchema.path('tags').set(function (tags) {
   if (!this.$_oldTags) {
     this.$_oldTags = this.get('tags')
   }
-  console.log('path tags set ', tags)
   return tags
 })
 
 PostSchema.path('tags').validate(function (tags) {
-  console.log('path tags validate ', tags)
   return tags.length <= MAX_TAG_COUNT
 }, `标签数不能大于 ${MAX_TAG_COUNT} 个 ({PATH})`)
 
 PostSchema.pre('save', async function (next) {
-  console.log('pre post save')
   this.set('updatedAt', new Date())
   let content = this.get('content')
   // 更新HTML文本

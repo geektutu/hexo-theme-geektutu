@@ -1,9 +1,9 @@
-import {Post, Tag} from '../models'
-import {POSTS_BASE_PATH, STATIC_DIR, DOMAIN_NAME} from '../config/'
+import { Post, Tag } from '../models'
+import { POSTS_BASE_PATH, STATIC_DIR, DOMAIN_NAME } from '../config/'
 import fs from 'fs'
 import shell from 'shelljs'
 
-let tagNames2TagIds = async(tagNames) => {
+let tagNames2TagIds = async (tagNames) => {
   let tags = []
   // 去重
   let _tagNames = tagNames.filter((item, pos) => tagNames.indexOf(item) === pos)
@@ -14,17 +14,17 @@ let tagNames2TagIds = async(tagNames) => {
       tags.push(name)
       continue
     }
-    let tag = (await Tag.findOne({name})) || (await new Tag({name}).save())
+    let tag = (await Tag.findOne({ name })) || (await new Tag({ name }).save())
     tags.push(tag._id)
   }
 
   return tags
 }
 
-let getStatistics = async() => {
-  let fields = {title: 1, category: 1, tags: 1}
+let getStatistics = async () => {
+  let fields = { title: 1, category: 1, tags: 1 }
   let allTags = await Tag.find({})
-  let posts = await Post.find({isArticle: true}, fields)
+  let posts = await Post.find({ isArticle: true }, fields)
 
   let categories = {}
   let tags = {}
@@ -57,20 +57,20 @@ let getStatistics = async() => {
 }
 
 export default {
-  'GET /posts': async(ctx, next) => {
+  'GET /posts': async (ctx, next) => {
     let groupBy = ctx.query.groupBy
     let data
-    let push_data = {_id: "$_id", title: "$title", slug: "$slug", createdAt: "$createdAt"}
+    let push_data = { _id: "$_id", title: "$title", slug: "$slug", createdAt: "$createdAt" }
     console.log(`get posts group by ${groupBy}`)
     switch (groupBy) {
       case 'date':
         data = await Post.aggregate([
-          {$match: {isArticle: true}},
-          {$sort: {index: 1}},
+          { $match: { isArticle: true } },
+          { $sort: { index: 1 } },
           {
             $group: {
-              _id: {month: {$month: "$createdAt"}, year: {$year: "$createdAt"}},
-              posts: {$push: push_data}
+              _id: { month: { $month: "$createdAt" }, year: { $year: "$createdAt" } },
+              posts: { $push: push_data }
             }
           }])
         data.forEach(item => {
@@ -80,12 +80,12 @@ export default {
         break
       case 'category':
         data = await Post.aggregate([
-          {$match: {isArticle: true}},
-          {$sort: {index: 1}},
+          { $match: { isArticle: true } },
+          { $sort: { index: 1 } },
           {
             $group: {
               _id: '$category',
-              posts: {$push: push_data}
+              posts: { $push: push_data }
             }
           }
         ])
@@ -96,13 +96,13 @@ export default {
         break
       case 'tag':
         data = await Post.aggregate([
-          {$match: {isArticle: true}},
-          {$sort: {index: 1}},
-          {$unwind: '$tags'},
+          { $match: { isArticle: true } },
+          { $sort: { index: 1 } },
+          { $unwind: '$tags' },
           {
             $group: {
               _id: '$tags',
-              posts: {$push: push_data}
+              posts: { $push: push_data }
             }
           }
         ])
@@ -110,42 +110,42 @@ export default {
           item.tag = item._id
           delete item._id
         })
-        data = await Tag.populate(data, {path: 'tag'})
+        data = await Tag.populate(data, { path: 'tag' })
         break
       default:
-        let fields = {title: 1, slug: 1, createdAt: 1, excerpt: 1, index: 1}
-        data = await Post.find({isArticle: true}, fields).sort({'index': -1}).limit(20).populate('tags')
+        let fields = { title: 1, slug: 1, createdAt: 1, excerpt: 1, index: 1 }
+        data = await Post.find({ isArticle: true }, fields).sort({ 'index': -1 }).limit(20).populate('tags')
     }
     ctx.response.body = {
       'data': data,
       'statistics': await getStatistics()
     };
   },
-  'GET /posts/tags/:id': async(ctx, next) => {
+  'GET /posts/tags/:id': async (ctx, next) => {
     ctx.response.body = {
-      'data': await Post.find({tags: {$in: [ctx.params.id]}}).populate('tags')
+      'data': await Post.find({ tags: { $in: [ctx.params.id] } }).populate('tags')
     };
   },
-  'GET /posts/statistics': async(ctx, next) => {
+  'GET /posts/statistics': async (ctx, next) => {
     ctx.response.body = {
       'data': await getStatistics()
     };
   },
-  'GET /posts/:slug': async(ctx, next) => {
+  'GET /posts/:slug': async (ctx, next) => {
     let slug = ctx.params.slug;
-    let post = await Post.findOne({slug}).populate('tags')
+    let post = await Post.findOne({ slug }).populate('tags')
     if (post && post._id && post.isArticle) {
-      let fields = {title: 1, slug: 1, createdAt: 1}
+      let fields = { title: 1, slug: 1, createdAt: 1 }
       let tags = []
       post.tags.forEach(item => tags.push(item._id))
-      let related = await Post.find({tags: {$in: tags}, isArticle: true}, fields)
+      let related = await Post.find({ tags: { $in: tags }, isArticle: true }, fields)
       let filterRelated = []
       if (related.length > 5) {
         let pos = related.findIndex(item => item.slug === post.slug)
 
 
         let left = pos - 1, right = pos + 1
-        while(filterRelated.length < 5 && (left >= 0 || right < related.length)) {
+        while (filterRelated.length < 5 && (left >= 0 || right < related.length)) {
           if (left >= 0) {
             filterRelated.unshift(related[left--])
             if (filterRelated.length >= 5) {
@@ -164,7 +164,7 @@ export default {
     }
     if (post && post._id) {
       let index = post.htmlContent.indexOf('</div>');
-      post._doc.toc =  post.htmlContent.substring(0, index + 6);
+      post._doc.toc = post.htmlContent.substring(0, index + 6);
       post.htmlContent = post.htmlContent.substring(index + 6);
     }
     ctx.response.body = {
@@ -172,43 +172,50 @@ export default {
       'statistics': await getStatistics()
     };
   },
-  'GET /admin/git-pull': async(ctx, next) => {
+  'GET /admin/git-pull': async (ctx, next) => {
     console.log('git pull')
     try {
       shell.cd(POSTS_BASE_PATH)
-      let gitPull = shell.exec('git pull', {silent: true}).stdout
-      ctx.response.body = {'data': gitPull}
+      let gitPull = shell.exec('git pull', { silent: true }).stdout
+      ctx.response.body = { 'data': gitPull }
     } catch (e) {
-      ctx.response.body = {'data': e};
+      ctx.response.body = { 'data': e };
     }
   },
-  'GET /admin/posts': async(ctx, next) => {
+  'GET /admin/posts': async (ctx, next) => {
     await Tag.remove().exec()
     await Post.remove().exec()
 
-    let manifest = JSON.parse(fs.readFileSync(POSTS_BASE_PATH + '/manifest.json'));
-    let records = []
     shell.cd(POSTS_BASE_PATH)
 
-    Object.keys(manifest).forEach((category) => {
-      manifest[category].forEach((meta) => {
-        let content = fs.readFileSync(POSTS_BASE_PATH + '/' + meta.path, 'utf-8')
-        let record = {
-          slug: meta.path.split('/').reverse()[0].replace('.md', '.html'),
-          content: content,
-          tags: meta.tags.split(','),
-          isArticle: meta.isArticle || meta.isArticle === undefined,
-          canComment: meta.canComment || meta.canComment === undefined,
-          category: category
-        }
-        let log = shell.exec('git log --follow --format="%cd" -- ' + meta.path, {silent: true}).stdout.trim()
-        let dates = log.split('\n')
+    const records = []
+    const summary = fs.readFileSync(POSTS_BASE_PATH + '/' + 'SUMMARY.md', 'utf-8')
+    const lines = summary.split('\n')
 
-        record.updatedAt = new Date(dates[0])
-        record.createdAt = new Date(dates.reverse()[0])
-        record.title = content.substr(0, content.indexOf('\n')).replace('#', '').trim()
+    let category = ''
+    lines.forEach(line => {
+      if (line.startsWith('##')) {
+        category = line.replace('##', '').trim()
+        return
+      }
+
+      if (line.startsWith('*')) {
+        const path = line.substring(line.lastIndexOf('(') + 1, line.lastIndexOf(')')).trim()
+        let content = fs.readFileSync(POSTS_BASE_PATH + '/' + path, 'utf-8')
+        let tags = content.split('\n')[2].replace(new RegExp('`', 'g'), '').split(' ')
+        tags = tags.filter(tag => !!tag).map(tag => tag.trim())
+
+        let isArticle = category !== '关于我'
+        let canComment = true
+        
+        let record = {
+          slug: path.split('/').reverse()[0].replace('.md', '.html'),
+          content, tags, category, isArticle, canComment
+        }
+
         records.push(record)
-      })
+        
+      }
     })
 
     let needRecords = records.filter((item) => item.isArticle)
@@ -250,8 +257,9 @@ export default {
       fs.writeFileSync(STATIC_DIR + '/sitemap.txt', urls.join('\n'))
     }
 
+    let slugs = records.map(record => record.slug)
     ctx.response.body = {
-      'data': {success, fail, error}
+      'data': { success, fail, error, slugs }
     };
   }
 }
