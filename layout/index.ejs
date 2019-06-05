@@ -1,0 +1,73 @@
+---
+layout: page
+---
+<!-- Main Content -->
+<style>
+    .post-preview {
+        width: 100%;
+        height: max-content;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .post-preview .post-time {
+        font-size: 17px;
+        color: #999999;
+        width: 125px;
+    }
+
+    .post-preview .post-info {
+        flex: 1;
+    }
+
+    .post-preview .post-info a {
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .post-preview .post-info .tag {
+        color: #999999;
+    }
+    .post-preview .post-info .title {
+        color: #101010;
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+    
+</style>
+
+<% page.posts.each(function(post){ %>
+<div class="post-preview">
+    <div class="post-time">2019-02-16</div>
+    <div class="post-info">
+        <a href="<%- config.root %><%- post.path %>">
+            <p class="title"><%- post.title || "Untitled" %></p>
+        </a>
+        <p>
+            <% if (post.tags.length){%>
+            <span>/</span>
+            <% post.tags.forEach(function(tag){ %>
+            <a class="tag" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"><%= tag.name %></a>
+            <span>/</span>
+            <% }) %>
+            <% } %>
+        </p>
+    </div>
+</div>
+<% }); %>
+
+<!-- Pager -->
+
+<ul class="pager">
+    <% if (page.prev){ %>
+    <li class="previous">
+        <a href="<%- config.root %><%- page.prev_link %>">&larr; Newer Posts</a>
+    </li>
+    <% } %>
+    <% if (page.next){ %>
+    <li class="next">
+        <a href="<%- config.root %><%- page.next_link %>">Older Posts &rarr;</a>
+    </li>
+    <% } %>
+</ul>

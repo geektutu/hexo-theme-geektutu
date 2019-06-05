@@ -1,0 +1,56 @@
+<!-- Table of Contents -->
+<% if (page.catalog) { %>
+<% if (is_post()){ %>
+<style>
+  /*toc*/
+  #sidebar {
+    float: left;
+  }
+
+  .toc-article {
+    position: absolute;
+    padding-left: 10px;
+    margin-top: 25px;
+    border-left: 1px solid #eaecef;
+  }
+
+  .toc-title:before {
+    font-family: "FontAwesome";
+    content: "\f02e";
+    margin-right: 0.5em;
+  }
+
+  .toc-article li {
+    list-style-type: square;
+  }
+  .toc-article a {
+    display: block;
+    color: #000;
+    font-size: 14px;
+  }
+
+  .toc-title {
+    font-size: 1.2em;
+  }
+
+  .toc-fixed {
+    position: fixed;
+    top: 60px;
+    margin-top: 0;
+    max-height: 81%;
+    overflow: hidden;
+    z-index: 1;
+  }
+</style>
+<aside id="sidebar" class="hidden-sm">
+  <div id="toc" class="toc-article">
+    <span class="toc-title"><%= __('contents') %></span>
+    <% if (toc(page.content) != ""){ %>
+    <%- toc(page.content, { "class": "toc-nav", "list_number": false }) %>
+    <% } else { %>
+    <ol class="nav"><%= __('none') %></ol>
+    <% } %>
+  </div>
+</aside>
+<% } %>
+<% } %>

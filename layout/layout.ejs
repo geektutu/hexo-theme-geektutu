@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<%- partial('_partial/head') %>
+
+<!-- hack iOS CSS :active style -->
+
+<body ontouchstart="">
+    <%- partial('_partial/header',{cache: true}) %>
+    <!-- Main Content -->
+    <style>
+        .main-container {
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 25px;
+
+        }
+
+        @media (min-width: 768px) {
+            .main-container {
+                width: 750px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .main-container {
+                width: 990px;
+            }
+
+        }
+    </style>
+    <div class="main-container markdown-it padding-0">
+        <%- body %>
+    </div>
+
+    <!-- Footer -->
+    <%- partial('_partial/footer') %>
+
+
+    <a id="rocket" href="#top" class=""></a>
+    <script>
+        window.onload = function () {
+            var toc = document.getElementById('toc')
+
+            if (toc != null) {
+                window.addEventListener("scroll", scrollcatelogHandler);
+                var tocPosition = toc.offsetTop;
+                function scrollcatelogHandler(e) {
+                    var event = e || window.event,
+                        target = event.target || event.srcElement;
+                    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    if (scrollTop > tocPosition - 60) {
+                        toc.classList.add("toc-fixed");
+                    } else {
+                        toc.classList.remove("toc-fixed");
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

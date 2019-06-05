@@ -1,0 +1,75 @@
+<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    .geektutu-header {
+        height: 240px;
+        background: no-repeat center center;
+        font-size: 1.5em;
+        text-align: center;
+        background-image: url('<%= config.root + config["header-img"] %>');
+        z-index: 2;
+        background-size: cover;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .header-nav li {
+        display: inline-block;
+        padding: 0 10px;
+        margin-bottom: 0;
+    }
+
+    .header-nav ul {
+        list-style: none;
+    }
+
+    .header-nav a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        text-shadow: 0 1px #666;
+    }
+
+    .header-nav a:hover,
+    .header-nav a:focus {
+        color: #e6e6e6;
+    }
+
+    .header-icon {
+        border-radius: 50%;
+        height: 120px;
+        width: 120px;
+        margin: 10px auto;
+        background-image: url('<%= config.root + config["header-icon"] %>');
+        background-size: cover;
+    }
+
+    .header-name a {
+        color: white;
+        font-size: 24px;
+    }
+</style>
+
+<header class="geektutu-header">
+    <!-- Signature -->
+    <div className="col-xs-12 text-center">
+        <div class="header-icon"></div>
+        <p class="header-name"><a href="/" class="no-text-decoration">极客兔兔</a></p>
+        <nav class="header-nav">
+            <ul>
+                <li> <a href="/">首页</a></li>
+                <li>
+                    <a href="/tags">标签</a>
+                </li>
+                <li>
+                    <a href="/archives">归档</a>
+                </li>
+                <li>
+                    <a href="/post/link.html">友链</a>
+                </li>
+                <li>
+                    <a href="/post/about.html">关于</a>
+                </li>
+            </ul>
+        </nav>
+</header>
