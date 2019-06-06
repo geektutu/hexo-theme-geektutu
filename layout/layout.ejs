@@ -18,6 +18,8 @@
             margin-right: auto;
             margin-left: auto;
             margin-top: 25px;
+            padding-top: 30px;
+            padding-bottom: 30px;
             background-color: white;
 
         }
@@ -36,7 +38,6 @@
 
         .post-list {
             line-height: 2.8em;
-            width: 500px;
             margin-left: 100px;
             border-left: 4px solid #f9f9f9;
         }
@@ -115,8 +116,14 @@
         .post-list .post-item-title:hover {
             color: #108ee9;
         }
+
+        .post-list .post-item-date {
+            margin-left: 10px;
+            color: hsla(0, 0%, 71%, .9);
+            font-size: .85em;
+        }
     </style>
-    <div class="main-container markdown-it padding-0">
+    <div class="main-container markdown-it">
         <%- body %>
     </div>
 

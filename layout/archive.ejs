@@ -2,6 +2,14 @@
 layout: layout
 ---
 
+<style>
+    .post-list .post-item-date {
+        margin-left: 10px;
+        color: hsla(0, 0%, 71%, .9);
+        font-size: .85em;
+    }
+</style>
+
 <!-- Main Content -->
 <div class="col-xs-12">
     <div class="post-list">
@@ -26,8 +34,8 @@ layout: layout
             </li>
             <% years[year].map(function(post){  %>
             <li>
-                <span class="post-item-date"><%= post.date.format('MM-DD') %></span>
                 <a class="post-item-title" href="/<%- post.path %>"><%- post.title || "Untitled" %></a>
+                <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
             </li>
             <% }) %>
             <% }) %>

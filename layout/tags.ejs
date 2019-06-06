@@ -16,6 +16,7 @@ layout: layout
             <% tag.posts.map(function(post){  %>
             <li>
                 <a class="post-item-title" href="/<%- post.path %>"><%- post.title || "Untitled" %></a>
+                <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
             </li>
             <% }) %>
             <% }) %>

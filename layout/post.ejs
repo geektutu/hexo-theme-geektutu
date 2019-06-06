@@ -3,14 +3,6 @@ layout: layout
 ---
 
 <style>
-    .paging-prev {
-        float: left;
-    }
-
-    .paging-next {
-        float: right;
-    }
-
     .comments {
         margin-top: 20px;
     }
@@ -39,10 +31,10 @@ layout: layout
                 <hr />
                 <p>
                     <% if (page.prev){ %>
-                    <a class="paging-prev" href="/<%- page.prev.path %>">« <%- page.prev.title %></a>
+                    <a class="float-left" href="/<%- page.prev.path %>">« <%- page.prev.title %></a>
                     <% } %>
                     <% if (page.next){ %>
-                    <a class="paging-next" href="/<%- page.next.path %>"><%- page.next.title %> »</a>
+                    <a class="float-right" href="/<%- page.next.path %>"><%- page.next.title %> »</a>
                     <% } %>
                 </p>
             </div>
