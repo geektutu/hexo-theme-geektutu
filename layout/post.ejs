@@ -31,7 +31,6 @@ layout: layout
             </div>
 
             <hr />
-            <!-- Pager -->
             <p>
                 <% if (page.prev){ %>
                 <a class="paging-prev" href="<%- page.prev.path %>">« <%- page.prev.title %></a>
@@ -40,6 +39,7 @@ layout: layout
                 <a class="paging-next" href="<%- page.next.path %>"><%- page.next.title %> »</a>
                 <% } %>
             </p>
+            <%- partial('_widget/comments') %>    
         </div>
         <!-- Tabe of Content -->
         <%- partial('_partial/toc') %>
