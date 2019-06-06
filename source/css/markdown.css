@@ -80,7 +80,8 @@
 }
 
 .markdown-it a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  color: #108ee9;
 }
 
 .markdown-it a:not([href]) {

@@ -10,10 +10,15 @@
     <%- partial('_partial/header',{cache: true}) %>
     <!-- Main Content -->
     <style>
+        body {
+            background-color: #f6f6f6;
+        }
+
         .main-container {
             margin-right: auto;
             margin-left: auto;
             margin-top: 25px;
+            background-color: white;
 
         }
 
@@ -27,7 +32,88 @@
             .main-container {
                 width: 990px;
             }
+        }
 
+        .post-list {
+            line-height: 2.8em;
+            width: 500px;
+            margin-left: 100px;
+            border-left: 4px solid #f9f9f9;
+        }
+
+        .post-list ul {
+            padding-left: 0 !important;
+        }
+
+        .post-list li {
+            list-style-type: none;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .post-list a {
+            text-decoration: none;
+        }
+
+        .post-list li:before {
+            position: absolute;
+            top: 50%;
+            left: -2px;
+            width: 10px;
+            height: 10px;
+            margin-top: -9px;
+            margin-left: -5px;
+            content: ' ';
+            border-radius: 50%;
+            background-color: #ddd;
+        }
+
+        .post-list .post-item-parent {
+            margin-top: 20px;
+        }
+
+        .post-list a {
+            color: #000000;
+        }
+
+        .post-item-color-0:before {
+            background: #1abc9c !important;
+        }
+
+        .post-item-color-1:before {
+            background: #3498db !important;
+        }
+
+        .post-item-color-2:before {
+            background: #9b59b6 !important;
+        }
+
+        .post-item-color-3:before {
+            background: #e67e22 !important;
+        }
+
+        .post-item-color-4:before {
+            background: #e74c3c !important;
+        }
+
+        .post-list .post-text-parent {
+            font-family: 'calligraffittiregular';
+            font-size: 20px;
+            font-weight: bold;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .post-list .post-item-title {
+            font-size: 16px;
+            transition-duration: .5s;
+            color: #333;
+            vertical-align: middle;
+            overflow: hidden;
+        }
+
+        .post-list .post-item-title:hover {
+            color: #108ee9;
         }
     </style>
     <div class="main-container markdown-it padding-0">

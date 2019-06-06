@@ -1,14 +1,28 @@
 <!-- Featured Tags -->
-<% if(config['featured-tags']) { %>
-<section>
-    <!-- no hr -->
-    <h5><a href="<%= config.root %>tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
+<style>
+    #featured-tag .post-tag-item {
+        font-size: 12px;
+        line-height: 30px;
+        display: inline-block;
+        height: 30px;
+        margin: 5px 3px;
+        padding: 0 12px;
+        color: #333;
+        border-radius: 15px;
+        background: #f6f6f6;
+    }
+    #featured-tag .post-tag-item:hover {
+        color: #108ee9;
+    }
+</style>
+<section id="featured-tag">
+    <div class="col-xs-12">
+        <h3>标签</h3>
+        
         <% site.tags.map(function(tag){  %>
-            <% if(tag.length > config['featured-condition-size']) { %>
-            <a href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>" rel="<%= tag.length %>"><%= tag.name %></a>
-            <% } %>
+
+        <a class="post-tag-item" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"
+            rel="<%= tag.length %>">#<%= tag.name %></a>
         <% }) %>
     </div>
 </section>
-<% }%>

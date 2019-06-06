@@ -1,46 +1,37 @@
 ---
-layout: page
+layout: layout
 ---
 
 <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 归档列表 -->
+<div class="col-xs-12">
+    <div class="post-list">
+        <% 
+            var years = {};
+            site.posts.sort('date').reverse().forEach(function(post){
+                var year = post.date.year()
+                if(years[year]===undefined){
+                    years[year] = [];
+                }
+                years[year].push(post);
+            });
+        %>
 
-            <% 
-                var years = {};
-                site.posts.sort('date').reverse().forEach(function(post){
-                    var year = post.date.year()
-                    if(years[year]===undefined){
-                        years[year] = [];
-                    }
-                    years[year].push(post);
-                });
-            %>
-
-            <!-- 归档列表 -->
-
+        <!-- 归档列表 -->
+        <ul>
             <% Object.keys(years).reverse().forEach(function(year){  %>
-            <div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="<%= year %>">
-                    <span class="tag-text"><%= year %></span>
-                </span>
-                <ul>
-                    <% years[year].map(function(post){  %>
-                    <li>
-
-                        <a href="<%- config.root %><%- post.path %>" style="color: #0085a1">
-                            <span><%- post.title || "Untitled" %></span>
-                        </a>
-                        <span>(<%= post.date.format('MM-DD') %>)</span>
-                    </li>
-                    <% }) %>
-                </ul>
-            </div>
+            <li class="post-item-parent post-item-color-<%- year % 5 %>">
+                <a href="<%- config.root %>archives#<%- year %>" class="post-text-parent" id="<%= year %>">
+                    <%= year %>
+                </a>
+            </li>
+            <% years[year].map(function(post){  %>
+            <li>
+                <span class="post-item-date"><%= post.date.format('MM-DD') %></span>
+                <a class="post-item-title" href="<%- config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
+            </li>
             <% }) %>
+            <% }) %>
+        </ul>
 
-
-        </div>
     </div>
 </div>

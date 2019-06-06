@@ -1,14 +1,3 @@
-
-language: zh-CN
-
-
-sns:
-  github: geektutu
-  zhihu: gzdaijie
-  weibo: gzdaijie
-
-
-
 # Code Highlight theme
 # normal | night | night yilia | night eighties | night blue | night bright
 highlight_theme: night
