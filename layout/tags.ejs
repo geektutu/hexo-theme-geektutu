@@ -9,7 +9,7 @@ layout: layout
         <ul>
             <% site.tags.forEach(function(tag, index){  %>
             <li class="post-item-parent post-item-color-<%- index % 5 %>">
-                <a href="/tags#<%- tag.name %>" class="post-text-parent" id="<%= tag.name %>">
+                <a href="/tags/#<%- tag.name %>" class="post-text-parent" id="<%= tag.name %>">
                     <%- tag.name %>
                 </a>
             </li>

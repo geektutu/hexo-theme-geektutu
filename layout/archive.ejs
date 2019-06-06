@@ -20,7 +20,7 @@ layout: layout
         <ul>
             <% Object.keys(years).reverse().forEach(function(year){  %>
             <li class="post-item-parent post-item-color-<%- year % 5 %>">
-                <a href="/archives#<%- year %>" class="post-text-parent" id="<%= year %>">
+                <a href="/archives/#<%- year %>" class="post-text-parent" id="<%= year %>">
                     <%= year %>
                 </a>
             </li>
