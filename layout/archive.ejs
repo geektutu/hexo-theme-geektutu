@@ -20,14 +20,14 @@ layout: layout
         <ul>
             <% Object.keys(years).reverse().forEach(function(year){  %>
             <li class="post-item-parent post-item-color-<%- year % 5 %>">
-                <a href="<%- config.root %>archives#<%- year %>" class="post-text-parent" id="<%= year %>">
+                <a href="/archives#<%- year %>" class="post-text-parent" id="<%= year %>">
                     <%= year %>
                 </a>
             </li>
             <% years[year].map(function(post){  %>
             <li>
                 <span class="post-item-date"><%= post.date.format('MM-DD') %></span>
-                <a class="post-item-title" href="<%- config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
+                <a class="post-item-title" href="/<%- post.path %>"><%- post.title || "Untitled" %></a>
             </li>
             <% }) %>
             <% }) %>

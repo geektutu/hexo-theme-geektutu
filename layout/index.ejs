@@ -41,14 +41,14 @@ layout: page
 <div class="post-preview">
     <div class="post-time">2019-02-16</div>
     <div class="post-info">
-        <a href="<%- config.root %><%- post.path %>">
+        <a href="<%- post.path %>">
             <p class="title"><%- post.title || "Untitled" %></p>
         </a>
         <p>
             <% if (post.tags.length){%>
             <span>/</span>
             <% post.tags.forEach(function(tag){ %>
-            <a class="tag" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"><%= tag.name %></a>
+            <a class="tag" href="/tags/#<%= tag.name %>" title="<%= tag.name %>"><%= tag.name %></a>
             <span>/</span>
             <% }) %>
             <% } %>
@@ -62,12 +62,12 @@ layout: page
 <ul class="pager">
     <% if (page.prev){ %>
     <li class="previous">
-        <a href="<%- config.root %><%- page.prev_link %>">&larr; Newer Posts</a>
+        <a href="<%- page.prev_link %>">&larr; Newer Posts</a>
     </li>
     <% } %>
     <% if (page.next){ %>
     <li class="next">
-        <a href="<%- config.root %><%- page.next_link %>">Older Posts &rarr;</a>
+        <a href="<%- page.next_link %>">Older Posts &rarr;</a>
     </li>
     <% } %>
 </ul>

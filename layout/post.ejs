@@ -34,10 +34,10 @@ layout: layout
             <!-- Pager -->
             <p>
                 <% if (page.prev){ %>
-                <a class="paging-prev" href="<%- config.root %><%- page.prev.path %>">« <%- page.prev.title %></a>
+                <a class="paging-prev" href="<%- page.prev.path %>">« <%- page.prev.title %></a>
                 <% } %>
                 <% if (page.next){ %>
-                <a class="paging-next" href="<%- config.root %><%- page.next.path %>"><%- page.next.title %> »</a>
+                <a class="paging-next" href="<%- page.next.path %>"><%- page.next.title %> »</a>
                 <% } %>
             </p>
         </div>

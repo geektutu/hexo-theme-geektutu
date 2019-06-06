@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="<%= config.description %>">
   <meta name="keyword" content="<%= config.keyword %>">
-  <link rel="shortcut icon" href="<%= config.root %>img/ironman-draw.png">
+  <link rel="shortcut icon" href="/img/ironman-draw.png">
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <title>
@@ -16,7 +16,7 @@
     <% } %>
   </title>
 
-  <link rel="canonical" href="<%= config.url + config.root + (page.path||'').replace('index.html', '') %>">
+  <link rel="canonical" href="<%= (page.path||'').replace('index.html', '') %>">
 
   <!-- Bootstrap Core CSS -->
   <%- css('css/reset.css') %>

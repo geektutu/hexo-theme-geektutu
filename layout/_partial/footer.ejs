@@ -6,43 +6,27 @@
         padding: 20px;
     }
 
-    footer small a {
+    footer a {
         color: #333;
         text-decoration: none;
+    }
+    .footer-hexo a {
+        color: #108ee9;
     }
 </style>
 <footer class="text-center">
     <p class="margin-tb-0">
-        <small>© 2018 - 极客兔兔 - </small>
+        <small>© <%- new Date().getFullYear() %> - 极客兔兔 - </small>
         <small>
             <a target="_blank" rel="nofollow noopener" href="http://www.miitbeian.gov.cn/">沪ICP备18001798号-1</a>
         </small>
     </p>
-    <p><small>Powered by <a href="https://github.com/koajs/koa">Hexo</a> & <a
-                href="https://github.com/facebook/react">Geektutu</a></small></p>
+    <p class="footer-hexo"><small>Powered by <a target="_blank" href="https://hexo.io">Hexo</a> | Theme <a target="_blank" href="https://github.com/geektutu/hexo-theme-geektutu">Geektutu</a></small></p>
 </footer>
-
-<!-- jQuery -->
-<%- js('js/jquery.min.js') %>
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-        var d = document, t = 'script',
-            o = d.createElement(t),
-            s = d.getElementsByTagName(t)[0];
-        o.src = u;
-        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-        s.parentNode.insertBefore(o, s);
-    }
-</script>
-
-
 
 <!-- Baidu Tongji -->
 <% if (config.ba_track_id) { %>
 <script>
-    // dynamic User by Hux
     var _baId = '<%= config.ba_track_id %>';
 
     // Originial
