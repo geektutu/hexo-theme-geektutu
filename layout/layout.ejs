@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= config.language %>">
 
 <!-- Head tag -->
 <%- partial('_partial/head') %>
 
-<!-- hack iOS CSS :active style -->
-
-<body ontouchstart="">
+<body>
     <%- partial('_partial/header',{cache: true}) %>
     <!-- Main Content -->
     <style>
@@ -134,21 +132,52 @@
     <a id="rocket" href="#top" class=""></a>
     <script>
         window.onload = function () {
-            var toc = document.getElementById('toc')
+            var toc = document.getElementById('toc');
+            var h2 = document.querySelectorAll('article h2');
+            var h3 = document.querySelectorAll('article h3');
+            var linkList = document.querySelectorAll('#toc a');
 
-            if (toc != null) {
-                window.addEventListener("scroll", scrollcatelogHandler);
-                var tocPosition = toc.offsetTop;
-                function scrollcatelogHandler(e) {
-                    var event = e || window.event,
-                        target = event.target || event.srcElement;
-                    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                    if (scrollTop > tocPosition - 60) {
-                        toc.classList.add("toc-fixed");
-                    } else {
-                        toc.classList.remove("toc-fixed");
+            function findLinkElement(name) {
+                for (var i = 0; i < linkList.length; i++) {
+                    var items = linkList[i].href.split('#');
+                    if (items && items[items.length - 1] === encodeURIComponent(name)) {
+                        return i;
                     }
                 }
+                return -1;
+            }
+
+            function activeLink(titleList) {
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (var i = titleList.length - 1; i >= 0; i--) {
+                    if (scrollTop - titleList[i].offsetTop > 0) {
+                        var index = findLinkElement(titleList[i].id);
+                        index != -1 && linkList[index].classList.add('toc-active');
+                        break;
+                    }
+                }
+            }
+
+            function fixToc() {
+                var tocPosition = toc.offsetTop;
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                if (scrollTop > tocPosition - 60) {
+                    toc.classList.add("toc-fixed");
+                } else {
+                    toc.classList.remove("toc-fixed");
+                }
+            }
+
+
+            if (toc != null) {
+
+                window.addEventListener("scroll", function (e) {
+                    fixToc();
+                    linkList.forEach(function (link) {
+                        link.classList.remove('toc-active');
+                    })
+                    activeLink(h2);
+                })
             }
         }
     </script>

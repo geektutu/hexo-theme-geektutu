@@ -9,13 +9,13 @@ layout: layout
         <ul>
             <% site.tags.forEach(function(tag, index){  %>
             <li class="post-item-parent post-item-color-<%- index % 5 %>">
-                <a href="/tags/#<%- tag.name %>" class="post-text-parent" id="<%= tag.name %>">
+                <a href="<%= config.root %>tags/#<%- tag.name %>" class="post-text-parent" id="<%= tag.name %>">
                     <%- tag.name %>
                 </a>
             </li>
             <% tag.posts.map(function(post){  %>
             <li>
-                <a class="post-item-title" href="/<%- post.path %>"><%- post.title || "Untitled" %></a>
+                <a class="post-item-title" href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
                 <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
             </li>
             <% }) %>

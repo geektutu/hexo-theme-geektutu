@@ -1,7 +1,14 @@
+# 分页使用
 prev: 上一页
 next: 下一页
-comment: 留言
-archive: 归档
-archive_b: 归档：%s
+
+# header使用
+index_page: 主页
+tags: 标签
+archives: 归档
+friend_link: 友链
+about: 关于
+
+# 侧边栏使用
 contents: 目录
 recent-posts: 最近的文章

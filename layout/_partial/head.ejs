@@ -1,22 +1,27 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+  <% var seo = config.seo || {} %>
+  <meta name="baidu-site-verification" content="<%= seo.baidu_site_verification %>" />
+  <meta name="google-site-verification" content="<%= seo.google_site_verification %>" />
+  <meta name="msvalidate.01" content="<%= seo.ms_site_verification %>" />
+  <meta name="360-site-verification" content="<%= seo._360_site_verification %>" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="<%= config.description %>">
-  <meta name="keyword" content="<%= config.keyword %>">
-  <link rel="shortcut icon" href="/img/icon.png">
+  <!-- if page has tags, then add tags to keyword -->
+  <meta name="keyword" content="<%= config.keyword + ',' + (page.tags || []).map((tag)=>tag.name).join(',') %>">
+  <!-- page.description has higher priority -->
+  <meta name="description" content="<%= page.description || config.description %>">
+  <link rel="shortcut icon" href="<%= config.root %><%= config.header_icon %>">
   <title>
     <% if (page.title) { %>
-    <%= page.title + ' - ' + config.SEOTitle %>
+    <%= page.title + ' | ' + (config.seo_title || config.title) %>
     <% } else {%>
-    <%= config.SEOTitle %>
+    <%= config.title %>
     <% } %>
   </title>
 
-  <link rel="canonical" href="<%= (page.path||'').replace('index.html', '') %>">
+  <link rel="canonical" href="<%= config.root %><%= (page.path||'').replace('index.html', '') %>">
 
-  <!-- Bootstrap Core CSS -->
   <%- css('css/reset.css') %>
   <%- css('css/layout.css') %>
   <%- css('css/geektutu.css')%>

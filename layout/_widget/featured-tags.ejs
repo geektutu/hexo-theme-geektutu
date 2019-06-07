@@ -19,7 +19,7 @@
     <div class="col-xs-12">
         <% site.tags.map(function(tag){  %>
 
-        <a class="post-tag-item" href="/tags/#<%= tag.name %>" title="<%= tag.name %>"
+        <a class="post-tag-item" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"
             rel="<%= tag.length %>">#<%= tag.name %></a>
         <% }) %>
     </div>

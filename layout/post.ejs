@@ -31,10 +31,10 @@ layout: layout
                 <hr />
                 <p>
                     <% if (page.prev){ %>
-                    <a class="float-left" href="/<%- page.prev.path %>">« <%- page.prev.title %></a>
+                    <a class="float-left" href="<%= config.root %><%- page.prev.path %>">« <%- page.prev.title %></a>
                     <% } %>
                     <% if (page.next){ %>
-                    <a class="float-right" href="/<%- page.next.path %>"><%- page.next.title %> »</a>
+                    <a class="float-right" href="<%= config.root %><%- page.next.path %>"><%- page.next.title %> »</a>
                     <% } %>
                 </p>
             </div>

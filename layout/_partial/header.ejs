@@ -1,4 +1,3 @@
-<!-- Modified by Yu-Hsuan Yen -->
 <!-- Post Header -->
 <style type="text/css">
     .geektutu-header {
@@ -6,7 +5,7 @@
         background: no-repeat center center;
         font-size: 1.5em;
         text-align: center;
-        background-image: url('<%= config["header-img"] %>');
+        background-image: url('<%= config.root %><%= config.header_img %>');
         z-index: 2;
         background-size: cover;
         width: 100%;
@@ -40,7 +39,7 @@
         height: 100px;
         width: 100px;
         margin: 10px auto;
-        background-image: url('<%= config["header-icon"] %>');
+        background-image: url('<%= config.root %><%= config.header_icon %>');
         background-size: cover;
     }
 
@@ -51,24 +50,23 @@
 </style>
 
 <header class="geektutu-header">
-    <!-- Signature -->
     <div className="col-xs-12 text-center">
         <div class="header-icon"></div>
-        <p class="header-name"><a href="/" class="no-text-decoration">极客兔兔</a></p>
+        <p class="header-name"><a href="<%= config.root %>" class="no-text-decoration"><%= config.title %></a></p>
         <nav class="header-nav">
             <ul>
-                <li> <a href="/">首页</a></li>
+                <li> <a href="<%= config.root %>"><%= __('index_page') %></a></li>
                 <li>
-                    <a href="/tags">标签</a>
+                    <a href="<%= config.root %>tags"><%= __('tags') %></a>
                 </li>
                 <li>
-                    <a href="/archives">归档</a>
+                    <a href="<%= config.root %>archives"><%= __('archives') %></a>
                 </li>
                 <li>
-                    <a href="/post/link.html">友链</a>
+                    <a href="<%= config.root %>post/link.html"><%= __('friend_link') %></a>
                 </li>
                 <li>
-                    <a href="/post/about.html">关于</a>
+                    <a href="<%= config.root %>post/about.html"><%= __('about') %></a>
                 </li>
             </ul>
         </nav>
