@@ -1,0 +1,71 @@
+<style>
+    #summary {
+        font: 13px/1.6 "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #333333;
+        border: 1px solid #DDDDDD;
+        border-radius: 3px;
+        padding: 10px;
+        background: transparent;
+        display: block;
+        width: 250px;
+    }
+
+
+    #summary nav {
+        overflow: hidden;
+    }
+
+    #summary nav a {
+        display: inline-block;
+        text-align: center;
+        color: #333;
+    }
+
+    #summary nav span {
+        display: block;
+    }
+
+    #summary nav .middle {
+        border-left: 1px solid #eaecef;
+        border-right: 1px solid #eaecef;
+    }
+
+    #summary .number {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    #summary .link-list {
+        margin-top: 10px;
+        padding: 10px 10px 0 10px;
+        border-top: 1px dashed #999;
+        overflow: hidden;
+    }
+
+    #summary .link-list img {
+        width: 30px;
+        height: 30px;
+    }
+</style>
+
+<div id="summary">
+    <nav>
+        <a href="<%= config.root %>" class="col-xs-4">
+            <number class="number"><%= site.posts.length %></number><span><%= __('post') %></span>
+        </a>
+        <a href="<%= config.root %>series" class="col-xs-4 middle">
+            <number class="number"><%= site.categories.length %></number><span><%= __('categories') %></span>
+        </a>
+        <a href="<%= config.root %>tags" class="col-xs-4">
+            <number class="number"><%= site.tags.length %></number><span><%= __('tags') %></span>
+        </a>
+    </nav>
+
+    <% if(config.related_links) { %>
+    <div class="link-list">
+        <% config.related_links.forEach(function(item){ %>
+        <a class="col-xs-4" href="<%= item.link %>"><img src="<%= config.root %><%= item.img %>" /></a>
+        <% }) %>
+    </div>
+    <% } %>
+</div>

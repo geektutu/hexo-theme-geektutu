@@ -11,17 +11,15 @@
         border-radius: 15px;
         background: #f6f6f6;
     }
+
     #featured-tag .post-tag-item:hover {
         color: #108ee9;
     }
 </style>
 <section id="featured-tag">
-    <div class="col-xs-12">
-        <% site.tags.map(function(tag){  %>
+    <% site.tags.map(function(tag){  %>
 
-        <a class="post-tag-item" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"
-            rel="<%= tag.length %>">#<%= tag.name %> (<%= tag.length %>) </a>
-            
-        <% }) %>
-    </div>
+    <a class="post-tag-item" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"
+        rel="<%= tag.length %>">#<%= tag.name %> (<%= tag.length %>) </a>
+    <% }) %>
 </section>

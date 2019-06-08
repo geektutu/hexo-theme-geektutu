@@ -14,7 +14,7 @@
 
     .header-nav li {
         display: inline-block;
-        padding: 0 10px;
+        padding: 0 5px;
         margin-bottom: 0;
     }
 
@@ -56,18 +56,10 @@
         <nav class="header-nav">
             <ul>
                 <li> <a href="<%= config.root %>"><%= __('index_page') %></a></li>
-                <li>
-                    <a href="<%= config.root %>tags"><%= __('tags') %></a>
-                </li>
-                <li>
-                    <a href="<%= config.root %>archives"><%= __('archives') %></a>
-                </li>
-                <li>
-                    <a href="<%= config.root %>post/link.html"><%= __('friend_link') %></a>
-                </li>
-                <li>
-                    <a href="<%= config.root %>post/about.html"><%= __('about') %></a>
-                </li>
+                <li><a href="<%= config.root %>tags"><%= __('tags') %></a></li>
+                <li><a href="<%= config.root %>archives"><%= __('archives') %></a></li>
+                <li><a href="<%= config.root %>post/link.html"><%= __('friend_link') %></a></li>
+                <li><a href="<%= config.root %>post/about.html"><%= __('about') %></a></li>
             </ul>
         </nav>
 </header>

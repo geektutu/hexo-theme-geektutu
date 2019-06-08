@@ -1,18 +1,17 @@
 ---
 layout: page
 ---
+
 <!-- Main Content -->
 <div class="col-xs-12">
     <div class="post-list">
-        <!-- 标签列表 -->
+        <!-- 专题列表 -->
         <ul>
-            <% site.tags.forEach(function(tag, index){  %>
+            <% site.categories.forEach(function(category, index){  %>
             <li class="post-item-parent post-item-color-<%- index % 5 %>">
-                <a href="<%= config.root %>tags/#<%- tag.name %>" class="post-text-parent" id="<%= tag.name %>">
-                    <%- tag.name %>
-                </a>
+                <a class="post-text-parent" id="<%= category.name %>"><%= category.name %></a>
             </li>
-            <% tag.posts.map(function(post){  %>
+            <% category.posts.map(function(post, index){ %>
             <li>
                 <a class="post-item-title" href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
                 <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
@@ -20,6 +19,11 @@ layout: page
             <% }) %>
             <% }) %>
         </ul>
-
     </div>
 </div>
+<script>
+    window.addEventListener('load', function() {
+
+
+    })
+</script>

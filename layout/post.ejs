@@ -16,9 +16,22 @@ layout: layout
                     <p>
                         <span><%- __('tags')%>: </span>
                         <% page.tags.each(function(tag) { %>
-                        <code key="<%- tag.name%>" class="post-label"><%- tag.name%></code>
+                        <a href="<%- config.root%>tags/#<%- tag.name%>">
+                            <code style="color: #333" key="<%- tag.name%>" class="post-label">#<%- tag.name%></code>
+                        </a>
+
                         <% }) %>
                     </p>
+                    <% if (page.categories){ %>
+                    <p>
+                        <span><%- __('categories')%>: </span>
+                        <% page.categories.each(function(category) { %>
+                        <a href="<%- config.root%>series/#<%- category.name%>">
+                            <code style="color: #c7254e" key="<%- category.name%>" class="post-label"><%- category.name%></code>
+                        </a>
+                        <% }) %>
+                    </p>
+                    <% } %>
                     <p>
                         <span>本站使用</span>
                         <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">「署名 4.0 国际」</a>

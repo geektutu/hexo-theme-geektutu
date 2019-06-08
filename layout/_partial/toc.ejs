@@ -44,7 +44,7 @@
   <div id="toc" class="toc-article">
     <span class="toc-title"><%= __('contents') %></span>
     <% if (toc(page.content) != ""){ %>
-    <%- toc(page.content, { "class": "toc-nav", "list_number": false }) %>
+    <%- toc(page.content, { "class": "toc-nav", "list_number": false, "max_depth": 4 }) %>
     <% } else { %>
     <ol class="nav"><%= __('none') %></ol>
     <% } %>
