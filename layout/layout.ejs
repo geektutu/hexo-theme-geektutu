@@ -32,6 +32,7 @@
             .main-container {
                 width: 750px;
             }
+
             .post-list {
                 margin-left: 100px;
             }
@@ -131,6 +132,19 @@
     <%- partial('_partial/go-top') %>
     <!-- Footer -->
     <%- partial('_partial/footer') %>
+
+    <script>
+        // 非本站网址，新开tab页签
+        window.addEventListener('load', function () {
+            var links = document.querySelectorAll('a');
+            links.forEach(function (item) {
+                if (item.href && item.href.indexOf(window.location.host) === -1) {
+                    item.target = '_blank'
+                }
+            });
+        })
+
+    </script>
 </body>
 
 </html>
