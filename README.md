@@ -4,9 +4,10 @@
 
 ## 特性
 
-- [ ] 支持标签、归档
+- [x] 响应式布局，支持PC和移动端
+- [x] 支持标签、归档
 - [x] 支持显示目录
-- [ ] 增加对gitment或gitalk等基于Github Issue第三方评论的支持。 
+- [x] 增加对gitalk（基于Github Issue第三方评论）的支持。
 
 ## Hexo 基础命令
 
