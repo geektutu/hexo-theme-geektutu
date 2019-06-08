@@ -2,11 +2,6 @@
 layout: layout
 ---
 
-<style>
-    .comments {
-        margin-top: 20px;
-    }
-</style>
 <!-- Post Content -->
 <article>
     <div class="row">
@@ -30,19 +25,13 @@ layout: layout
                         <span>创作共享协议，转载请注明出处</span>
                     </p>
                 </div>
-
                 <hr />
-                <p>
-                    <% if (page.prev){ %>
-                    <a class="float-left" href="<%= config.root %><%- page.prev.path %>">« <%- page.prev.title %></a>
-                    <% } %>
-                    <% if (page.next){ %>
-                    <a class="float-right" href="<%= config.root %><%- page.next.path %>"><%- page.next.title %> »</a>
-                    <% } %>
-                </p>
+                <%-partial('_partial/prev-next-post') %>
             </div>
-
-            <div class="comments col-xs-12">
+            <div class="col-xs-12">
+                <%- partial('_widget/reward') %>
+            </div>
+            <div class="col-xs-12">
                 <%- partial('_widget/comments') %>
             </div>
         </div>

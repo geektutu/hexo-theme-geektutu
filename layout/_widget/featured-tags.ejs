@@ -20,7 +20,8 @@
         <% site.tags.map(function(tag){  %>
 
         <a class="post-tag-item" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"
-            rel="<%= tag.length %>">#<%= tag.name %></a>
+            rel="<%= tag.length %>">#<%= tag.name %> (<%= tag.length %>) </a>
+            
         <% }) %>
     </div>
 </section>

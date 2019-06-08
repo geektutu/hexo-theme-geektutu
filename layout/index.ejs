@@ -6,9 +6,6 @@ layout: page
     .index-page {
         padding-left: 30px;
     }
-    .index-page-paging {
-        text-align: center;
-    }
     .post-preview {
         width: 100%;
         height: max-content;
@@ -45,7 +42,7 @@ layout: page
 </style>
 
 
-<div class="col-xs-12 index-page">
+<div class="index-page">
     <% page.posts.each(function(post){ %>
     <div class="post-preview">
         <div class="post-time hidden-xs"> <%- post.date.format('YYYY-MM-DD') %> </div>
@@ -65,15 +62,5 @@ layout: page
         </div>
     </div>
     <% }); %>
-    <div class="index-page-paging">
-        <p>
-            <% if (page.prev){ %>
-            <a href="<%= config.root %><%- page.prev_link %>">« <%= __('prev') %></a>
-            <% } %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <% if (page.next){ %>
-            <a href="<%= config.root %><%- page.next_link %>"><%= __('next') %> »</a>
-            <% } %>
-        </p>
-    </div>
+    <%- partial('_partial/pagination') %>
 </div>

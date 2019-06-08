@@ -1,0 +1,101 @@
+<!--打赏-->
+<% if(config.reward) { %>
+<style>
+    #reward .reward-btn-wrapper {
+        width: 140px;
+        padding-top: 25px;
+        cursor: pointer;
+        margin: 0 auto;
+    }
+
+    #reward .reward-btn {
+        padding: 2px 15px;
+        color: #fff;
+        background-color: #ea6f5a;
+        border-radius: 20px;
+    }
+
+    #reward .reward-code {
+        position: absolute;
+        top: -185px;
+        left: 50%;
+        display: none;
+        width: 332px;
+        height: 200px;
+        margin-left: -166px;
+        padding: 5px;
+        border: 1px solid #e6e6e6;
+        background: #fff;
+        box-shadow: 0 1px 1px 1px #efefef
+    }
+
+    #reward .reward-code:after,
+    #reward .reward-code:before {
+        position: absolute;
+        content: '';
+        border: 10px solid transparent
+    }
+
+    #reward .reward-code:after {
+        bottom: -19px;
+        left: 50%;
+        margin-left: -10px;
+        border-top-color: #fff
+    }
+
+    #reward .reward-code:before {
+        bottom: -20px;
+        left: 50%;
+        margin-left: -10px;
+        border-top-color: #e6e6e6
+    }
+
+    #reward .qr-code {
+        width: 50%;
+        float: left;
+        padding: 5px;
+    }
+
+    #reward img[alt="alipay"] {
+        border: 5px solid #0f9be0;
+        box-sizing: border-box;
+    }
+
+    #reward img[alt="wechat_pay"] {
+        border: 5px solid #3db034;
+        box-sizing: border-box;
+    }
+</style>
+<div id="reward">
+    <div class="reward-btn-wrapper">
+        <div class="reward-btn">赞赏支持</div>
+    </div>
+    <div class="reward-code text-center">
+        <div class="qr-code">
+            <img alt="alipay" src="<%= config.root %><%= config.reward.alipay %>"><b>支付宝</b>
+        </div>
+        <div class="qr-code">
+            <img alt="wechat_pay" src="<%= config.root %><%= config.reward.wechat %>"><b>微信</b>
+        </div>
+    </div>
+</div>
+<script>
+    window.addEventListener('load', function () {
+        var rewardBtn = document.querySelector('#reward .reward-btn-wrapper');
+        var qrCode = document.querySelector('#reward .reward-code')
+        var activeFunc = function () {
+            qrCode.style.display = 'block';
+        }
+        var hideFunc = function () {
+            qrCode.style.display = 'none';
+        }
+
+        rewardBtn.addEventListener('mouseenter', activeFunc, false)
+        rewardBtn.addEventListener('mouseover', activeFunc, false)
+        rewardBtn.addEventListener('mouseleave', hideFunc, false)
+        qrCode.addEventListener('mouseenter', activeFunc, false)
+        qrCode.addEventListener('mouseover', activeFunc, false)
+        qrCode.addEventListener('mouseleave', hideFunc, false)
+    });
+</script>
+<% } %>
