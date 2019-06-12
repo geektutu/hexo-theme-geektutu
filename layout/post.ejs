@@ -11,7 +11,8 @@ layout: layout
     .series_links {
         border: 1px solid #eaecef;
         padding: 15px;
-        margin-bottom: 30px;
+        background-color: #fff8dc;
+        margin-bottom: 20px;
         border-radius: 5px;
     }
 </style>
@@ -41,10 +42,10 @@ layout: layout
                 </div>
                 <% } %>
                 <% if(page.github) { %>
-                <blockquote style="margin-bottom: 30px">
+                <blockquote>
                     <p>源代码/数据集已上传到
                         <a href="<%= page.github %>" target="_blank" rel="noopener">
-                            Github - <%= page.github.split('/').reverse()[0] %>
+                            Github - <%= page.github.split('/')[4] %>
                         </a>
                     </p>
                 </blockquote>
