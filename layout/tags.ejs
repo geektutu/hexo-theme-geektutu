@@ -12,7 +12,7 @@ layout: page
                     <%- tag.name %>
                 </a>
             </li>
-            <% tag.posts.map(function(post){  %>
+            <% tag.posts.sort('date').map(function(post){  %>
             <li>
                 <a class="post-item-title" href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
                 <span class="post-item-date">(<%= post.date.format('ll') %>)</span>

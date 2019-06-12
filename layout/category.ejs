@@ -11,7 +11,7 @@ layout: page
             <li class="post-item-parent post-item-color-<%- index % 5 %>">
                 <a class="post-text-parent" id="<%= category.name %>"><%= category.name %></a>
             </li>
-            <% category.posts.map(function(post, index){ %>
+            <% category.posts.sort('date').map(function(post, index){ %>
             <li>
                 <a class="post-item-title" href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
                 <span class="post-item-date">(<%= post.date.format('ll') %>)</span>

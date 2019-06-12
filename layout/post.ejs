@@ -1,7 +1,20 @@
 ---
 layout: layout
 ---
+<style>
+    .post-item-date {
+        margin-left: 10px;
+        color: hsla(0, 0%, 71%, .9);
+        font-size: 0.85em;
+    }
 
+    .series_links {
+        border: 1px solid #eaecef;
+        padding: 15px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+    }
+</style>
 <!-- Post Content -->
 <article>
     <div class="row">
@@ -10,6 +23,32 @@ layout: layout
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 post-container">
             <div class="col-xs-12">
                 <h1> <%- page.title %> </h1>
+
+                <% var categories = (page.categories || []).map(item => item)%>
+
+                <% if (categories.length){  var category = categories[0] %>
+                <div class="series_links">
+                    <p> <strong> <%= category.name %>系列文章链接：</strong></p>
+                    <ul>
+                        <% category.posts.sort('date').map(function(post, index){ %>
+                        <li>
+                            <a target="_blank"
+                                href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
+                            <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
+                        </li>
+                        <% }) %>
+                    </ul>
+                </div>
+                <% } %>
+                <% if(page.github) { %>
+                <blockquote style="margin-bottom: 30px">
+                    <p>源代码/数据集已上传到
+                        <a href="<%= page.github %>" target="_blank" rel="noopener">
+                            Github - <%= page.github.split('/').reverse()[0] %>
+                        </a>
+                    </p>
+                </blockquote>
+                <% } %>
                 <%- page.content %>
                 <hr>
                 <div>
@@ -22,20 +61,24 @@ layout: layout
 
                         <% }) %>
                     </p>
-                    <% if (page.categories){ %>
+                    <% if ((page.categories || []).length){ %>
                     <p>
                         <span><%- __('categories')%>: </span>
                         <% page.categories.each(function(category) { %>
                         <a href="<%- config.root%>series/#<%- category.name%>">
-                            <code style="color: #c7254e" key="<%- category.name%>" class="post-label"><%- category.name%></code>
+                            <code style="color: #c7254e" key="<%- category.name%>"
+                                class="post-label"><%- category.name%></code>
                         </a>
                         <% }) %>
                     </p>
                     <% } %>
                     <p>
+                        <span>发表于<%= page.date.format('YYYY-MM-DD HH:mm:ss') %>，最后修改于<%= page.updated.format('YYYY-MM-DD HH:mm:ss') %>。</span>
+                    </p>
+                    <p>
                         <span>本站使用</span>
                         <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">「署名 4.0 国际」</a>
-                        <span>创作共享协议，转载请注明出处</span>
+                        <span>创作共享协议，转载请注明出处。</span>
                     </p>
                 </div>
                 <hr />
