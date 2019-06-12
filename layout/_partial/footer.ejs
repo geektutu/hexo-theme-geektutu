@@ -10,6 +10,7 @@
         color: #333;
         text-decoration: none;
     }
+
     .footer-hexo a {
         color: #108ee9;
     }
@@ -21,7 +22,11 @@
             <a target="_blank" rel="nofollow noopener" href="http://www.miitbeian.gov.cn/"><%- config.beian %></a>
         </small>
     </p>
-    <p class="footer-hexo"><small>Powered by <a target="_blank" href="https://hexo.io">Hexo</a> | Theme <a target="_blank" href="https://github.com/geektutu/hexo-theme-geektutu">Geektutu</a></small></p>
+    <p class="footer-hexo"><small>Powered by <a target="_blank" href="https://hexo.io">Hexo</a> | Theme <a
+                target="_blank" href="https://github.com/geektutu/hexo-theme-geektutu">Geektutu</a></small></p>
+    <% if (config.cnzz_track_id) { %>
+    <p><small><span id="cnzz_stat_icon_<%= config.cnzz_track_id %>"></span></small></p>
+    <% } %>
 </footer>
 
 <!-- Baidu Tongji -->
@@ -38,4 +43,7 @@
         s.parentNode.insertBefore(hm, s);
     })();
 </script>
+<% } %>
+<% if (config.cnzz_track_id) { %>
+<script async src="//s23.cnzz.com/z_stat.php?id=<%= config.cnzz_track_id %>&online=2"></script>
 <% } %>
