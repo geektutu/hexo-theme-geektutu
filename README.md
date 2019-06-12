@@ -30,7 +30,7 @@ cd <empty_dir> # 进入一个空目录
 hexo init      # 初始化hexo博客
 ```
 
-- 第二步，将package.json中的内容替换为4.1中的内容
+- 第二步，将package.json中的内容替换为[4.1](#user-content-41-packagejson)中的内容
 
 - 第三步，下载主题，并启动
 
@@ -71,7 +71,106 @@ npm start  # http://localhost:4000 可以看到效果
 
 ## 4. 我的博客配置
 
-### 4.1 md参考
+### 4.1 package.json
+
+```json
+{
+  "name": "hexo-site",
+  "version": "0.0.0",
+  "private": true,
+  "hexo": {
+    "version": "3.8.0"
+  },
+  "scripts": {
+    "update": "rm -rf themes/geektutu && git clone https://github.com/geektutu/hexo-theme-geektutu.git themes/geektutu",
+    "build": "hexo clean && hexo generate",
+    "start": "hexo server --draft",
+    "deploy": "hexo deploy"
+  },
+  "dependencies": {
+    "hexo": "^3.8.0",
+    "hexo-deployer-git": "^1.0.0",
+    "hexo-generator-index": "^0.2.1",
+    "hexo-generator-seo-friendly-sitemap": "0.0.25",
+    "hexo-generator-tag": "^0.2.0",
+    "hexo-generator-category": "^0.1.3",
+    "hexo-renderer-ejs": "^0.2.0",
+    "hexo-renderer-marked": "^1.0.1",
+    "hexo-renderer-stylus": "^0.3.3",
+    "hexo-server": "^0.3.3",
+    "shelljs": "0.8.3"
+  }
+}
+```
+
+### 4.2 _config.yml
+
+```yml
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+
+# Site
+title: 极客兔兔
+keyword: 极客兔兔,极客兔兔的博客,极客兔兔的小站
+description: 极客兔兔的小站，致力于分享一些技术教程和有趣的技术实践。
+author: 极客兔兔
+language: zh-CN
+
+url: https://geektutu.com
+root: /
+permalink: post/:title.html
+
+# seo优化各个浏览器的验证信息
+beian: 沪ICP备18001798号-1
+seo_title: 极客兔兔 # 子页面的后缀，效果： 关于我 | 极客兔兔，如果与title一致，则可以不设置
+seo:
+  google_site_verification: 19ixTFj-X-rXuvZFvR1PMkqSHMXZ5GjN7nhYdYYFm-c
+  baidu_site_verification: p7Pz3jlx4t
+  ms_site_verification: 7E2AEE3378AC93764DEAB411177A21A1
+  _360_site_verification: 5c7e8a1fdbf35ed6003c48733208f705 # 不能以数字开头，所以加上了下划线
+
+# 开启博客资源的相对链接 https://hexo.io/zh-cn/docs/asset-folders
+post_asset_folder: true
+
+# Site settings
+header_img: img/bg.jpg
+header_icon: img/icon.png
+
+github_username:  geektutu
+
+theme: geektutu
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repository: https://git.coding.net/gzdaijie/geektutu-blog.git
+  branch: coding-pages
+
+gitalk:
+  client_id: 'c1fdd456a4caae5f7df0'
+  client_secret: 'b2674451e21feae50520f99337ec15d2aebe7879'
+  repo: 'hexo-theme-geektutu'
+  owner: 'geektutu'
+
+reward:
+  alipay: img/pay/alipay.jpeg
+  wechat: img/pay/wechat.jpeg
+
+related_links:
+- link: https://github.com/geektutu/hexo-theme-geektutu
+  img: img/related_links/github.png
+- link: https://github.com/geekcircle
+  img: img/related_links/geekcircle.png
+- link: mailto:Geektutu<gzdaijie@gmail.com>?subject=From Geektutu's Blog
+  img: img/related_links/email.png
+
+
+ba_track_id: 1a0ec38c52c08db815b0046c2783b1aa # Baidu Analytics
+cnzz_track_id: 1277693649 # CNZZ Analytics
+```
+
+### 4.3 md参考
 
 - archives/index.md [效果](https://geektutu.com/archives)
 
@@ -140,105 +239,6 @@ github: https://github.com/geektutu/tensorflow-tutorial-samples
 这篇文章是整个 tensorflow入门-mnist手写数字识别系列的第一篇，主要介绍了如何从0开始用tensorflow搭建最简单的网络进行训练。
 
 ··· 省略
-```
-
-### 4.2 package.json
-
-```json
-{
-  "name": "hexo-site",
-  "version": "0.0.0",
-  "private": true,
-  "hexo": {
-    "version": "3.8.0"
-  },
-  "scripts": {
-    "update": "rm -rf themes/geektutu && git clone https://github.com/geektutu/hexo-theme-geektutu.git themes/geektutu",
-    "build": "hexo clean && hexo generate",
-    "start": "hexo server --draft",
-    "deploy": "hexo deploy"
-  },
-  "dependencies": {
-    "hexo": "^3.8.0",
-    "hexo-deployer-git": "^1.0.0",
-    "hexo-generator-index": "^0.2.1",
-    "hexo-generator-seo-friendly-sitemap": "0.0.25",
-    "hexo-generator-tag": "^0.2.0",
-    "hexo-generator-category": "^0.1.3",
-    "hexo-renderer-ejs": "^0.2.0",
-    "hexo-renderer-marked": "^1.0.1",
-    "hexo-renderer-stylus": "^0.3.3",
-    "hexo-server": "^0.3.3",
-    "shelljs": "0.8.3"
-  }
-}
-```
-
-### 4.3 _config.yml
-
-```yml
-# Hexo Configuration
-## Docs: https://hexo.io/docs/configuration.html
-
-# Site
-title: 极客兔兔
-keyword: 极客兔兔,极客兔兔的博客,极客兔兔的小站
-description: 极客兔兔的小站，致力于分享一些技术教程和有趣的技术实践。
-author: 极客兔兔
-language: zh-CN
-
-url: https://geektutu.com
-root: /
-permalink: post/:title.html
-
-# seo优化各个浏览器的验证信息
-beian: 沪ICP备18001798号-1
-seo_title: 极客兔兔 # 子页面的后缀，效果： 关于我 | 极客兔兔，如果与title一致，则可以不设置
-seo:
-  google_site_verification: 19ixTFj-X-rXuvZFvR1PMkqSHMXZ5GjN7nhYdYYFm-c
-  baidu_site_verification: p7Pz3jlx4t
-  ms_site_verification: 7E2AEE3378AC93764DEAB411177A21A1
-  _360_site_verification: 5c7e8a1fdbf35ed6003c48733208f705 # 不能以数字开头，所以加上了下划线
-
-# 开启博客资源的相对链接 https://hexo.io/zh-cn/docs/asset-folders
-post_asset_folder: true
-
-# Site settings
-header_img: img/bg.jpg
-header_icon: img/icon.png
-
-github_username:  geektutu
-
-theme: geektutu
-
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repository: https://git.coding.net/gzdaijie/geektutu-blog.git
-  branch: coding-pages
-
-gitalk:
-  client_id: 'c1fdd456a4caae5f7df0'
-  client_secret: 'b2674451e21feae50520f99337ec15d2aebe7879'
-  repo: 'hexo-theme-geektutu'
-  owner: 'geektutu'
-
-reward:
-  alipay: img/pay/alipay.jpeg
-  wechat: img/pay/wechat.jpeg
-
-related_links:
-- link: https://github.com/geektutu/hexo-theme-geektutu
-  img: img/related_links/github.png
-- link: https://github.com/geekcircle
-  img: img/related_links/geekcircle.png
-- link: mailto:Geektutu<gzdaijie@gmail.com>?subject=From Geektutu's Blog
-  img: img/related_links/email.png
-
-
-ba_track_id: 1a0ec38c52c08db815b0046c2783b1aa # Baidu Analytics
-cnzz_track_id: 1277693649 # CNZZ Analytics
 ```
 
 ## 5. 最后
