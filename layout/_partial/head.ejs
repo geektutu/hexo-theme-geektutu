@@ -8,7 +8,9 @@
   <meta name="360-site-verification" content="<%= seo._360_site_verification %>" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- if page has tags, then add tags to keyword -->
-  <meta name="keyword" content="<%= config.keyword + ',' + (page.tags || []).map((tag)=>tag.name).join(',') %>">
+  <% var tags_str = (page.tags || []).map((tag)=>tag.name).join(',') %>
+  <% var keywords_str = (page.keywords || []).join(',') %>
+  <meta name="keyword" content="<%= [config.keyword, tags_str, keywords_str].join(',') %>">
   <!-- page.description has higher priority -->
   <meta name="description" content="<%= page.description || config.description %>">
   <link rel="shortcut icon" href="<%= config.root %><%= config.header_icon %>">

@@ -11,6 +11,8 @@
 - [x] 响应式布局，支持PC和移动端(2019-06-08)。
 - [x] 增加支付宝、微信赞赏功能(2019-06-08)。
 - [x] 对专题进行强化，聚合同专题链接，[点击查看效果](https://geektutu.com/post/tensorflow-make-npy-hdf5-data-set.html)(2019-06-13)。
+- [x] 点击文章区域的图片，可以查看大图，再点击图片则关闭。(2019-06-17)
+- [x] 使用hexo-near压缩html/css/javascript，提高站点加载速度。(2019-06-17)
 
 ## 2. Hexo 基础命令
 
@@ -168,6 +170,15 @@ related_links:
 
 ba_track_id: 1a0ec38c52c08db815b0046c2783b1aa # Baidu Analytics
 cnzz_track_id: 1277693649 # CNZZ Analytics
+
+# 启动压缩
+neat_enable: true
+neat_html:
+  enable: true
+neat_css:
+  enable: true
+neat_js:
+  enable: true
 ```
 
 ### 4.3 md参考

@@ -1,0 +1,55 @@
+<style>
+    #geektutu-widget-click-img-container {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        display: none;
+        z-index: 9999;
+        overflow: scroll;
+        padding: 10px;
+    }
+
+    #geektutu-widget-click-img-container img {
+        background: #eaecef;
+        padding: 10px;
+        width: auto;
+        border-radius: 10px;
+        height: 100%;
+        max-height: 100%;
+    }
+</style>
+
+
+<div id="geektutu-widget-click-img-container">
+    <img src="" alt="Big Image">
+</div>
+
+<script>
+    window.addEventListener('load', function () {
+        var container = document.querySelector('#geektutu-widget-click-img-container')
+        var targetImg = container.querySelector('img')
+        var imgs = document.querySelectorAll('article img');
+        targetImg.addEventListener('click', function () {
+            container.style.display = 'none';
+        }, false);
+
+        for (var i = 0; i < imgs.length; ++i) {
+            var img = imgs[i];
+            window.innerHeight
+            img.addEventListener('click', (function (src) {
+                return function () {
+                    if (window.innerWidth < 980) {
+                        return
+                    }
+                    container.style.height = (window.innerHeight - 50) + 'px';
+                    container.style.display = 'block';
+                    targetImg.src = src;
+                };
+            }(img.src)), false)
+        }
+    })
+</script>
