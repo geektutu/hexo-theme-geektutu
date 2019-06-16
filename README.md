@@ -12,7 +12,7 @@
 - [x] 增加支付宝、微信赞赏功能(2019-06-08)。
 - [x] 对专题进行强化，聚合同专题链接，[点击查看效果](https://geektutu.com/post/tensorflow-make-npy-hdf5-data-set.html)(2019-06-13)。
 - [x] 点击文章区域的图片，可以查看大图，再点击图片则关闭。(2019-06-17)
-- [x] 使用hexo-near压缩html/css/javascript，提高站点加载速度。(2019-06-17)
+- [x] 使用hexo-neat压缩html/css/javascript，提高站点加载速度。(2019-06-17)
 
 ## 2. Hexo 基础命令
 
@@ -92,10 +92,11 @@ npm start  # http://localhost:4000 可以看到效果
   "dependencies": {
     "hexo": "^3.8.0",
     "hexo-deployer-git": "^1.0.0",
+    "hexo-generator-category": "^0.1.3",
     "hexo-generator-index": "^0.2.1",
     "hexo-generator-seo-friendly-sitemap": "0.0.25",
     "hexo-generator-tag": "^0.2.0",
-    "hexo-generator-category": "^0.1.3",
+    "hexo-neat": "^1.0.4",
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^1.0.1",
     "hexo-renderer-stylus": "^0.3.3",
