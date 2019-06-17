@@ -17,16 +17,16 @@
 
     #reward .reward-code {
         position: absolute;
-        top: -185px;
+        top: -230px;
         left: 50%;
         display: none;
-        width: 332px;
-        height: 200px;
-        margin-left: -166px;
-        padding: 5px;
+        width: 360px;
+        height: 240px;
+        margin-left: -180px;
+        padding: 15px 20px;
         border: 1px solid #e6e6e6;
         background: #fff;
-        box-shadow: 0 1px 1px 1px #efefef
+        box-shadow: 0 1px 1px 1px #efefef;
     }
 
     #reward .reward-code:after,
@@ -56,6 +56,10 @@
         padding: 5px;
     }
 
+    #reward .qr-code p {
+        margin-top: -6px;
+    }
+
     #reward img[alt="alipay"] {
         border: 5px solid #0f9be0;
         box-sizing: border-box;
@@ -65,17 +69,26 @@
         border: 5px solid #3db034;
         box-sizing: border-box;
     }
+
+    #reward .reward-tip {
+        font-size: 1.2em;
+        margin-bottom: 0;
+        color: #ea6f5a;
+    }
 </style>
 <div id="reward">
     <div class="reward-btn-wrapper">
         <div class="reward-btn text-center">赞赏支持</div>
     </div>
     <div class="reward-code text-center">
+        <p class="text-center reward-tip"><strong>请我吃一颗糖果吧~</strong></p>
         <div class="qr-code">
-            <img alt="alipay" src="<%= config.root %><%= config.reward.alipay %>"><b>支付宝</b>
+            <img alt="alipay" src="<%= config.root %><%= config.reward.alipay %>">
+            <p><small>支付宝</small></p>
         </div>
         <div class="qr-code">
-            <img alt="wechat_pay" src="<%= config.root %><%= config.reward.wechat %>"><b>微信</b>
+            <img alt="wechat_pay" src="<%= config.root %><%= config.reward.wechat %>">
+            <p><small>微信</small></p>
         </div>
     </div>
 </div>

@@ -12,7 +12,7 @@
 - [x] 增加支付宝、微信赞赏功能(2019-06-08)。
 - [x] 对专题进行强化，聚合同专题链接，[点击查看效果](https://geektutu.com/post/tensorflow-make-npy-hdf5-data-set.html)(2019-06-13)。
 - [x] 点击文章区域的图片，可以查看大图，再点击图片则关闭。(2019-06-17)
-- [x] 使用hexo-neat压缩html/css/javascript，提高站点加载速度。(2019-06-17)
+- [x] 使用QRious实现生成二维码功能，方便微信扫一扫，阅读/分享。(2019-06-17)
 
 ## 2. Hexo 基础命令
 
@@ -96,7 +96,6 @@ npm start  # http://localhost:4000 可以看到效果
     "hexo-generator-index": "^0.2.1",
     "hexo-generator-seo-friendly-sitemap": "0.0.25",
     "hexo-generator-tag": "^0.2.0",
-    "hexo-neat": "^1.0.4",
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^1.0.1",
     "hexo-renderer-stylus": "^0.3.3",
@@ -171,15 +170,6 @@ related_links:
 
 ba_track_id: 1a0ec38c52c08db815b0046c2783b1aa # Baidu Analytics
 cnzz_track_id: 1277693649 # CNZZ Analytics
-
-# 启动压缩
-neat_enable: true
-neat_html:
-  enable: true
-neat_css:
-  enable: true
-neat_js:
-  enable: true
 ```
 
 ### 4.3 md参考

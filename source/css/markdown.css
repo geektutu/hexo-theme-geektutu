@@ -188,6 +188,7 @@
   background: transparent;
   border: 0;
   border-bottom: 1px solid #dfe2e5;
+  width: 100%;
 }
 
 .markdown-it hr::before {
