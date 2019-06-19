@@ -1,8 +1,8 @@
 <p name="pagination">
-    <% if (page.prev){ %>
-    <a class="float-left" href="<%= config.root %><%- page.prev.path %>">« <%- page.prev.title %></a>
-    <% } %>
     <% if (page.next){ %>
-    <a class="float-right" href="<%= config.root %><%- page.next.path %>"><%- page.next.title %> »</a>
+    <a class="float-left" href="<%= config.root %><%- page.next.path %>">« <%- page.next.title %></a>
+    <% } %>
+    <% if (page.prev){ %>
+    <a class="float-right" href="<%= config.root %><%- page.prev.path %>"><%- page.prev.title %> »</a>
     <% } %>
 </p>

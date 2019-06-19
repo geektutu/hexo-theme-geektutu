@@ -3,6 +3,8 @@
 > [极客兔兔的博客](https://geektutu.com)目前使用该主题。
 > [Github - Geektutu's Blog](https://github.com/geektutu/geektutu-blog)
 
+![样图](Geektutu.png)
+
 ## 1. 特性
 
 - [x] 支持标签、归档 (2019-06-06)。
