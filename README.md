@@ -1,6 +1,7 @@
 # Hexo-theme-geektutu
 
-> [极客兔兔的博客](https://geektutu.com)目前使用该主题。 
+> [极客兔兔的博客](https://geektutu.com)目前使用该主题。
+> [Github - Geektutu's Blog](https://github.com/geektutu/geektutu-blog)
 
 ## 1. 特性
 
@@ -93,14 +94,14 @@ npm start  # http://localhost:4000 可以看到效果
     "hexo": "^3.8.0",
     "hexo-deployer-git": "^1.0.0",
     "hexo-generator-category": "^0.1.3",
+    "hexo-generator-feed": "^1.2.2",
     "hexo-generator-index": "^0.2.1",
-    "hexo-generator-seo-friendly-sitemap": "0.0.25",
+    "hexo-generator-sitemap": "1.1.2",
     "hexo-generator-tag": "^0.2.0",
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^1.0.1",
     "hexo-renderer-stylus": "^0.3.3",
-    "hexo-server": "^0.3.3",
-    "shelljs": "0.8.3"
+    "hexo-server": "^0.3.3"
   }
 }
 ```

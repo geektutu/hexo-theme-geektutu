@@ -1,36 +1,33 @@
 <style>
-    #geektutu-widget-click-img-container {
+    #geektutu-click-img-container {
         position: fixed;
-        left: 50%;
-        top: 50%;
+        left: 0;
+        top: 0;
         text-align: center;
         width: 100%;
-        transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
         display: none;
         z-index: 9999;
-        overflow: scroll;
-        padding: 10px;
     }
 
-    #geektutu-widget-click-img-container img {
+    #geektutu-click-img-container img {
+        object-fit: contain;
         background: #eaecef;
-        padding: 10px;
-        width: auto;
+        padding: 15px;
         border-radius: 10px;
-        height: 100%;
-        max-height: 100%;
+        height: auto;
+        width: auto;
+        vertical-align: middle;
     }
 </style>
 
 
-<div id="geektutu-widget-click-img-container">
+<div id="geektutu-click-img-container">
     <img src="" alt="Big Image">
 </div>
 
 <script>
     window.addEventListener('load', function () {
-        var container = document.querySelector('#geektutu-widget-click-img-container')
+        var container = document.querySelector('#geektutu-click-img-container')
         var targetImg = container.querySelector('img')
         var imgs = document.querySelectorAll('article img');
         targetImg.addEventListener('click', function () {
@@ -39,16 +36,23 @@
 
         for (var i = 0; i < imgs.length; ++i) {
             var img = imgs[i];
-            img.addEventListener('click', (function (src) {
+            img.addEventListener('click', (function (src, rate) {
                 return function () {
                     if (window.innerWidth < 980) {
                         return
                     }
-                    container.style.height = (window.innerHeight - 50) + 'px';
+                    targetImg.style.height = targetImg.style.width = 'auto';
+                    if (window.innerWidth / window.innerHeight > rate) {
+                        targetImg.style.height = (window.innerHeight - 20) + 'px';
+                    } else {
+                        targetImg.style.width = (window.innerWidth - 20) + 'px';
+                    }
+                    container.style.height = window.innerHeight + 'px'
+                    container.style.lineHeight = window.innerHeight + 'px'
                     container.style.display = 'block';
                     targetImg.src = src;
                 };
-            }(img.src)), false)
+            }(img.src, img.width / img.height)), false)
         }
     })
 </script>
