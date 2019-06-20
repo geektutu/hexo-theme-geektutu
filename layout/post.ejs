@@ -51,6 +51,11 @@ layout: layout
                 </blockquote>
                 <% } %>
                 <%- page.content %>
+                <p>
+                    本站域名<strong><%= config.url.split('/').reverse()[0]%></strong>，
+                    也可以搜索<strong><%= config.title %></strong>找到我。
+                </p>
+
                 <%-partial('_widget/generate-qrcode') %>
                 <hr>
                 <div>

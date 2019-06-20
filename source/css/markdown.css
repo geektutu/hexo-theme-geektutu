@@ -207,6 +207,9 @@
   max-width: 100%;
   box-sizing: content-box;
   background-color: #fff;
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
 }
 .markdown-it input {
   line-height: inherit;
