@@ -3,6 +3,58 @@ layout: layout
 ---
 <!-- Main Content -->
 <style>
+    .post-preview {
+        width: 100%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        height: max-content;
+    }
+
+    .post-preview .text-gray {
+        color: #999999 !important;
+    }
+
+    .post-preview .post-info {
+        flex: 1;
+        padding-left: 20px;
+    }
+
+    .post-preview .post-img {
+        width: 100px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .post-preview .post-info-center {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .post-preview .post-info a {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .post-preview .post-info .title {
+        color: #101010;
+        font-size: 1.2em;
+    }
+
+    @media (min-width: 768px) {
+        .post-preview .post-img {
+            width: 120px;
+        }
+
+        .post-preview .post-info {
+            padding-right: 30px;
+        }
+    }
+
     #sidebar {
         width: 300px;
         position: static;
@@ -21,7 +73,7 @@ layout: layout
 
     .sidebar-fixed {
         position: fixed;
-        top: 20px;
+        top: 10px;
         margin-top: 0;
         max-height: 81%;
         z-index: 1;
@@ -42,9 +94,6 @@ layout: layout
             <% } %>
         </div>
     </aside>
-    <div class="col-xs-12 hidden-lg hidden-md">
-        <%- partial('_widget/featured-tags') %>
-    </div>
 </main>
 <script>
     window.addEventListener('load', function () {

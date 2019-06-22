@@ -1,0 +1,27 @@
+<div class="post-preview">
+    <div class="post-img" style="background-image: url('<%= config.root %><%= post.image %>')"></div>
+    <div class="post-info">
+        <div class="post-info-center">
+            <div class="hidden-xs">
+                <% if (post.tags.length){%>
+                <span>/</span>
+                <% post.tags.forEach(function(tag){ %>
+                <a class="text-gray" href="<%= config.root %>tags/#<%= tag.name %>"
+                    title="<%= tag.name %>"><%= tag.name %></a>
+                <span>/</span>
+                <% }) %>
+                <% } %>
+            </div>
+            <a href="<%= config.root %><%- post.path %>" class="title">
+                <%- post.title || "Untitled" %>
+            </a>
+            <p class="text-gray">
+                <small>
+                    <span>发表于<%= post.date.format('YYYY-MM-DD') %>，</span>
+                    <span class="hidden-xs">全文<%= post.raw.length %>字，</span>
+                    <span>阅读约<%= Math.round(post.raw.length / 700) %>分钟</span>
+                </small>
+            </p>
+        </div>
+    </div>
+</div>

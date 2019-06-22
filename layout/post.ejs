@@ -88,9 +88,34 @@ layout: page
     <hr />
     <%-partial('_partial/prev-next-post') %>
 </article>
-<div class="col-xs-12">
-    <%- partial('_widget/reward') %>
+<!-- 赞赏 -->
+<%- partial('_widget/reward') %>
+<!-- 推荐阅读三篇文章 -->
+<div style="margin-top: 20px">
+    <h3>推荐阅读</h3>
+
+    <%  let randomInt = (max) => Math.floor(Math.random() * Math.floor(max));
+        let choices = []
+        let posts = []
+        if (site.posts.length >= 3) {
+            while(choices.length < 3) {
+                let num = randomInt(site.posts.length);
+                choices.indexOf(num) === -1 && choices.push(num)
+            }
+        } else {
+            choices = [0, 1, 2]
+        }
+        site.posts.sort('date').reverse().each(function(post, i){
+            if (choices.indexOf(i) !== -1) { 
+
+        %>
+    <%- partial('_widget/post-preview', {post: post}) %>
+    <% }}); %>
 </div>
-<div class="col-xs-12">
-    <%- partial('_widget/comments') %>
+<div style="margin-top: 30px">
+    <!-- 标签列表 -->
+    <%- partial('_widget/featured-tags') %>
 </div>
+
+<!-- 评论 -->
+<%- partial('_widget/comments') %>
