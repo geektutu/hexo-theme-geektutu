@@ -28,10 +28,3 @@ body {
 .hide {
   display: none !important;
 }
-.geektutu-color-egg {
-  opacity: 1;
-  display: inline-block;
-  position: fixed;
-  z-index: 9999;
-  font-size: 14px;
-}
