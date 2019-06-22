@@ -47,3 +47,20 @@
 <% if (config.cnzz_track_id) { %>
 <script async src="//s23.cnzz.com/z_stat.php?id=<%= config.cnzz_track_id %>&online=2"></script>
 <% } %>
+<% if (config.ba_auto_push) { %>
+<!-- baidu auto push for seo -->
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<% } %>

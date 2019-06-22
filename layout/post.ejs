@@ -1,7 +1,11 @@
 ---
-layout: layout
+layout: page
 ---
 <style>
+    .post-container {
+        overflow: hidden;
+    }
+
     .post-item-date {
         margin-left: 10px;
         color: hsla(0, 0%, 71%, .9);
@@ -17,88 +21,76 @@ layout: layout
     }
 </style>
 <!-- Post Content -->
-<article>
-    <div class="row">
+<article class="post-container">
+    <h1> <%- page.title %> </h1>
 
-        <!-- Post Container -->
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 post-container">
-            <div class="col-xs-12">
-                <h1> <%- page.title %> </h1>
+    <% var categories = (page.categories || []).map(item => item)%>
 
-                <% var categories = (page.categories || []).map(item => item)%>
-
-                <% if (categories.length){  var category = categories[0] %>
-                <div class="series_links">
-                    <p> <strong> <%= category.name %>系列文章链接：</strong></p>
-                    <ul>
-                        <% category.posts.sort('date').map(function(post, index){ %>
-                        <li>
-                            <a target="_blank"
-                                href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
-                            <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
-                        </li>
-                        <% }) %>
-                    </ul>
-                </div>
-                <% } %>
-                <% if(page.github) { %>
-                <blockquote>
-                    <p>源代码/数据集已上传到
-                        <a href="<%= page.github %>" target="_blank" rel="noopener">
-                            Github - <%= page.github.split('/')[4] %>
-                        </a>
-                    </p>
-                </blockquote>
-                <% } %>
-                <%- page.content %>
-                <p>
-                    本站域名<strong><%= config.url.split('/').reverse()[0]%></strong>，
-                    也可以搜索<strong><%= config.title %></strong>找到我。
-                </p>
-
-                <%-partial('_widget/generate-qrcode') %>
-                <hr>
-                <div>
-                    <p>
-                        <span><%- __('tags')%>: </span>
-                        <% page.tags.each(function(tag) { %>
-                        <a href="<%- config.root%>tags/#<%- tag.name%>">
-                            <code style="color: #333" key="<%- tag.name%>" class="post-label">#<%- tag.name%></code>
-                        </a>
-
-                        <% }) %>
-                    </p>
-                    <% if ((page.categories || []).length){ %>
-                    <p>
-                        <span><%- __('categories')%>: </span>
-                        <% page.categories.each(function(category) { %>
-                        <a href="<%- config.root%>series/#<%- category.name%>">
-                            <code style="color: #c7254e" key="<%- category.name%>"
-                                class="post-label"><%- category.name%></code>
-                        </a>
-                        <% }) %>
-                    </p>
-                    <% } %>
-                    <p>
-                        <span>发表于<%= page.date.format('YYYY-MM-DD HH:mm:ss') %>，最后修改于<%= page.updated.format('YYYY-MM-DD HH:mm:ss') %>。</span>
-                    </p>
-                    <p>
-                        <span>本站使用</span>
-                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">「署名 4.0 国际」</a>
-                        <span>创作共享协议，转载请注明出处。</span>
-                    </p>
-                </div>
-                <hr />
-                <%-partial('_partial/prev-next-post') %>
-            </div>
-            <div class="col-xs-12">
-                <%- partial('_widget/reward') %>
-            </div>
-            <div class="col-xs-12">
-                <%- partial('_widget/comments') %>
-            </div>
-        </div>
-        <!-- Tabe of Content -->
-        <%- partial('_partial/toc') %>
+    <% if (categories.length){  var category = categories[0] %>
+    <div class="series_links">
+        <p> <strong> <%= category.name %>系列文章链接：</strong></p>
+        <ul>
+            <% category.posts.sort('date').map(function(post, index){ %>
+            <li>
+                <a href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
+                <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
+            </li>
+            <% }) %>
+        </ul>
     </div>
+    <% } %>
+    <% if(page.github) { %>
+    <blockquote>
+        <p>源代码/数据集已上传到
+            <a href="<%= page.github %>" target="_blank" rel="noopener">
+                Github - <%= page.github.split('/')[4] %>
+            </a>
+        </p>
+    </blockquote>
+    <% } %>
+    <%- page.content %>
+    <p>
+        本站域名<strong><%= config.url.split('/').reverse()[0]%></strong>，
+        也可以搜索<strong><%= config.title %></strong>找到我。
+    </p>
+
+    <%-partial('_widget/generate-qrcode') %>
+    <hr>
+    <div>
+        <p>
+            <span><%- __('tags')%>: </span>
+            <% page.tags.each(function(tag) { %>
+            <a href="<%- config.root%>tags/#<%- tag.name%>">
+                <code style="color: #333" key="<%- tag.name%>" class="post-label">#<%- tag.name%></code>
+            </a>
+
+            <% }) %>
+        </p>
+        <% if ((page.categories || []).length){ %>
+        <p>
+            <span><%- __('categories')%>: </span>
+            <% page.categories.each(function(category) { %>
+            <a href="<%- config.root%>series/#<%- category.name%>">
+                <code style="color: #c7254e" key="<%- category.name%>" class="post-label"><%- category.name%></code>
+            </a>
+            <% }) %>
+        </p>
+        <% } %>
+        <p>
+            <span>发表于<%= page.date.format('YYYY-MM-DD HH:mm:ss') %>，最后修改于<%= page.updated.format('YYYY-MM-DD HH:mm:ss') %>。</span>
+        </p>
+        <p>
+            <span>本站使用</span>
+            <a href="https://creativecommons.org/licenses/by/4.0/deed.zh">「署名 4.0 国际」</a>
+            <span>创作共享协议，转载请注明出处。</span>
+        </p>
+    </div>
+    <hr />
+    <%-partial('_partial/prev-next-post') %>
 </article>
+<div class="col-xs-12">
+    <%- partial('_widget/reward') %>
+</div>
+<div class="col-xs-12">
+    <%- partial('_widget/comments') %>
+</div>

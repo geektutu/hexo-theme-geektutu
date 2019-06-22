@@ -1,0 +1,43 @@
+<style>
+
+</style>
+<script>
+    (function (window, document, undefined) {
+        var hearts = [];
+        var keywords = ["Pandas", "TensorFlow", "Tensorflow 2.0", "Blog", "Python", "Debug", "Hexo", "Debug", "Geektutu", "mnist", "CNN", "OpenAI gym"];
+        function randomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+        window.addEventListener('click', createWord)
+
+        function createWord(e) {
+            var d = document.createElement("div");
+            d.classList.add('geektutu-color-egg');
+            d.style.color = 'rgb(' + [randomInt(255), randomInt(255), randomInt(255)].join(',') + ')';
+            hearts.push({ el: d, x: e.clientX - 5, y: e.clientY - 5, alpha: 1, scale: 1 });
+            d.innerHTML = keywords[randomInt(keywords.length)];
+            document.body.appendChild(d);
+            d.onselectstart = function () { return false; }
+        }
+        (function gameloop() {
+            for (var i = 0; i < hearts.length; i++) {
+                heart = hearts[i];
+                if (heart.alpha <= 0) {
+                    document.body.removeChild(heart.el);
+                    hearts.splice(i, 1);
+                    continue;
+                }
+                heart.y--;
+                heart.scale += 0.002;
+                heart.alpha -= 0.013;
+                heart.el.style.transform = 'scale(' + heart.scale + ')';
+                heart.el.style.left = heart.x + 'px';
+                heart.el.style.top = heart.y + 'px';
+            }
+            setTimeout(function () {
+                gameloop()
+            }, 10)
+        })();
+    })(window, document);
+
+</script>

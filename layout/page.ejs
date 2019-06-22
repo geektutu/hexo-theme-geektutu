@@ -2,10 +2,62 @@
 layout: layout
 ---
 <!-- Main Content -->
-<div class="row">
+<style>
+    #sidebar {
+        width: 300px;
+        position: static;
+        float: left;
+    }
+
+    .sidebar-wrapper {
+        width: 320px;
+        padding-left: 10px;
+        border-left: 1px solid #eaecef;
+    }
+
+    .sidebar-wrapper section {
+        margin-bottom: 10px;
+    }
+
+    .sidebar-fixed {
+        position: fixed;
+        top: 20px;
+        margin-top: 0;
+        max-height: 81%;
+        z-index: 1;
+    }
+</style>
+<main class="col-xs-12">
     <!-- Post Container -->
-    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 post-container">
-        <%- page.content || body %>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <%- body %>
     </div>
-    <%- partial('_partial/sidebar') %>
-</div>
+    <aside id="sidebar" class="hidden-xs hidden-sm">
+        <div class="sidebar-wrapper col-xs-12">
+            <section><%- partial('_widget/summary') %></section>
+            <% if (is_post()){ %>
+            <section><%- partial('_partial/toc') %></section>
+            <% } else { %>
+            <section><%- partial('_widget/featured-tags') %></section>
+            <% } %>
+        </div>
+    </aside>
+    <div class="col-xs-12 hidden-lg hidden-md">
+        <%- partial('_widget/featured-tags') %>
+    </div>
+</main>
+<script>
+    window.addEventListener('load', function () {
+        var lastPos = 0;
+        var wrapper = document.querySelector('#sidebar .sidebar-wrapper');
+
+        window.addEventListener("scroll", function (e) {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var isDown = scrollTop > lastPos;
+            scrollTop > 220 && wrapper.classList.add("sidebar-fixed");
+            scrollTop <= 220 && wrapper.classList.remove("sidebar-fixed");
+            lastPos = scrollTop;
+        })
+    });
+
+</script>

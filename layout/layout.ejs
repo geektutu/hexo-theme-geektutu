@@ -25,7 +25,6 @@
         .post-list {
             line-height: 2.8em;
             border-left: 4px solid #f9f9f9;
-            margin-left: 10px;
         }
 
         @media (min-width: 768px) {
@@ -34,7 +33,7 @@
             }
 
             .post-list {
-                margin-left: 100px;
+                margin-left: 30px;
             }
         }
 
@@ -100,7 +99,6 @@
         }
 
         .post-list .post-text-parent {
-            font-family: 'calligraffittiregular';
             font-size: 20px;
             font-weight: bold;
             font-weight: bold;
@@ -120,7 +118,7 @@
         }
 
         .post-list .post-item-date {
-            margin-left: 10px;
+            margin-left: 2px;
             color: hsla(0, 0%, 71%, .9);
             font-size: .85em;
         }
@@ -142,10 +140,12 @@
                 if (item.href && item.href.indexOf(window.location.host) === -1) {
                     item.target = '_blank'
                 }
+                // 阻止冒泡，不触发彩蛋。
+                item.addEventListener('click', function (e) { e.stopPropagation() }, false); 
             });
         })
-
     </script>
+    <%- partial('_widget/click-egg.ejs') %>
 </body>
 
 </html>

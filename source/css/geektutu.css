@@ -1,3 +1,6 @@
+body {
+  font-family: "-apple-system","Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 .text-center {
   text-align: center !important;
 }
@@ -21,4 +24,14 @@
 
 .padding-0 {
     padding: 0 !important;
+}
+.hide {
+  display: none !important;
+}
+.geektutu-color-egg {
+  opacity: 1;
+  display: inline-block;
+  position: fixed;
+  z-index: 9999;
+  font-size: 14px;
 }
