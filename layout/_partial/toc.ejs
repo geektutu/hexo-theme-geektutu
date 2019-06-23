@@ -114,6 +114,8 @@
 
     function activeTab(value) {
       if (tabs.length < 2) {
+        toc.style.display = 'inline-block';
+        tabs[0].classList.add('active');
         return
       }
       value *= 1;
