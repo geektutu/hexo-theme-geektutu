@@ -76,7 +76,7 @@
         color: #ea6f5a;
     }
 </style>
-<div id="reward">
+<div id="reward" class="col-xs-12">
     <div class="reward-btn-wrapper">
         <div class="reward-btn text-center">赞赏支持</div>
     </div>
@@ -96,10 +96,10 @@
     window.addEventListener('load', function () {
         var rewardBtn = document.querySelector('#reward .reward-btn-wrapper');
         var qrCode = document.querySelector('#reward .reward-code')
-        var activeFunc = function () {
+        var activeFunc = function (e) {
             qrCode.style.display = 'block';
         }
-        var hideFunc = function () {
+        var hideFunc = function (e) {
             qrCode.style.display = 'none';
         }
 

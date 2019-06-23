@@ -43,14 +43,14 @@
 <div>
   <ul class="text-center sidebar-wrapper-tabs">
     <% if (toc(page.content) != ""){ %>
-    <li value="0" class="sidebar-title active">文章目录</li>
+    <li value="0" class="sidebar-title">文章目录</li>
     <% } %>
     <% if (categories.length){ %>
-    <li value="1" class="sidebar-title">专题合集</li>
+    <li value="1" class="sidebar-title active">专题合集</li>
     <% } %>
   </ul>
 
-  <div id="sidebar-toc">
+  <div id="sidebar-toc" style="display: none">
     <!-- TOC  -->
     <% if (toc(page.content) != ""){ %>
     <%- toc(page.content, { "class": "toc-nav", "list_number": false, "max_depth": 3 }) %>
@@ -58,7 +58,7 @@
   </div>
 
   <!--  同专题文章 -->
-  <div id="sidebar-series-list" style="display: none">
+  <div id="sidebar-series-list">
     <% if (categories.length){  var category = categories[0] %>
     <ol>
       <% category.posts.sort('date').map(function(post, index){ %>
@@ -126,8 +126,9 @@
     // add click event for each tabs
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function (e) {
-        window.localStorage.setItem('sidebar_tab_value', e.target.value)
-        activeTab(e.target.value)
+        window.localStorage.setItem('geektutu_sidebar_tab_value', e.target.value);
+        activeTab(e.target.value);
+        e.stopPropagation()
       });
     });
 
@@ -135,7 +136,7 @@
       list.querySelectorAll('a').forEach(function (item) {
         item.href.endsWith(window.location.pathname) && item.classList.add('sidebar-active');
       })
-      activeTab(window.localStorage.getItem('sidebar_tab_value') || 0)
+      activeTab(window.localStorage.getItem('geektutu_sidebar_tab_value') || 1)
     })(list);
   });
 </script>
