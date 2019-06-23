@@ -1,6 +1,3 @@
-<style>
-
-</style>
 <script>
     (function (window, document, undefined) {
         var hearts = [];
@@ -36,9 +33,7 @@
                 heart.el.style.left = heart.x + 'px';
                 heart.el.style.top = heart.y + 'px';
             }
-            setTimeout(function () {
-                gameloop()
-            }, 10)
+            setTimeout(gameloop, 10)
         })();
     })(window, document);
 

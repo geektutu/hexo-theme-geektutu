@@ -13,7 +13,9 @@
         admin: ['<%- config.gitalk.owner %>'],
         id: window.location.pathname,
         distractionFreeMode: false
-    })
-
+    });
+    document.querySelector('#gitalk-container').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
     gitalk.render('gitalk-container')
 </script>

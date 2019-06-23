@@ -30,14 +30,16 @@
         var container = document.querySelector('#geektutu-click-img-container')
         var targetImg = container.querySelector('img')
         var imgs = document.querySelectorAll('article img');
-        targetImg.addEventListener('click', function () {
+        targetImg.addEventListener('click', function (e) {
             container.style.display = 'none';
+            e.stopPropagation();
         }, false);
 
         for (var i = 0; i < imgs.length; ++i) {
             var img = imgs[i];
             img.addEventListener('click', (function (src, rate) {
-                return function () {
+                return function (e) {
+                    e.stopPropagation();
                     if (window.innerWidth < 980) {
                         return
                     }
