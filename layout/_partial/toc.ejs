@@ -101,7 +101,7 @@
     }
 
     window.addEventListener("scroll", function (e) {
-      linkList.forEach(function (link) {
+      [].slice.call(linkList).forEach(function (link) {
         link.classList.remove('sidebar-active');
       })
       activeLink(h2);
@@ -126,7 +126,7 @@
     }
 
     // add click event for each tabs
-    tabs.forEach(function (tab) {
+    [].slice.call(tabs).forEach(function (tab) {
       tab.addEventListener('click', function (e) {
         window.localStorage.setItem('geektutu_sidebar_tab_value', e.target.value);
         activeTab(e.target.value);
@@ -135,7 +135,7 @@
     });
 
     (function (list) {
-      list.querySelectorAll('a').forEach(function (item) {
+      [].slice.call(list.querySelectorAll('a')).forEach(function (item) {
         item.href.endsWith(window.location.pathname) && item.classList.add('sidebar-active');
       })
       activeTab(window.localStorage.getItem('geektutu_sidebar_tab_value') || 1)

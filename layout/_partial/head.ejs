@@ -32,14 +32,29 @@
   <!-- Pygments Highlight CSS -->
   <%- css('css/highlight') %>
   <!-- <%- css('css/toc')%> -->
+  <!-- global function -->
+  <script>
+    window.globalAddScript = function (url, onload) {
+      var s = document.createElement('script');
+      s.src = url;
+      onload && (s.onload = onload);
+      document.body.appendChild(s);
+    }
+    window.globalAddCss = function (url) {
+      var s = document.createElement('link');
+      s.rel = 'stylesheet';
+      s.href = url;
+      document.body.appendChild(s);
+    }
+  </script>
   <!-- google ad -->
   <% if (config.google_ad_client) { %>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "<%= config.google_ad_client %>",
-      enable_page_level_ads: true
-    });
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "<%= config.google_ad_client %>",
+        enable_page_level_ads: true
+      });
   </script>
   <% } %>
 </head>

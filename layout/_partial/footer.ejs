@@ -45,35 +45,42 @@
 <!-- Baidu Tongji -->
 <% if (config.ba_track_id) { %>
 <script>
-    var _baId = '<%= config.ba_track_id %>';
-
-    // Originial
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?" + _baId;
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
+    window.addEventListener('load', function () {
+        var _hmt = _hmt || [];
+        globalAddScript('//hm.baidu.com/hm.js?<%= config.ba_track_id %>')
+    })
 </script>
 <% } %>
 <% if (config.cnzz_track_id) { %>
-<script async src="//s23.cnzz.com/z_stat.php?id=<%= config.cnzz_track_id %>&online=2"></script>
+<script>
+    window.addEventListener('load', function () {
+        globalAddScript('//s23.cnzz.com/z_stat.php?id=<%= config.cnzz_track_id %>&online=2');
+    })
+</script>
 <% } %>
 <% if (config.ba_auto_push) { %>
 <!-- baidu auto push for seo -->
 <script>
-    (function () {
-        var bp = document.createElement('script');
+    window.addEventListener('load', function () {
+        var src = 'http://push.zhanzhang.baidu.com/push.js'
         var curProtocol = window.location.protocol.split(':')[0];
         if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            src = 'https://zz.bdstatic.com/linksubmit/push.js';
         }
-        else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
+        globalAddScript(src);
+    })
 </script>
 <% } %>
+<% if (config.google_analysis) { %>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '<%= config.google_analysis %>');
+
+    window.addEventListener('load', function () {
+        globalAddScript('https://www.googletagmanager.com/gtag/js?id=<%= config.google_analysis %>');
+    });
+</script>
+<% }%>

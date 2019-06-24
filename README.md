@@ -173,9 +173,10 @@ related_links:
 - link: mailto:Geektutu<gzdaijie@gmail.com>?subject=From Geektutu's Blog
   img: img/related_links/email.png
 
-ba_auto_push: true # Baidu 自动推送
-ba_track_id: 1a0ec38c52c08db815b0046c2783b1aa # Baidu Analytics
-cnzz_track_id: 1277693649 # CNZZ Analytics
+ba_auto_push: true # Baidu 自动推送，以下均为可选配置
+ba_track_id: 1a0ec33b1aa # Baidu Analytics
+cnzz_track_id: 123649 # CNZZ Analytics
+google_analysis: UA-141425-1 # Google Analytics
 ```
 
 ### 4.3 md参考
