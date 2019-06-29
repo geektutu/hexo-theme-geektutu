@@ -10,7 +10,7 @@
   <!-- if page has tags, then add tags to keyword -->
   <% var tags_str = (page.tags || []).map((tag)=>tag.name).join(',') %>
   <% var keywords_str = (page.keywords || []).join(',') %>
-  <meta name="keyword" content="<%= [config.keyword, tags_str, keywords_str].join(',') %>">
+  <meta name="keywords" content="<%= [config.keyword, tags_str, keywords_str].join(',').replace(',,', ',') %>">
   <!-- page.description has higher priority -->
   <meta name="description" content="<%= page.description || config.description %>">
   <link rel="shortcut icon" href="<%= config.root %><%= config.header_icon %>">
@@ -49,12 +49,14 @@
   </script>
   <!-- google ad -->
   <% if (config.google_ad_client) { %>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
       (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "<%= config.google_ad_client %>",
         enable_page_level_ads: true
       });
+    window.addEventListener('load', function () {
+      globalAddScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
+    });
   </script>
   <% } %>
 </head>
