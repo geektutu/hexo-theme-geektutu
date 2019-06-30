@@ -97,7 +97,7 @@ layout: layout
     </aside>
 </main>
 <script>
-    window.addEventListener('load', function () {
+    (function () {
         var lastPos = 0;
         var wrapper = document.querySelector('#sidebar .sidebar-wrapper');
 
@@ -108,6 +108,6 @@ layout: layout
             scrollTop <= 220 && wrapper.classList.remove("sidebar-fixed");
             lastPos = scrollTop;
         })
-    });
+    })();
 
 </script>

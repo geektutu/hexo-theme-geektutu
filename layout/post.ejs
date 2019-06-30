@@ -50,8 +50,8 @@ layout: page
     <% } %>
     <%- page.content %>
     <p>
-        本站域名<strong><%= config.url.split('/').reverse()[0]%></strong>，
-        也可以搜索<strong><%= config.title %></strong>找到我。
+        本站永久域名<strong>「 <a href="<%= config.root %><%= page.path %>"><%= config.url.split('/').reverse()[0]%></a>  」</strong>，
+        也可以通过搜索<strong>「 <%= config.title %> 」</strong>找到我。
     </p>
 
     <%-partial('_widget/generate-qrcode') %>

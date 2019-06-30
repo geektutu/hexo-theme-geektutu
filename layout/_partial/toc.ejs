@@ -74,7 +74,7 @@
 </div>
 
 <script>
-  window.addEventListener('load', function () {
+  (function () {
     var h2 = document.querySelectorAll('article h2');
     var h3 = document.querySelectorAll('article h3');
     var linkList = document.querySelectorAll('#sidebar-toc a');
@@ -130,7 +130,7 @@
       tab.addEventListener('click', function (e) {
         window.localStorage.setItem('geektutu_sidebar_tab_value', e.target.value);
         activeTab(e.target.value);
-        e.stopPropagation()
+        e && e.stopPropagation && e.stopPropagation();
       });
     });
 
@@ -140,5 +140,5 @@
       })
       activeTab(window.localStorage.getItem('geektutu_sidebar_tab_value') || 1)
     })(list);
-  });
+  })();
 </script>

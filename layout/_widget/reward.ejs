@@ -60,14 +60,26 @@
         margin-top: -6px;
     }
 
-    #reward img[alt="alipay"] {
-        border: 5px solid #0f9be0;
-        box-sizing: border-box;
+    #reward img[alt='i'] {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        margin: 0 auto;
+        z-index: 2;
+        margin-left: 75px;
+        margin-top: 65px;
     }
 
-    #reward img[alt="wechat_pay"] {
-        border: 5px solid #3db034;
+    #reward img[alt="ali"] {
+        width: 100%;
         box-sizing: border-box;
+        border: 5px solid #0f9be0;
+    }
+
+    #reward img[alt="wechat"] {
+        width: 100%;
+        box-sizing: border-box;
+        border: 5px solid #3db034;
     }
 
     #reward .reward-tip {
@@ -83,17 +95,24 @@
     <div class="reward-code text-center">
         <p class="text-center reward-tip"><strong>请我吃胡萝卜 =^_^= </strong></p>
         <div class="qr-code">
-            <img alt="alipay" src="<%= config.root %><%= config.reward.alipay %>">
+            <img src="<%= config.root %><%= config.header_icon %>" alt="i">
+            <img id="reward-ali" src="" alt="ali">
             <p><small>支付宝</small></p>
         </div>
         <div class="qr-code">
-            <img alt="wechat_pay" src="<%= config.root %><%= config.reward.wechat %>">
+            <img src="<%= config.root %><%= config.header_icon %>" alt="i">
+            <img id="reward-wechat" src="" alt="wechat">
             <p><small>微信</small></p>
         </div>
     </div>
 </div>
 <script>
-    window.addEventListener('load', function () {
+    (function (window, document) {
+        var aliQr = new QRious({ value: '<%= config.reward.alipay %>' });
+        var wechatQr = new QRious({ value: '<%= config.reward.wechat %>' });
+        document.querySelector('#reward-ali').src = aliQr.toDataURL();
+        document.querySelector('#reward-wechat').src = wechatQr.toDataURL();
+
         var rewardBtn = document.querySelector('#reward .reward-btn-wrapper');
         var qrCode = document.querySelector('#reward .reward-code')
         var activeFunc = function (e) {
@@ -109,6 +128,6 @@
         qrCode.addEventListener('mouseenter', activeFunc, false)
         qrCode.addEventListener('mouseover', activeFunc, false)
         qrCode.addEventListener('mouseleave', hideFunc, false)
-    });
+    })(window, document);
 </script>
 <% } %>

@@ -278,6 +278,10 @@
   overflow: auto;
 }
 
+.markdown-it table thead th {
+  background-color: #f6f8fa;
+}
+
 .markdown-it table th {
   font-weight: 600;
 }

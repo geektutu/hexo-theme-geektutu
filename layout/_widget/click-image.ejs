@@ -26,20 +26,20 @@
 </div>
 
 <script>
-    window.addEventListener('load', function () {
+    (function () {
         var container = document.querySelector('#geektutu-click-img-container')
         var targetImg = container.querySelector('img')
         var imgs = document.querySelectorAll('article img');
         targetImg.addEventListener('click', function (e) {
             container.style.display = 'none';
-            e.stopPropagation();
+            e && e.stopPropagation && e.stopPropagation();
         }, false);
 
         for (var i = 0; i < imgs.length; ++i) {
             var img = imgs[i];
             img.addEventListener('click', (function (src, rate) {
                 return function (e) {
-                    e.stopPropagation();
+                    e && e.stopPropagation && e.stopPropagation();
                     if (window.innerWidth < 980) {
                         return
                     }
@@ -56,5 +56,5 @@
                 };
             }(img.src, img.width / img.height)), false)
         }
-    })
+    })();
 </script>

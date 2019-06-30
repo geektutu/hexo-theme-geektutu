@@ -134,16 +134,16 @@
 
     <script>
         // 非本站网址，新开tab页签
-        window.addEventListener('load', function () {
+        (function () {
             var links = document.querySelectorAll('a');
             [].slice.call(links).forEach(function (item) {
                 if (item.href && item.href.indexOf(window.location.host) === -1) {
                     item.target = '_blank'
                 }
                 // 阻止冒泡，不触发彩蛋。
-                item.addEventListener('click', function (e) { e.stopPropagation() }, false); 
+                item.addEventListener('click', function (e) { e && e.stopPropagation && e.stopPropagation(); }, false); 
             });
-        })
+        })();
     </script>
     <%- partial('_widget/click-egg.ejs') %>
 </body>

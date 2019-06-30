@@ -4,11 +4,11 @@
 </div>
 <%- js('js/qrious.min.js') %>
 <script>
-    window.addEventListener('load', function () {
+    (function () {
         new QRious({
             element: document.getElementById('geektutu-post-qr'),
             value: window.location.href,
             size: 120
         });
-    })
+    })();
 </script>
