@@ -161,9 +161,11 @@ gitalk:
   repo: 'hexo-theme-geektutu'
   owner: 'geektutu'
 
+# alipay wechatpay 的二维码转换的网址，不使用二维码图片，提高加载速率。
+# https://cli.im/deqr 可将二维码转为网址
 reward:
-  alipay: img/pay/alipay.jpeg
-  wechat: img/pay/wechat.jpeg
+  alipay: HTTPS://QR.ALIPAY.COM/FKX060337TUXBAX9LIFJE8
+  wechat: wxp://f2f0qgGBlfD1nZXjvBjievxB0z0fc0W2sBq5
 
 related_links:
 - link: https://github.com/geektutu/hexo-theme-geektutu
@@ -177,6 +179,7 @@ ba_auto_push: true # Baidu 自动推送，以下均为可选配置
 ba_track_id: 1a0ec33b1aa # Baidu Analytics
 cnzz_track_id: 123649 # CNZZ Analytics
 google_analysis: UA-141425-1 # Google Analytics
+google_ad_client: ca-pub-939225546 # Google Ad
 ```
 
 ### 4.3 md参考
@@ -243,6 +246,7 @@ tags:
 categories:
 - TensorFlow入门
 github: https://github.com/geektutu/tensorflow-tutorial-samples
+image: post/tensorflow-mnist-simplest/xxx.jpg
 ---
 
 这篇文章是整个 TensorFlow入门-mnist手写数字识别系列的第一篇，主要介绍了如何从0开始用tensorflow搭建最简单的网络进行训练。
