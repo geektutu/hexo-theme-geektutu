@@ -63,7 +63,7 @@ layout: layout
 
     .sidebar-wrapper {
         width: 320px;
-        padding-right: 0; 
+        padding-right: 0;
         padding-left: 10px;
         border-left: 1px solid #eaecef;
     }
@@ -87,6 +87,14 @@ layout: layout
     </div>
     <aside id="sidebar" class="hidden-xs hidden-sm">
         <div class="sidebar-wrapper col-xs-12">
+            <% if (config.google_ad_client) { %>
+            <!-- 侧边栏ad 250 * 90 -->
+            <ins class="adsbygoogle" style="display:inline-block;width:250px;height:90px"
+                data-ad-client="<%= config.google_ad_client %>" data-ad-slot="3708583719"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <% } %>
             <section><%- partial('_widget/summary') %></section>
             <% if (is_post()){ %>
             <section><%- partial('_partial/toc') %></section>
@@ -109,5 +117,4 @@ layout: layout
             lastPos = scrollTop;
         })
     })();
-
 </script>

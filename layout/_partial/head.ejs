@@ -49,14 +49,6 @@
   </script>
   <!-- google ad -->
   <% if (config.google_ad_client) { %>
-  <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "<%= config.google_ad_client %>",
-        enable_page_level_ads: true
-      });
-    window.addEventListener('load', function () {
-      globalAddScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
-    });
-  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <% } %>
 </head>

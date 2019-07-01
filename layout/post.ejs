@@ -48,9 +48,19 @@ layout: page
         </p>
     </blockquote>
     <% } %>
+    <% if (config.google_ad_client) { %>
+    <!-- 文章内嵌ad，文章开始，专题下面 -->
+    <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article"
+        data-ad-format="fluid" data-ad-client="<%= config.google_ad_client %>" data-ad-slot="1110943177"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <p style="height: 30px;"></p>
+    <% } %>
     <%- page.content %>
     <p>
-        本站永久域名<strong>「 <a href="<%= config.root %><%= page.path %>"><%= config.url.split('/').reverse()[0]%></a>  」</strong>，
+        本站永久域名<strong>「 <a href="<%= config.root %><%= page.path %>"><%= config.url.split('/').reverse()[0]%></a>
+            」</strong>，
         也可以通过搜索<strong>「 <%= config.title %> 」</strong>找到我。
     </p>
 
@@ -89,6 +99,14 @@ layout: page
 <!-- 推荐阅读三篇文章 -->
 <div style="margin-top: 20px">
     <h3>推荐阅读</h3>
+    <% if (config.google_ad_client) { %>
+    <!-- 信息流ad，推荐阅读第一条 -->
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-h6+k+10-gc+q6"
+        data-ad-client="<%= config.google_ad_client %>" data-ad-slot="4027329675"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <% } %>
     <%  let randomInt = (max) => Math.floor(Math.random() * Math.floor(max));
         let choices = []
         let posts = []

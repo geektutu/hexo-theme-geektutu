@@ -304,8 +304,6 @@
 .markdown-it ul,
 .markdown-it ol {
   padding-left: 1em;
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 .markdown-it ol ol,
