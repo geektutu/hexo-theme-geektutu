@@ -135,14 +135,18 @@
     <script>
         // 非本站网址，新开tab页签
         (function () {
+            var stopBubble = function (e) {
+                e && e.stopPropagation && e.stopPropagation();
+            }
             var links = document.querySelectorAll('a');
             [].slice.call(links).forEach(function (item) {
                 if (item.href && item.href.indexOf(window.location.host) === -1) {
                     item.target = '_blank'
                 }
                 // 阻止冒泡，不触发彩蛋。
-                item.addEventListener('click', function (e) { e && e.stopPropagation && e.stopPropagation(); }, false); 
+                item.addEventListener('click', stopBubble, false);
             });
+            document.querySelector('article').addEventListener('click', stopBubble, false)
         })();
     </script>
     <%- partial('_widget/click-egg.ejs') %>
