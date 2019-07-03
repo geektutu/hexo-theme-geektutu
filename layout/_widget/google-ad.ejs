@@ -1,0 +1,21 @@
+<% if (config.google_ad_client) { %>
+<% if (type === '250') { %>
+<!-- 侧边栏ad 250 * 90 -->
+<ins class="adsbygoogle" style="display:inline-block;width:250px;height:90px"
+    data-ad-client="<%= config.google_ad_client %>" data-ad-slot="3708583719"></ins>
+<% } %>
+<% if (type === 'fluid') { %>
+<!-- 主页信息流ad 最下面一个 -->
+<ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-h6+k+10-gc+q6"
+    data-ad-client="<%= config.google_ad_client %>" data-ad-slot="4027329675"></ins>
+<% } %>
+<% if (type === 'inarticle') { %>
+<!-- 文章内嵌ad，文章开始，专题下面 -->
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid"
+    data-ad-client="<%= config.google_ad_client %>" data-ad-slot="1110943177"></ins>
+<p style="height: 20px;"></p>
+<% }%>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<% } %>

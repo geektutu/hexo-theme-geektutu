@@ -146,7 +146,8 @@
                 // 阻止冒泡，不触发彩蛋。
                 item.addEventListener('click', stopBubble, false);
             });
-            document.querySelector('article').addEventListener('click', stopBubble, false)
+            var article = document.querySelector('article');
+            article && article.addEventListener('click', stopBubble, false)
         })();
     </script>
     <%- partial('_widget/click-egg.ejs') %>

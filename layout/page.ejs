@@ -87,18 +87,14 @@ layout: layout
     </div>
     <aside id="sidebar" class="hidden-xs hidden-sm">
         <div class="sidebar-wrapper col-xs-12">
-            <% if (config.google_ad_client) { %>
-            <!-- 侧边栏ad 250 * 90 -->
-            <ins class="adsbygoogle" style="display:inline-block;width:250px;height:90px"
-                data-ad-client="<%= config.google_ad_client %>" data-ad-slot="3708583719"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <% } %>
-            <section><%- partial('_widget/summary') %></section>
+            <%- partial('_widget/google-ad', {type: '250'}) %>
             <% if (is_post()){ %>
+            <section><%- partial('_widget/summary') %></section>
             <section><%- partial('_partial/toc') %></section>
             <% } else { %>
+            <%- partial('_widget/google-ad', {type: '250'}) %>
+            <%- partial('_widget/google-ad', {type: '250'}) %>
+            <section><%- partial('_widget/summary') %></section>
             <section><%- partial('_widget/featured-tags') %></section>
             <% } %>
         </div>

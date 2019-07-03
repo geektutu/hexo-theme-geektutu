@@ -3,16 +3,8 @@ layout: page
 ---
 <!-- Main Content -->
 <!-- css page.ejs -->
-<% page.posts.each(function(post){ %>
+<% page.posts.each(function(post, index){ %>
 <%- partial('_widget/post-preview', {post: post}) %>
 <% }); %>
-<% if (config.google_ad_client) { %>
-<!-- 主页信息流ad 最下面一个 -->
-<ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-h6+k+10-gc+q6"
-    data-ad-client="<%= config.google_ad_client %>" data-ad-slot="4027329675"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<p style="height: 20px;"></p>
-<% } %>
+<p style="height: 10px;"></p>
 <%- partial('_partial/pagination') %>

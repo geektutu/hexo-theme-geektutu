@@ -49,14 +49,8 @@ layout: page
     </blockquote>
     <% } %>
     <% var file_name = page.path.split('/').reverse()[0] %>
-    <% if (config.google_ad_client && file_name !== 'about.html' && file_name !== 'link.html') { %>
-    <!-- 文章内嵌ad，文章开始，专题下面 -->
-    <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article"
-        data-ad-format="fluid" data-ad-client="<%= config.google_ad_client %>" data-ad-slot="1110943177"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-    <p style="height: 20px;"></p>
+    <% if (file_name !== 'about.html' && file_name !== 'link.html') { %>
+    <%- partial('_widget/google-ad', {type: 'inarticle'}) %>
     <% } %>
     <%- page.content %>
     <p>
