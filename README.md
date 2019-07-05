@@ -175,6 +175,11 @@ related_links:
 - link: mailto:Geektutu<gzdaijie@gmail.com>?subject=From Geektutu's Blog
   img: img/related_links/email.png
 
+# 文章末尾配置一些提示信息，可选，不配置则不显示
+post_tips:
+  find_me: true # 本站永久域名「 xx.domain 」， 也可以通过搜索「 xx 」找到我。
+  zhihu_zhuanlan: https://zhuanlan.zhihu.com/geektutu # 欢迎关注我的「 知乎专栏 」，所有文章可在「 知乎APP 」查看。
+
 ba_auto_push: true # Baidu 自动推送，以下均为可选配置
 ba_track_id: 1a0ec33b1aa # Baidu Analytics
 cnzz_track_id: 123649 # CNZZ Analytics
@@ -253,6 +258,8 @@ image: post/tensorflow-mnist-simplest/xxx.jpg
 
 ··· 省略
 ```
+
+> 注意，这里的`image`是显示在主页和推荐阅读文章卡片左侧的图片，尽量选择方形的图片，相对路径从`根路径`开始。
 
 ## 5. 最后
 

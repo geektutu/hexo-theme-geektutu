@@ -53,11 +53,17 @@ layout: page
     <%- partial('_widget/google-ad', {type: 'inarticle'}) %>
     <% } %>
     <%- page.content %>
+    <!-- 文章末尾的提示 start -->
+    <% if (config.post_tips && config.post_tips.find_me ) {%>
     <p>
         本站永久域名<strong>「 <a href="<%= config.root %><%= page.path %>"><%= config.url.split('/').reverse()[0]%></a>
-            」</strong>，
-        也可以通过搜索<strong>「 <%= config.title %> 」</strong>找到我。
+            」</strong>，也可搜索<strong>「 <%= config.title %> 」</strong>找到我。
     </p>
+    <% }%>
+    <% if (config.post_tips && config.post_tips.zhihu_zhuanlan ) {%>
+    <p>期待关注我的<strong>「 <a href="<%= config.post_tips.zhihu_zhuanlan %>">知乎专栏</a>」</strong>，所有文章可在<strong>「 知乎APP 」</strong>查看。</p>
+    <% }%>
+    <!-- 文章末尾的提示 end -->
 
     <%-partial('_widget/generate-qrcode') %>
     <hr>
@@ -84,7 +90,7 @@ layout: page
         <p>
             <span>发表于<%= page.date.format('YYYY-MM-DD HH:mm:ss') %>，最后修改于<%= page.updated.format('YYYY-MM-DD HH:mm:ss') %>。</span>
         </p>
-        <p><span>若无特别声明，本站文章欢迎链接分享，但禁止全文转载。</span></p>
+        <p><span>本站文章欢迎链接分享，禁止全文转载。</span></p>
     </div>
     <hr />
     <%-partial('_partial/prev-next-post') %>
