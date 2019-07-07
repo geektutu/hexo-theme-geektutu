@@ -61,7 +61,8 @@ layout: page
     </p>
     <% }%>
     <% if (config.post_tips && config.post_tips.zhihu_zhuanlan ) {%>
-    <p>期待关注我的<strong>「 <a href="<%= config.post_tips.zhihu_zhuanlan %>">知乎专栏</a>」</strong>，所有文章可在<strong>「 知乎APP 」</strong>查看。</p>
+    <p>期待关注我的<strong>「 <a href="<%= config.post_tips.zhihu_zhuanlan %>">知乎专栏</a>」</strong>，所有文章可在<strong>「 知乎APP
+            」</strong>查看。</p>
     <% }%>
     <!-- 文章末尾的提示 end -->
 
@@ -133,3 +134,6 @@ layout: page
 
 <!-- 评论 -->
 <%- partial('_widget/comments') %>
+<script>
+    window.scroll(0, 170);
+</script>

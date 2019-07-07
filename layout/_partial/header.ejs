@@ -48,7 +48,109 @@
         font-size: 24px;
     }
 </style>
+<style>
+    .fix-header {
+        display: none;
+        padding: 0 10px;
+        height: 54px;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+        -webkit-box-shadow: 0 1px 3px rgba(26, 26, 26, .3);
+        box-shadow: 0 1px 3px rgba(26, 26, 26, .3);
+    }
 
+    .fix-header a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .fix-header-title {
+        font-size: 24px;
+        margin-left: 20px;
+        padding: 9px;
+        line-height: 36px;
+    }
+
+    .fix-header-title a {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .fix-header img {
+        width: 36px;
+        border-radius: 50%;
+    }
+
+    .category-name {
+        line-height: 54px;
+        font-size: 16px;
+        padding: 0 8px;
+        font-weight: 700;
+    }
+
+    .category-name:hover {
+        background-color: #efefef;
+    }
+
+    .category-name.active {
+        background-color: #efefef;
+    }
+
+    .category-article-items {
+        font-weight: normal;
+        position: absolute;
+        margin-left: -10px;
+        display: none;
+        margin-top: 55px;
+    }
+
+    .category-article-items ul {
+        background: white;
+        padding: 10px 15px;
+        border: 1px solid #dddddd;
+        border-radius: 4px;
+        margin-top: 1px;
+    }
+
+    .category-article-items li {
+        height: 32px;
+        line-height: 32px;
+        list-style: none;
+        font-size: 14px;
+    }
+
+    .category-article-items a {
+        height: 32px;
+        display: inline-block;
+    }
+
+    .category-article-items a:hover {
+        color: #108ee9;
+    }
+
+    .category-article-items a.active {
+        color: #108ee9;
+    }
+
+    .category-location {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAABrVBMVEX19fUAAAD9/f3+/v709PT////5+fn8/Pzz8/P39/f7+/vy8vL4+Pj6+vr29vbq6uq/v7/b29vk5OSzs7Pr6+vAwMCtra3p6ene3t6enp7FxcW9vb3CwsKYmJjs7OyUlJSTk5Pc3Nzt7e3x8fHW1tZ/f3+wsLDo6Oh2dnY/Pz/n5+dqampVVVW+vr7m5ubl5eWSkpIYGBggICGbm5tOTk+ZmZmamppmZmZLS0uhoaGOjo5PT0+MjIw5OTmxsbFRUVLf39/S0tLd3d309PWRkZHR0dHDw8PQ0NBzc3ODg4N5eXmGhoZMTExJSUtxcXHFxcZpaWmrq6u7u7v///5ycnK8vLy6urri4uIAAALj4+NlZWVNTU3Z2dmVlZUPDxCYmJmcnJyPj4/a2trr6uu/v8DX19eioqJXV1eenp9oaGhYWFh8fHxQUFBdXV17e3tRUVHBwcHExMQgICBmZme0tLRJSUkeHiBGRkb8/PusrKyXl5dhYWI3Nzmjo6T08/SoqalfX19hYWEVFRcsLCw9PT3g4OCoqKh1dXV3d3iNjY5PT1Cmpqanp6dFRUZISEj6Xl2iAAACGklEQVR4Xk3SY9clMQwA4CTl6Nqvbdvv2rZt2zZ/8057e89OPvX06UmaNuBBygSEVM4sTyMuLTeVKXSbHjj1u949RVx5NPca8ePXrufcekPV+ntcedHRyXlnR+kzfviinFv1OybxZSvzPQDPZ50t+KniQ4NBpp/hKsnAY0TMCySt4nyrhDoDROP4hoGmS/m2M/k0aaAFbI8arLL46q3H6f58S2bk3JMicS+4g1kf6kxX8QHrYs1rOcGYGLtXZAE144KyDJ6++bA1lIWlnNAAWuRup2WYnrgWeGA4yuEtycXjWaFNG1pM5YWWdzEXWVYXcYa0aM8wMMxFsY1pNYOnlWW6gtcpEO2Xk0xV7K6zquAFpUV+qpH8fJzcX8SNvmVZODtnnubU6KGA80AMTpclwMnjaWk55R3G0UizkeFBEUd5uIl0NIZ7TVu27xJmGAfVtLu6tbm654gCThkskXsWv4L9IQBQX+/m8d4+gjjhdlvaMoQ9uIF4XF8QCVORtmFPCJZjpy240wwGbALgtmB/fN6QZZA7cB/xlAtONdwlITEOWRwoSLBoOh0wla248wfMB1sH8NuwxBLDZH5tP9bq6Tmr4RD3IMF2JCaOqdi5OjGJWbNy7NIfxBuBBJDBEB4lo0kGULP4Q6ZALmKLD5Bk6yF8x9+kfuE3HjpNcIpHhTUsZvBnOnLquOG0jnFU3LVcS5Dw7j9/u4kn8B9TOkkexQJLvQAAAABJRU5ErkJggg==);
+        display: inline-block;
+        height: 17px;
+        width: 17px;
+        margin-top: 18px;
+        background-size: contain;
+        margin-right: 2px;
+    }
+
+    .category-location.active {
+        height: 22px;
+        width: 22px;
+        margin-top: 14px;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAEC0lEQVR4AWJwL/AhCjMw/Ge0r9/PErpqFTNuuf/MxJpHlCJAq1UR7LoNRcvcbsvMTJYDne7KsC3zpszdlZkZbeUz866MqzIzc2PlM/9Q1XMs36nmj+Y5b/IWGimxfA9cSBhwg9vtRoPcJYENrN1waGBfxdGJ3VS9kNXi1FypdPYQ9iejtHmXSrNzq9rsI/cIXEa0lL2co6R1cpxmL6nUrK1NWW3r09tuTVtnqxOX21hn/2A9dXRi9pZ3RgIvBb0dL8dp855Yt2x9RtdWxi+xIPAvVPaUNl0Q6cXa2OqkFbY+s2fx+deKbp1SBl5qL4I/TmWVCUstANYREBa3oa6Dcxck2tyVdmfc5b3VKm2eJsAsvlJgPz8IeBmUQOViqiRYrrQ6eSXUdwq7O7kLBKZyPF/L70H41+i5v/Z3tfHRpqXALCDuULgHgv1QQw6ZVwalxcwv9iYAZuD5M/j+NZIhQe68QzeYFpyfC7nIFVB7e6620mhdS2UIwoB97P3q5FX8/HL8vDncJ6qS7BySIbikgnex/63SxQfLvQCwFJTdRNhBzdyCdZvBajmo+ar6/KKdQ3WB++ewACvjFhW2t1Dty2zcaF0SynXQZvWM2QFsP6HNLCiqrU1da+PE3CTEDpptN6NDRyd/b8XvDpr91WYg+U59WtsWhdcrzg8U8YFtNxoROBqX7YUXf6xNXUP266iCK9ILTxf2oXZRDfNCfUYvBwZh5LnD+nghlOcg8JGN33fCC5+7wsrW5bZNWm5VIztXAsjMPuj2rzaT9+HSTKYHoG3a7ao7e1ie+3M+ODSoArbNdjl2QWgbK9knyXvSKlHjr/2lwPgOcsvep+KLSnPMB34PcxQyAAcErY41z82r1y+seMqi7QCwgK3GDmBBurP5TaWt/YTowH2MXH2PopLh0eeg4I41IU6ap8L6WkWbiwH2HpVKr5MoB8vAfSy9LGcwvpPMGYyACovKWXRxY2FOiK6w1XhHhkdh99IoMXVfTBg4pPr55h4I8N3/qo2zMiew0I1S2i8Ti2q1YT34aqWoyoG9y1R9NQcBFTIowX0HuPMzCUhusf9R0YsO9Kt+YGCZYvs8+cPmAH9VBgNBCL7+omqSg/U83yCVLKkrBw5YXtXmGIAuY+4I7sA8Ao5Mp2i5V0jWJz9qYLLlKtrrFvxoSHv1PECCt/GMnxdFyT/KJz16YH+ocH/LbsJfJk4zl2vm1+Dsepx1ECXZtf6wGArYZx8//89BAP2r+KXqSIEVZKaHe3YIYD9YpJtnsoLdvw6zxrWa+fLo5Lcdw/82hgT2f4UAdA9zWvT30jhtHSvpGNM/9CELATiPVR5hZJa1ztDAPriaYHao6Oz4kCPDA5dMtXLQMQYWsIHtDaz/ABSGvEvSC1O+AAAAAElFTkSuQmCC)
+    }
+</style>
 <header class="geektutu-header">
     <div className="col-xs-12 text-center">
         <div class="header-icon"></div>
@@ -62,4 +164,61 @@
                 <li><a href="<%= config.root %>post/about.html"><%= __('about') %></a></li>
             </ul>
         </nav>
+    </div>
 </header>
+
+<div class="col-xs-12 hidden-xs fix-header" id="fix-header">
+    <span class="fix-header-title float-left">
+        <img class="float-left" src="<%= config.root %><%= config.header_icon %>" alt="">
+        <a href="<%= config.root %>">极客兔兔</a>
+    </span>
+    <% var post_category = page.categories && page.categories.map(item => item.name) %>
+    <nav class="fix-header-nav float-left">
+        <% site.categories.forEach(function(category, index){  %>
+        <% var is_category = (post_category + '') == category.name %>
+        <div class="category-name float-left <%= is_category && 'active'%>">
+            <% var posts = category.posts.sort('date').map(post => post) %>
+            <span class="category-location float-left <%= is_category && 'active'%>"></span> <a ref="nofollow"
+                class="float-left" href="<%= config.root %><%= posts[0].path %>"><%= category.name %></a>
+            <div class="category-article-items">
+                <ul>
+                    <% posts.map(function(post, index){ %>
+                    <li>
+                        <a ref="nofollow" class="post-item-title <%= post.path == page.path ? 'active' : '' %> "
+                            href="<%= config.root %><%- post.path %>">
+                            <%= post.title.slice(Math.max(0, post.title.indexOf('-') + 1)) %>
+                        </a>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+        <% }) %>
+    </nav>
+</div>
+
+<script>
+    (function () {
+        // fix header
+        window.addEventListener('scroll', function () {
+            var fiexedHeader = document.querySelector('#fix-header');
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            scrollTop > 150 && (fiexedHeader.style.display = "block");
+            scrollTop <= 150 && (fiexedHeader.style.display = "none");
+        });
+        // display posts of the category
+        [].slice.call(document.querySelectorAll('.category-name')).forEach(function (ele) {
+            function activeFunc(e) {
+                var posts = e.target.querySelector('.category-article-items')
+                posts && (posts.style.display = 'block');
+            }
+            function hideFunc(e) {
+                e.target.querySelector('.category-article-items').style.display = 'none';
+            }
+
+            ele.addEventListener('mouseenter', activeFunc, false);
+            ele.addEventListener('mouseover', activeFunc, false);
+            ele.addEventListener('mouseleave', hideFunc, false);
+        });
+    })();
+</script>

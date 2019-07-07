@@ -5,16 +5,6 @@
     list-style-type: square;
   }
 
-  .sidebar-wrapper-tabs {
-    margin-bottom: 10px !important;
-    width: 240px;
-  }
-
-  .sidebar-wrapper-tabs li {
-    display: inline-block;
-    list-style-type: none;
-  }
-
   .sidebar-wrapper a {
     display: block;
     color: #000;
@@ -26,51 +16,20 @@
   }
 
   .sidebar-title {
-    margin: 5px;
-    cursor: pointer;
+    width: 250px;
+    margin-bottom: 5px !important;
   }
 
-  .sidebar-title:hover {
-    color: #108ee9;
-  }
-
-  .sidebar-title.active {
-    color: #108ee9;
-    border-bottom: 1px solid #108ee9;
+  .toc-nav-item {
+    line-height: 22px;
   }
 </style>
-<% var categories = (page.categories || []).map(item => item) %>
-<div>
-  <ul class="text-center sidebar-wrapper-tabs">
-    <% if (toc(page.content) != ""){ %>
-    <li value="0" class="sidebar-title">文章目录</li>
-    <% } %>
-    <% if (categories.length){ %>
-    <li value="1" class="sidebar-title active">专题合集</li>
-    <% } %>
-  </ul>
-
-  <div id="sidebar-toc" style="display: none">
-    <!-- TOC  -->
-    <% if (toc(page.content) != ""){ %>
-    <%- toc(page.content, { "class": "toc-nav", "list_number": false, "max_depth": 3 }) %>
-    <% } %>
-  </div>
-
-  <!--  同专题文章 -->
-  <div id="sidebar-series-list">
-    <% if (categories.length){  var category = categories[0] %>
-    <ol>
-      <% category.posts.sort('date').map(function(post, index){ %>
-      <li>
-        <a href="<%= config.root %><%- post.path %>">
-          <%= post.title.slice(Math.max(0, post.title.indexOf('('))) %>
-        </a>
-      </li>
-      <% }) %>
-    </ol>
-    <% } %>
-  </div>
+<p class="sidebar-title text-center">文章目录</p>
+<div id="sidebar-toc">
+  <!-- TOC  -->
+  <% if (toc(page.content) != ""){ %>
+  <%- toc(page.content, { "class": "toc-nav", "list_number": false, "max_depth": 2 }) %>
+  <% } %>
 </div>
 
 <script>
@@ -106,39 +65,5 @@
       })
       activeLink(h2);
     })
-
-    // tab 切换
-    var tabs = document.querySelectorAll('.sidebar-wrapper-tabs li');
-    var toc = document.getElementById('sidebar-toc');
-    var list = document.getElementById('sidebar-series-list');
-
-    function activeTab(value) {
-      if (tabs.length < 2) {
-        toc.style.display = 'inline-block';
-        tabs[0].classList.add('active');
-        return
-      }
-      value *= 1;
-      [toc, list][value].style.display = 'inline-block';
-      [list, toc][value].style.display = 'none';
-      tabs[value].classList.add('active');
-      tabs[(value + 1) % 2].classList.remove('active');
-    }
-
-    // add click event for each tabs
-    [].slice.call(tabs).forEach(function (tab) {
-      tab.addEventListener('click', function (e) {
-        window.localStorage.setItem('geektutu_sidebar_tab_value', e.target.value);
-        activeTab(e.target.value);
-        e && e.stopPropagation && e.stopPropagation();
-      });
-    });
-
-    (function (list) {
-      [].slice.call(list.querySelectorAll('a')).forEach(function (item) {
-        item.href.endsWith(window.location.pathname) && item.classList.add('sidebar-active');
-      })
-      activeTab(window.localStorage.getItem('geektutu_sidebar_tab_value') || 1)
-    })(list);
   })();
 </script>

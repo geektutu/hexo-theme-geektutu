@@ -74,7 +74,7 @@ layout: layout
 
     .sidebar-fixed {
         position: fixed;
-        top: 10px;
+        top: 60px;
         margin-top: 0;
         max-height: 81%;
         z-index: 1;
@@ -88,13 +88,12 @@ layout: layout
     <aside id="sidebar" class="hidden-xs hidden-sm">
         <div class="sidebar-wrapper col-xs-12">
             <%- partial('_widget/google-ad', {type: '250'}) %>
+            <%- partial('_widget/google-ad', {type: '250'}) %>
             <% if (is_post()){ %>
             <section><%- partial('_widget/summary') %></section>
             <section><%- partial('_partial/toc') %></section>
             <% } else { %>
             <%- partial('_widget/google-ad', {type: '250'}) %>
-            <%- partial('_widget/google-ad', {type: '250'}) %>
-            <section><%- partial('_widget/summary') %></section>
             <section><%- partial('_widget/featured-tags') %></section>
             <% } %>
         </div>
@@ -108,8 +107,8 @@ layout: layout
         window.addEventListener("scroll", function (e) {
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             var isDown = scrollTop > lastPos;
-            scrollTop > 220 && wrapper.classList.add("sidebar-fixed");
-            scrollTop <= 220 && wrapper.classList.remove("sidebar-fixed");
+            scrollTop > 170 && wrapper.classList.add("sidebar-fixed");
+            scrollTop <= 170 && wrapper.classList.remove("sidebar-fixed");
             lastPos = scrollTop;
         })
     })();

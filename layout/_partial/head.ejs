@@ -49,6 +49,10 @@
   </script>
   <!-- google ad -->
   <% if (config.google_ad_client) { %>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      globalAddScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
+    })
+  </script>
   <% } %>
 </head>
