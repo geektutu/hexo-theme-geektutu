@@ -93,7 +93,11 @@ layout: layout
             <section><%- partial('_widget/summary') %></section>
             <section><%- partial('_partial/toc') %></section>
             <% } else { %>
+            <% if (config.google_ad_client) { %>
             <%- partial('_widget/google-ad', {type: '250'}) %>
+            <% } else { %>
+            <section><%- partial('_widget/summary') %></section>
+            <% } %>
             <section><%- partial('_widget/featured-tags') %></section>
             <% } %>
         </div>
