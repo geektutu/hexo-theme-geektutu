@@ -125,30 +125,34 @@
     </style>
     <div class="main-container markdown-it">
         <%- body %>
+        <div class="col-xs-12 hidden-md hidden-lg" style="padding: 0 30px;">
+            <div style="overflow: hidden;">
+                <%- partial('_widget/google-ad', {type: 'inarticle'}) %>
+            </div>
+        </div>
     </div>
-
     <%- partial('_partial/go-top') %>
     <%- partial('_widget/click-image.ejs') %>
     <!-- Footer -->
     <%- partial('_partial/footer') %>
 
     <script>
-            // 非本站网址，新开tab页签
-            (function () {
-                var stopBubble = function (e) {
-                    e && e.stopPropagation && e.stopPropagation();
+        // 非本站网址，新开tab页签
+        (function () {
+            var stopBubble = function (e) {
+                e && e.stopPropagation && e.stopPropagation();
+            }
+            var links = document.querySelectorAll('a');
+            [].slice.call(links).forEach(function (item) {
+                if (item.href && item.href.indexOf(window.location.host) === -1) {
+                    item.target = '_blank'
                 }
-                var links = document.querySelectorAll('a');
-                [].slice.call(links).forEach(function (item) {
-                    if (item.href && item.href.indexOf(window.location.host) === -1) {
-                        item.target = '_blank'
-                    }
-                    // 阻止冒泡，不触发彩蛋。
-                    item.addEventListener('click', stopBubble, false);
-                });
-                var article = document.querySelector('article');
-                article && article.addEventListener('click', stopBubble, false)
-            })();
+                // 阻止冒泡，不触发彩蛋。
+                item.addEventListener('click', stopBubble, false);
+            });
+            var article = document.querySelector('article');
+            article && article.addEventListener('click', stopBubble, false)
+        })();
     </script>
     <%- partial('_widget/click-egg.ejs') %>
 </body>

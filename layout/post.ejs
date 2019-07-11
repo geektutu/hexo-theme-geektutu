@@ -101,14 +101,7 @@ layout: page
 <!-- 推荐阅读三篇文章 -->
 <div style="margin-top: 20px">
     <h3>推荐阅读</h3>
-    <% if (config.google_ad_client) { %>
-    <!-- 信息流ad，推荐阅读第一条 -->
-    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-h6+k+10-gc+q6"
-        data-ad-client="<%= config.google_ad_client %>" data-ad-slot="4027329675"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-    <% } %>
+    <%- partial('_widget/google-ad', {type: 'fluid'}) %>
     <%  let randomInt = (max) => Math.floor(Math.random() * Math.floor(max));
         let choices = []
         let posts = []

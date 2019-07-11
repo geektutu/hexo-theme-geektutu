@@ -6,5 +6,6 @@ layout: page
 <% page.posts.each(function(post, index){ %>
 <%- partial('_widget/post-preview', {post: post}) %>
 <% }); %>
-<p style="height: 10px;"></p>
-<%- partial('_partial/pagination') %>
+<div style="margin: 15px 0">
+    <%- partial('_partial/pagination') %>
+</div>
