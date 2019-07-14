@@ -144,8 +144,6 @@ post_asset_folder: true
 header_img: img/bg.jpg
 header_icon: img/icon.png
 
-github_username:  geektutu
-
 theme: geektutu
 
 # Deployment
@@ -179,6 +177,9 @@ related_links:
 post_tips:
   find_me: true # 本站永久域名「 xx.domain 」， 也可以通过搜索「 xx 」找到我。
   zhihu_zhuanlan: https://zhuanlan.zhihu.com/geektutu # 欢迎关注我的「 知乎专栏 」，所有文章可在「 知乎APP 」查看。
+
+widgets:
+  caidan: true  # 开启彩蛋，点击屏幕会随机弹出 '点个赞','留个言'等
 
 ba_auto_push: true # Baidu 自动推送，以下均为可选配置
 ba_track_id: 1a0ec33b1aa # Baidu Analytics

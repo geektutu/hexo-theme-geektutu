@@ -3,8 +3,9 @@ layout: page
 ---
 
 <!-- Main Content -->
-<div class="post-list">
-    <% 
+<div class="col-xs-12">
+    <div class="post-list">
+        <% 
         var years = {};
         site.posts.sort('date').reverse().forEach(function(post){
             var year = post.date.year()
@@ -15,20 +16,21 @@ layout: page
         });
     %>
 
-    <!-- 归档列表 -->
-    <ul>
-        <% Object.keys(years).reverse().forEach(function(year){  %>
-        <li class="post-item-parent post-item-color-<%- year % 5 %>">
-            <a href="<%= config.root %>archives/#<%- year %>" class="post-text-parent" id="<%= year %>">
-                <%= year %>
-            </a>
-        </li>
-        <% years[year].map(function(post){  %>
-        <li>
-            <a class="post-item-title" href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
-            <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
-        </li>
-        <% }) %>
-        <% }) %>
-    </ul>
+        <!-- 归档列表 -->
+        <ul>
+            <% Object.keys(years).reverse().forEach(function(year){  %>
+            <li class="post-item-parent post-item-color-<%- year % 5 %>">
+                <a href="<%= config.root %>archives/#<%- year %>" class="post-text-parent" id="<%= year %>">
+                    <%= year %>
+                </a>
+            </li>
+            <% years[year].map(function(post){  %>
+            <li>
+                <a class="post-item-title" href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
+                <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
+            </li>
+            <% }) %>
+            <% }) %>
+        </ul>
+    </div>
 </div>

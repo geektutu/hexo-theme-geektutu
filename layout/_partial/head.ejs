@@ -46,6 +46,15 @@
       s.href = url;
       document.body.appendChild(s);
     }
+    window.getPosition = function (ele) {
+      var x = 0, y = 0;
+      while (ele) {
+        x += (ele.offsetLeft - ele.scrollLeft + ele.clientLeft);
+        y += (ele.offsetTop - ele.scrollTop + ele.clientTop);
+        ele = ele.offsetParent;
+      }
+      return { x: x, y: y };
+    }
   </script>
   <!-- google ad -->
   <% if (config.google_ad_client) { %>

@@ -1,30 +1,15 @@
 <!-- Table of Contents -->
 <style>
   /*toc*/
-  .sidebar-wrapper li {
-    list-style-type: square;
-  }
-
-  .sidebar-wrapper a {
-    display: block;
-    color: #000;
-    font-size: 14px;
-  }
-
-  .sidebar-active {
-    color: #108ee9 !important;
-  }
-
   .sidebar-title {
-    width: 250px;
-    margin-bottom: 5px !important;
+    font-weight: 700;
   }
 
   .toc-nav-item {
     line-height: 22px;
   }
 </style>
-<p class="sidebar-title text-center">文章目录</p>
+<h4>目录</h4>
 <div id="sidebar-toc">
   <!-- TOC  -->
   <% if (toc(page.content) != ""){ %>
