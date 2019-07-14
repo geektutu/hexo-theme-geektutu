@@ -1,19 +1,9 @@
 <!-- Table of Contents -->
-<style>
-  /*toc*/
-  .sidebar-title {
-    font-weight: 700;
-  }
-
-  .toc-nav-item {
-    line-height: 22px;
-  }
-</style>
-<h4>目录</h4>
+<h3>目录</h3>
 <div id="sidebar-toc">
   <!-- TOC  -->
   <% if (toc(page.content) != ""){ %>
-  <%- toc(page.content, { "class": "toc-nav", "list_number": false, "max_depth": 2 }) %>
+  <%- toc(page.content, { "class": "toc-nav", "list_number": false, "max_depth": 3 }) %>
   <% } %>
 </div>
 

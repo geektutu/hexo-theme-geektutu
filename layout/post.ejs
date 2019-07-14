@@ -5,11 +5,16 @@ layout: page
     .sidebar {
         position: static;
         float: left;
+        font-size: 14px;
+    }
+    .sidebar-left {
+        border-right: 1px solid #eaecef;
+        margin-right: 20px;
     }
 
     .sidebar-left,
     .sidebar-left>div {
-        width: 250px;
+        width: 270px;
     }
 
     .sidebar-right,
@@ -22,7 +27,7 @@ layout: page
     }
 
     .sidebar-wrapper a {
-        color: #000;
+        color: rgba(0,0,0,0.8);;
         font-size: 14px;
     }
 
@@ -67,10 +72,9 @@ layout: page
     <div class="sidebar-wrapper" style="top: -52px">
         <section><%- partial('_widget/summary') %></section>
         <% var categories = (page.categories || []).map(item => item)%>
-        <% if (categories) {  %>
+        <% if (categories.length){  var category = categories[0] %>
         <section>
-            <% if (categories.length){  var category = categories[0] %>
-            <h4><%= category.name %></h4>
+            <h3><%= category.name %></h3>
             <ul>
                 <% category.posts.sort('date').map(function(post, index){ %>
                 <li>
@@ -79,9 +83,20 @@ layout: page
                 </li>
                 <% }) %>
             </ul>
-            <% } %>
         </section>
         <% } %>
+        <% var recentSize = categories.length ? 5 : 10 %>
+        <section>
+            <h3>最近的文章</h3>
+            <ul>
+                <% site.posts.sort('date').reverse().slice(0, recentSize).map(function(post, index){ %>
+                <li>
+                    <a href="<%= config.root %><%- post.path %>"
+                        class="<%= post.path===page.path ? 'sidebar-active':''%>"><%= post.title.split(' - ').reverse()[0] %></a>
+                </li>
+                <% }) %>
+            </ul>
+        </section>
     </div>
 </aside>
 <div class="col-xs-12">
@@ -137,7 +152,6 @@ layout: page
                 <a href="<%- config.root%>tags/#<%- tag.name%>">
                     <code style="color: #333" key="<%- tag.name%>" class="post-label">#<%- tag.name%></code>
                 </a>
-
                 <% }) %>
             </p>
             <% if ((page.categories || []).length){ %>

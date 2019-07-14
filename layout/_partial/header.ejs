@@ -52,7 +52,7 @@
     }
 </style>
 <header class="gkt-header col-xs-12 padding-0">
-    <div class="gkt-header-container">
+    <div id="gkt-nav" class="gkt-header-container">
         <a href="<%= config.root %>" class="gkt-header-title float-left">
             <img class="float-left" src="<%= config.root %><%= config.header_icon %>" alt="">
             <span><%= config.title %></span>
@@ -89,9 +89,10 @@
     (function () {
         window.addEventListener('scroll', function () {
             var catNav = document.querySelector('#gkt-cate-nav');
+            var nav = document.querySelector('#gkt-nav');
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            scrollTop > 50 && (catNav.classList.add('hide'));
-            scrollTop <= 50 && (catNav.classList.remove('hide'));
+            scrollTop > 50 && (nav.classList.add('hide'));
+            scrollTop <= 50 && (nav.classList.remove('hide'));
         });
     })();
 </script>
