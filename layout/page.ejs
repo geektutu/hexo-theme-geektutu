@@ -2,13 +2,37 @@
 layout: layout
 ---
 <!-- Main Content -->
-<style>
-</style>
 <main class="col-xs-12">
     <!-- Post Container -->
     <% if (!is_post()) { %>
-    <div class="hidden-xs" style="width: 250px">
+    <style>
+        @media (min-width: 1200px) {
+            .main-container {
+                width: 1000px !important;
+            }
+        }
+
+        #gkt-index-sidebar {
+            border-left: 1px solid #eaecef;
+        }
+
+        #gkt-index-sidebar section {
+            margin-bottom: 10px;
+        }
+    </style>
+    <div class="col-xs-12">
+        <div class="col-xs-12 col-md-8">
+            <%- body %>
+        </div>
+        <div id="gkt-index-sidebar" class="hidden-xs hidden-sm col-md-4">
+            <section><%- partial('_widget/summary') %></section>
+            <section><%- partial('_widget/featured-tags') %></section>
+            <%- partial('_widget/google-ad', {type: '250'}) %>
+            <%- partial('_widget/google-ad', {type: '250'}) %>
+            <%- partial('_widget/google-ad', {type: '250'}) %>
+        </div>
     </div>
-    <% } %>
+    <% } else { %>
     <%- body %>
+    <% } %>
 </main>

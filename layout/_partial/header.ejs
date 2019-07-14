@@ -1,7 +1,10 @@
 <!-- Post Header -->
 <style type="text/css">
     .gkt-header {
-        background-color: white;
+        /* background-color: #5588a3; */
+        background-color: #145374;
+        background-color: #07689f;
+        background-color: #3e474f;
         position: fixed;
         top: 0;
         z-index: 9999;
@@ -10,8 +13,8 @@
     }
 
     .gkt-header>div {
-        height: 44px;
-        padding: 2px 0;
+        height: 48px;
+        padding: 4px 0;
         line-height: 40px;
     }
 
@@ -24,7 +27,7 @@
     .gkt-header-title {
         font-size: 20px;
         line-height: 40px;
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(255, 255, 255, 0.9);
     }
 
     .gkt-header-nav li {
@@ -39,26 +42,26 @@
 
     .gkt-header-nav a {
         font-size: 18px;
-        color: rgba(0, 0, 0, .7);
-        fill: rgba(0, 0, 0, .7);
+        color: #b2bbbd;
+        fill: #b2bbbd;
     }
 
-    .gkt-cate-name a:hover,
+    .gkt-header a:hover,
     .gkt-cate-name.active a {
-        color: #108ee9;
+        color: #ffffff;
     }
 </style>
 <header class="gkt-header col-xs-12 padding-0">
     <div class="gkt-header-container">
-        <span class="gkt-header-title float-left">
+        <a href="<%= config.root %>" class="gkt-header-title float-left">
             <img class="float-left" src="<%= config.root %><%= config.header_icon %>" alt="">
-            <a href="<%= config.root %>"><%= config.title %></a>
-        </span>
+            <span><%= config.title %></span>
+        </a>
         <nav class="gkt-header-nav text-right">
             <ul>
                 <li><a class="hidden-xs" href="<%= config.root %>"><%= __('index_page') %></a></li>
-                <li><a href="<%= config.root %>series"><%= __('categories') %></a></li>
-                <li><a href="<%= config.root %>archives"><%= __('archives') %></a></li>
+                <li><a href="<%= config.root %>series/"><%= __('categories') %></a></li>
+                <li><a href="<%= config.root %>archives/"><%= __('archives') %></a></li>
                 <li><a href="<%= config.root %>post/link.html"><%= __('friend_link') %></a></li>
                 <li><a href="<%= config.root %>post/about.html"><%= __('about') %></a></li>
             </ul>
@@ -80,8 +83,8 @@
         </nav>
     </div>
 </header>
-<div style="height: 50px"></div>
-<div class="hidden-xs" style="height: 50px"></div>
+<div style="height: 52px"></div>
+<div class="hidden-xs" style="height: 48px"></div>
 <script>
     (function () {
         window.addEventListener('scroll', function () {

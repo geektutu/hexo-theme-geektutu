@@ -36,7 +36,7 @@ layout: page
 
     .sidebar-fixed {
         position: fixed;
-        top: 60px;
+        top: 50px;
         margin-top: 0;
         max-height: 81%;
         z-index: 1;
@@ -113,9 +113,7 @@ layout: page
         </blockquote>
         <% } %>
         <% var file_name = page.path.split('/').reverse()[0] %>
-        <% if (file_name !== 'about.html' && file_name !== 'link.html') { %>
-        <%- partial('_widget/google-ad', {type: 'inarticle'}) %>
-        <% } %>
+        <%- partial('_widget/google-ad', {type: '700'}) %>
         <%- page.content %>
         <!-- 文章末尾的提示 start -->
         <% if (config.post_tips && config.post_tips.find_me ) {%>
@@ -128,8 +126,8 @@ layout: page
         <p>期待关注我的<strong>「 <a href="<%= config.post_tips.zhihu_zhuanlan %>">知乎专栏</a>」</strong>，所有文章可在<strong>「 知乎APP
                 」</strong>查看。</p>
         <% }%>
+        <%- partial('_widget/google-ad', {type: 'inarticle'}) %>
         <!-- 文章末尾的提示 end -->
-
         <%-partial('_widget/generate-qrcode') %>
         <hr>
         <div>
@@ -165,7 +163,6 @@ layout: page
     <!-- 推荐阅读三篇文章 -->
     <div style="margin-top: 20px">
         <h3>推荐阅读</h3>
-        <%- partial('_widget/google-ad', {type: 'fluid'}) %>
         <%  let randomInt = (max) => Math.floor(Math.random() * Math.floor(max));
                     let choices = []
                     let posts = []
@@ -184,11 +181,11 @@ layout: page
         <%- partial('_widget/post-preview', {post: post}) %>
         <% }}); %>
     </div>
-    <div style="margin-top: 30px">
+    <div style="margin: 20px 0">
         <!-- 标签列表 -->
         <%- partial('_widget/featured-tags') %>
     </div>
-
+    <%- partial('_widget/google-ad', {type: '700'}) %>
     <!-- 评论 -->
     <%- partial('_widget/comments') %>
 </div>
@@ -197,12 +194,7 @@ layout: page
     <div class="sidebar-wrapper">
         <%- partial('_widget/google-ad', {type: '250'}) %>
         <%- partial('_widget/google-ad', {type: '250'}) %>
-        <% if (is_post()){ %>
         <section><%- partial('_partial/toc') %></section>
-        <% } else { %>
-        <%- partial('_widget/google-ad', {type: '250'}) %>
-        <section><%- partial('_widget/featured-tags') %></section>
-        <% } %>
     </div>
 </aside>
 <script>
@@ -213,8 +205,8 @@ layout: page
                 var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
                 var isDown = scrollTop > last;
                 var pos = getPosition(ele).y - scrollTop;
-                var downLimit = index == 0 ? -50 : 50;
-                var upLimit = index == 0 ? -100 : 50;
+                var downLimit = index == 0 ? -50 : 40;
+                var upLimit = index == 0 ? -100 : 40;
                 isDown && pos <= downLimit && ele.classList.add("sidebar-fixed");
                 !isDown && pos > upLimit && ele.classList.remove("sidebar-fixed");
                 last = scrollTop

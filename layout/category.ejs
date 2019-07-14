@@ -3,21 +3,19 @@ layout: page
 ---
 
 <!-- Main Content -->
-<div class="col-xs-12">
-    <div class="post-list">
-        <!-- 专题列表 -->
-        <ul>
-            <% site.categories.forEach(function(category, index){  %>
-            <li class="post-item-parent post-item-color-<%- index % 5 %>">
-                <a class="post-text-parent" id="<%= category.name %>"><%= category.name %></a>
-            </li>
-            <% category.posts.sort('date').map(function(post, index){ %>
-            <li>
-                <a class="post-item-title" href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
-                <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
-            </li>
-            <% }) %>
-            <% }) %>
-        </ul>
-    </div>
+<div class="post-list">
+    <!-- 专题列表 -->
+    <ul>
+        <% site.categories.forEach(function(category, index){  %>
+        <li class="post-item-parent post-item-color-<%- index % 5 %>">
+            <a class="post-text-parent" id="<%= category.name %>"><%= category.name %></a>
+        </li>
+        <% category.posts.sort('date').map(function(post, index){ %>
+        <li>
+            <a class="post-item-title" href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
+            <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
+        </li>
+        <% }) %>
+        <% }) %>
+    </ul>
 </div>

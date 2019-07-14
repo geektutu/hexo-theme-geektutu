@@ -35,7 +35,7 @@ a {
 
 /* global */
 body {
-  background-color: #f6f6f6;
+  background-color: white;
 }
 main {
   display: flex;
@@ -51,6 +51,9 @@ main>div {
   margin-left: auto;
   padding-top: 20px;
   padding-bottom: 30px;
+}
+
+.main-container {
   background: white;
 }
 
@@ -79,8 +82,7 @@ main>div {
 @media (min-width: 1200px) {
   .gkt-header-container,
   .main-container {
-      width: 90%;
-      max-width: 1500px;
+      width: 1200px;
   }
 }
 
