@@ -7,6 +7,7 @@ layout: page
         float: left;
         font-size: 14px;
     }
+
     .sidebar-left {
         border-right: 1px solid #eaecef;
         margin-right: 20px;
@@ -27,7 +28,8 @@ layout: page
     }
 
     .sidebar-wrapper a {
-        color: rgba(0,0,0,0.8);;
+        color: rgba(0, 0, 0, 0.8);
+        ;
         font-size: 14px;
     }
 
@@ -199,7 +201,9 @@ layout: page
         <!-- 标签列表 -->
         <%- partial('_widget/featured-tags') %>
     </div>
-    <%- partial('_widget/google-ad', {type: '700'}) %>
+    <div style="overflow: hidden;">
+        <%- partial('_widget/google-ad', {type: '700'}) %>
+    </div>
     <!-- 评论 -->
     <%- partial('_widget/comments') %>
 </div>

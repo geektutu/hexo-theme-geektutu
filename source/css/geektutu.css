@@ -82,7 +82,8 @@ main>div {
 @media (min-width: 1200px) {
   .gkt-header-container,
   .main-container {
-      width: 1200px;
+      width: 100%;
+      max-width: 1380px;
   }
 }
 

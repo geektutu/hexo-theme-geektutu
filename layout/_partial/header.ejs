@@ -88,7 +88,9 @@
 <script>
     (function () {
         window.addEventListener('scroll', function () {
-            var catNav = document.querySelector('#gkt-cate-nav');
+            if (window.innerWidth < 768) {
+                return;
+            }
             var nav = document.querySelector('#gkt-nav');
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             scrollTop > 50 && (nav.classList.add('hide'));
