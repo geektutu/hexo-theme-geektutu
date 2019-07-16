@@ -93,8 +93,7 @@ layout: page
             <ul>
                 <% site.posts.sort('date').reverse().slice(0, recentSize).map(function(post, index){ %>
                 <li>
-                    <a href="<%= config.root %><%- post.path %>"
-                        class="<%= post.path===page.path ? 'sidebar-active':''%>"><%= post.title.split(' - ').reverse()[0] %></a>
+                    <a href="<%= config.root %><%- post.path %>"><%= post.title.split(' - ').reverse()[0] %></a>
                 </li>
                 <% }) %>
             </ul>
@@ -133,6 +132,7 @@ layout: page
         <%- partial('_widget/google-ad', {type: '700'}) %>
         <%- page.content %>
         <!-- 文章末尾的提示 start -->
+        <%- partial('_widget/google-ad', {type: 'inarticle'}) %>
         <% if (config.post_tips && config.post_tips.find_me ) {%>
         <p>
             本站永久域名<strong>「 <a href="<%= config.root %><%= page.path %>"><%= config.url.split('/').reverse()[0]%></a>
@@ -143,7 +143,6 @@ layout: page
         <p>期待关注我的<strong>「 <a href="<%= config.post_tips.zhihu_zhuanlan %>">知乎专栏</a>」</strong>，所有文章可在<strong>「 知乎APP
                 」</strong>查看。</p>
         <% }%>
-        <%- partial('_widget/google-ad', {type: 'inarticle'}) %>
         <!-- 文章末尾的提示 end -->
         <%-partial('_widget/generate-qrcode') %>
         <hr>
@@ -210,9 +209,9 @@ layout: page
 <aside class="sidebar sidebar-right hidden-md hidden-xs hidden-sm">
     <div></div>
     <div class="sidebar-wrapper">
-        <%- partial('_widget/google-ad', {type: '250'}) %>
-        <%- partial('_widget/google-ad', {type: '250'}) %>
         <section><%- partial('_partial/toc') %></section>
+        <%- partial('_widget/google-ad', {type: '250'}) %>
+        <%- partial('_widget/google-ad', {type: '250'}) %>
     </div>
 </aside>
 <script>
