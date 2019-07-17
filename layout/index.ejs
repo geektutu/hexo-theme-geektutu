@@ -3,9 +3,15 @@ layout: page
 ---
 <!-- Main Content -->
 <!-- css page.ejs -->
-<% page.posts.each(function(post, index){ %>
+<!-- 置顶文章 -->
+<% var top = site.posts.map(p => p).filter(p => p.top).sort((o1, o2) => o1.top * 1 - o2.top * 1);%>
+<% top.forEach(post => {  %>
 <%- partial('_widget/post-preview', {post: post}) %>
 <% }); %>
+<!-- 普通文章 -->
+<% page.posts.each(function(post, index){ if (!top.includes(post)) { %>
+<%- partial('_widget/post-preview', {post: post}) %>
+<% } }); %>
 <div style="margin: 15px 0">
     <%- partial('_partial/pagination') %>
 </div>

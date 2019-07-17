@@ -19,7 +19,7 @@
 - [x] 添加开关控制百度网址自动推送功能。(2019-06-22)
 - [x] 添加点击页面出现彩蛋的特效。(2019-06-22)
 - [x] 侧边栏目录与专题可进行切换，完善内链功能，方便依次浏览所有同专题的文章，进一步强化专题。(2019-06-22)
-
+- [x] 添加文章置顶功能。(2019-06-17)
 ## 2. Hexo 基础命令
 
 ```bash
@@ -251,6 +251,7 @@ tags:
 - Python
 categories:
 - TensorFlow入门
+top: 1
 github: https://github.com/geektutu/tensorflow-tutorial-samples
 image: post/tensorflow-mnist-simplest/xxx.jpg
 ---
@@ -261,6 +262,7 @@ image: post/tensorflow-mnist-simplest/xxx.jpg
 ```
 
 > 注意，这里的`image`是显示在主页和推荐阅读文章卡片左侧的图片，尽量选择方形的图片，相对路径从`根路径`开始。
+> top 是置顶顺序。
 
 ## 5. 最后
 

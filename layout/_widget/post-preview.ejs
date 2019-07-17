@@ -3,6 +3,9 @@
     <div class="post-info">
         <div class="post-info-center">
             <div class="hidden-xs">
+                <% if (post.top && !is_post()){ %>
+                <span>[置顶]</span>
+                <% } %>
                 <% if (post.tags.length){%>
                 <span>/</span>
                 <% post.tags.forEach(function(tag){ %>
