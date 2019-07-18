@@ -147,9 +147,10 @@
 .markdown-it h4,
 .markdown-it h5,
 .markdown-it h6 {
-  margin-top: 5px;
+  margin-top: -55px;
   margin-bottom: 5px;
   font-weight: 600;
+  padding-top: 60px;
 }
 
 .markdown-it h1 {

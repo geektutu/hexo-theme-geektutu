@@ -34,10 +34,11 @@
   <!-- <%- css('css/toc')%> -->
   <!-- global function -->
   <script>
-    window.globalAddScript = function (url, onload) {
+    window.globalAddScript = function (url, onload, onerror) {
       var s = document.createElement('script');
       s.src = url;
       onload && (s.onload = onload);
+      onerror && (s.onerror = onerror);
       document.body.appendChild(s);
     }
     window.globalAddCss = function (url) {
@@ -58,9 +59,19 @@
   </script>
   <!-- google ad -->
   <% if (config.google_ad_client) { %>
+  <style>
+    article .extra-tips {
+      margin: 50px 0;
+      border-radius: 5px;
+      font-size: 20px;
+    }
+  </style>
   <script>
     window.addEventListener('load', function () {
-      globalAddScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
+      globalAddScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', null, function (e) {
+        var article = document.querySelector('article');
+        article && (article.innerHTML = "<div class='text-center series_links extra-tips'>检测到有广告屏蔽插件，文章不能正常显示。<br>举手之劳的支持可以鼓励我创作更好的内容。</div>")
+      });
     })
   </script>
   <% } %>
