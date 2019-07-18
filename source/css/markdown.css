@@ -155,6 +155,7 @@
 
 .markdown-it h1 {
   margin-top: 0;
+  padding-top: 0;
   margin-bottom: 20px;
   font-size: 1.8em;
   font-weight: 300;
