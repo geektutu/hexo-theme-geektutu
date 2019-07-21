@@ -218,3 +218,9 @@ main>div {
       padding-right: 30px;
   }
 }
+
+/* highlight issue  */
+.markdown-it .highlight table tr {
+  background-color: transparent;;
+  border-top: none;
+}

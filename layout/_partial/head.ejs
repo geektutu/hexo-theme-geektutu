@@ -23,15 +23,12 @@
   </title>
 
   <link rel="canonical" href="<%= config.root %><%= (page.path||'').replace('index.html', '') %>">
-
   <%- css('css/reset.css') %>
   <%- css('css/layout.css') %>
-  <%- css('css/geektutu.css')%>
   <%- css('css/markdown.css')%>
-
   <!-- Pygments Highlight CSS -->
   <%- css('css/highlight') %>
-  <!-- <%- css('css/toc')%> -->
+  <%- css('css/geektutu.css')%>
   <!-- global function -->
   <script>
     window.globalAddScript = function (url, onload, onerror) {
@@ -61,7 +58,7 @@
   <% if (config.google_ad_client) { %>
   <style>
     article .extra-tips {
-      margin: 50px 0;
+      margin: 70px 0;
       border-radius: 5px;
       font-size: 20px;
     }
