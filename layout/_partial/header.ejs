@@ -68,12 +68,16 @@
         <% var post_category = page.categories && page.categories.map(item => item.name) %>
         <nav class="gkt-header-nav float-left">
             <ul>
-                <% site.categories.forEach(function(category, index){  %>
+                <% var categories = site.categories.map(c => c).sort((o1, o2) => {
+                    var d1 = o1.posts.sort('date').map(p => p)[0].date
+                    var d2 = o2.posts.sort('date').map(p => p)[0].date
+                    return d1 - d2;
+                }); %>
+                <% categories.forEach(function(category, index){  %>
                 <% var is_category = (post_category + '') == category.name %>
                 <% var posts = category.posts.sort('date').map(post => post) %>
                 <li class="gkt-cate-name float-left <%= is_category && 'active'%>">
-                    <a ref="nofollow" class="float-left"
-                        href="<%= config.root %><%= posts[0].path %>"><%= category.name %></a>
+                    <a class="float-left" href="<%= config.root %><%= posts[0].path %>"><%= category.name %></a>
                 </li>
                 <% }) %>
             </ul>

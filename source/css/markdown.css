@@ -55,7 +55,8 @@
 .markdown-it ol,
 .markdown-it dl,
 .markdown-it table,
-.markdown-it pre {
+.markdown-it pre,
+.markdown-it details {
   margin-top: 0;
   margin-bottom: 1em;
 }
@@ -74,8 +75,16 @@
   -webkit-text-decoration-skip: objects;
 }
 
+.markdown-it summary {
+  cursor: pointer;
+}
+
 .markdown-it a:active,
-.markdown-it a:hover {
+.markdown-it a:hover,
+.markdown-it a:focus,
+.markdown-it summary:active,
+.markdown-it summary:hover,
+.markdown-it summary:focus {
   outline-width: 0;
 }
 
