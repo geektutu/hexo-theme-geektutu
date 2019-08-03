@@ -39,10 +39,12 @@
         -webkit-transform: none;
     }
 </style>
-<div class="gkt-rec-links">
-    <% (config.custom_ads || []).forEach(item => {
-        let img = item.img.startsWith('http') ? item.img : config.root + item.img  %>
-    <div><a href="<%= item.link %>"><img src="<%= img %>" alt="rec"></a></div>
-    <% }); %>
-</div>
+<div class="gkt-rec-links"></div>
+<%  let html = (config.custom_ads || []).map(item => {
+        let img = item.img.startsWith('http') ? item.img : config.root + item.img;
+        return `<div><a href="${item.link}"><img src="${img}" alt="rec"></a></div>`
+}).join(''); %>
+<script>
+    document.querySelector('.gkt-rec-links').innerHTML = '<%- html %>'
+</script>
 <% }; %>
