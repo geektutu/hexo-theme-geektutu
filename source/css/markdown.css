@@ -58,7 +58,7 @@
 .markdown-it pre,
 .markdown-it details {
   margin-top: 0;
-  margin-bottom: 1em;
+  margin-bottom: 5px;
 }
 
 .markdown-it code,
@@ -94,6 +94,7 @@
   border: 1px solid #e3e3e3;
   border-bottom-color: #e0e0e0;
   border-right-color: #ececec;
+  background-color: #f0f8ff;
   box-shadow: 1px 2px 1px rgba(0,0,0,.072);
   -webkit-box-shadow: 1px 2px 1px rgba(0,0,0,.072);
 }
@@ -353,7 +354,4 @@
 }
 .markdown-it li>p {
   margin-top: 16px;
-}
-.markdown-it li+li {
-  margin-top: 0.25em;
 }

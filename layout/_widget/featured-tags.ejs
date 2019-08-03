@@ -16,9 +16,9 @@
         color: #108ee9;
     }
 </style>
-<section id="featured-tag">
+<div id="featured-tag">
     <% site.tags.map(function(tag){  %>
     <a class="post-tag-item" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"
         rel="<%= tag.length %>">#<%= tag.name %> (<%= tag.length %>) </a>
     <% }) %>
-</section>
+</div>
