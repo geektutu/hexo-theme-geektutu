@@ -25,3 +25,24 @@
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <% } %>
+<% if (type === 'custom' && config.custom_ads) { %>
+<style>
+    .gkt-rec-links,
+    .gkt-rec-links div {
+        width: 250px;
+    }
+
+    .gkt-rec-links a>img {
+        width: 100%;
+        margin-left: 0;
+        transform: none;
+        -webkit-transform: none;
+    }
+</style>
+<div class="gkt-rec-links">
+    <% (config.custom_ads || []).forEach(item => {
+        let img = item.img.startsWith('http') ? item.img : config.root + item.img  %>
+    <div><a href="<%= item.link %>"><img src="<%= img %>" alt="rec"></a></div>
+    <% }); %>
+</div>
+<% }; %>

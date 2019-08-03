@@ -15,8 +15,8 @@
   <meta name="description" content="<%= page.description || config.description %>">
   <link rel="shortcut icon" href="<%= config.root %><%= config.header_icon %>">
   <title>
-    <% if (page.title) { %>
-    <%= page.title + ' | ' + (config.seo_title || config.title) %>
+    <% if (page.title) {  var parts = [page.title, page.seo_title, config.seo_title || config.title] %>
+    <%= parts.filter(item => item).join(' | ') %>
     <% } else {%>
     <%= config.title %>
     <% } %>

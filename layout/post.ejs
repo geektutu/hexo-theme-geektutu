@@ -11,7 +11,6 @@ layout: page
     .sidebar-left {
         border-right: 1px solid #eaecef;
         margin-right: 10px;
-        padding-left: 5px;
     }
 
     .sidebar-left,
@@ -21,8 +20,7 @@ layout: page
 
     .sidebar-right,
     .sidebar-right>div {
-        width: 250px;
-        margin-left: 10px;
+        width: 260px;
     }
 
     .sidebar-wrapper li {
@@ -41,11 +39,12 @@ layout: page
 
     .sidebar-wrapper section {
         margin-bottom: 10px;
+        margin-left: 10px;
     }
 
     .sidebar-fixed {
         position: fixed;
-        top: 50px;
+        top: 46px;
         margin-top: 0;
         max-height: 81%;
         z-index: 1;
@@ -73,7 +72,7 @@ layout: page
 <!-- Post Content -->
 <aside class="sidebar sidebar-left hidden-xs hidden-sm">
     <div></div>
-    <div class="sidebar-wrapper" style="top: -52px">
+    <div class="sidebar-wrapper" style="top: -60px">
         <section><%- partial('_widget/summary') %></section>
         <% var categories = (page.categories || []).map(item => item)%>
         <% if (categories.length){  var category = categories[0] %>
@@ -212,6 +211,7 @@ layout: page
     <div></div>
     <div class="sidebar-wrapper">
         <section><%- partial('_partial/toc') %></section>
+        <%- partial('_widget/google-ad', {type: 'custom'}) %>
         <%- partial('_widget/google-ad', {type: '250'}) %>
         <%- partial('_widget/google-ad', {type: '250'}) %>
     </div>

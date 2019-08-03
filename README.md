@@ -141,7 +141,6 @@ seo:
 post_asset_folder: true
 
 # Site settings
-header_img: img/bg.jpg
 header_icon: img/icon.png
 
 theme: geektutu
@@ -249,8 +248,10 @@ tags:
 - tensorflow
 - mnist
 - Python
+nav:
+- TensorFlow
 categories:
-- TensorFlow入门
+- TensorFlow教程
 top: 1
 github: https://github.com/geektutu/tensorflow-tutorial-samples
 image: post/tensorflow-mnist-simplest/xxx.jpg
@@ -262,6 +263,8 @@ image: post/tensorflow-mnist-simplest/xxx.jpg
 ```
 
 > 注意，这里的`image`是显示在主页和推荐阅读文章卡片左侧的图片，尽量选择方形的图片，相对路径从`根路径`开始。
+> 关于`nav`，默认导航框显示的是 categories 的值，避免分类太多，可以使用nav标签聚合，属于同一`nav`的 `categories` 导航链接将会聚合在一起。
+> nav 可选设置，若不设置，将平铺所有的 `categories`。
 > top 是置顶顺序。
 
 ## 5. 最后

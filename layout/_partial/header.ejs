@@ -10,27 +10,28 @@
     }
 
     .gkt-header>div {
-        height: 48px;
-        padding: 4px 0;
-        line-height: 40px;
+        height: 44px;
+        padding: 0;
+        line-height: 44px;
     }
 
     .gkt-header img {
-        padding: 5px;
-        width: 40px;
-        margin-right: 10px;
+        padding: 8px;
+        width: 44px;
+        margin-right: 6px;
     }
 
     .gkt-header-title {
         font-size: 20px;
-        line-height: 40px;
         color: rgba(255, 255, 255, 0.9);
     }
 
     .gkt-header-nav li {
-        display: inline-block;
-        padding: 0 5px;
         margin-bottom: 0;
+    }
+
+    .gkt-header-nav>ul>li {
+        display: inline-block;
     }
 
     .gkt-header-nav ul {
@@ -38,14 +39,52 @@
     }
 
     .gkt-header-nav a {
+        padding: 0 5px;
         font-size: 18px;
         color: #b2bbbd;
         fill: #b2bbbd;
     }
 
+    .gkt-cate-name>a {
+        padding: 0 10px;
+    }
+
     .gkt-header a:hover,
-    .gkt-cate-name.active a {
+    .gkt-cate-name.active>a {
         color: #ffffff;
+    }
+
+    .gkt-sub-cate {
+        display: none;
+        position: absolute;
+        margin-top: 44px;
+        background: #fafafa;
+        min-width: 200px;
+        border: 1px solid #eaeaea;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .175);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, .15);
+    }
+
+    .gkt-sub-cate-name>a {
+        color: #333;
+        padding: 8px 15px;
+        width: 100%;
+    }
+
+    .gkt-sub-cate-name a:hover,
+    .gkt-sub-cate-name.active>a {
+        display: block;
+        color: #ffffff;
+        background-color: rgba(62, 71, 79, .8)
+    }
+
+    .gkt-sub-cate-name.active>a {
+        background-color: #3e474f;
+    }
+
+    .gkt-sub-cate-name {
+        line-height: 30px;
     }
 </style>
 <header class="gkt-header col-xs-12 padding-0">
@@ -72,20 +111,45 @@
                     var d1 = o1.posts.sort('date').map(p => p)[0].date
                     var d2 = o2.posts.sort('date').map(p => p)[0].date
                     return d1 - d2;
-                }); %>
-                <% categories.forEach(function(category, index){  %>
-                <% var is_category = (post_category + '') == category.name %>
-                <% var posts = category.posts.sort('date').map(post => post) %>
-                <li class="gkt-cate-name float-left <%= is_category && 'active'%>">
-                    <a class="float-left" href="<%= config.root %><%= posts[0].path %>"><%= category.name %></a>
+                  });
+
+                  var navMap = {};
+                  var navList = [];
+                  categories.forEach(function(category, index){
+                    let name = category.name;
+                    let active = (post_category + '') === name;
+                    let posts = category.posts.sort('date').map(post => post);
+                    let nav = posts[0].nav || name;
+                    let path = posts[0].path;
+                    !navMap[nav] && navList.push(nav)
+                    navMap[nav] && navMap[nav].push({active, name , path})
+                    !navMap[nav] && (navMap[nav] = [{active, name, path}])
+                  })
+                %>
+                <% navList.map(name => {
+                    let cates = navMap[name];
+                    let cate = cates[0];
+                    cates.length > 1 && (name += ' ▼')
+                    let active = cates.find(item => item.active)
+                %>
+                <li class="gkt-cate-name float-left <%= active ? 'active' : ''%>">
+                    <a class="float-left" href="<%= config.root %><%= cate.path %>"><%= name %></a>
+                    <% if(cates.length > 1) { %>
+                    <ul class="gkt-sub-cate">
+                        <% cates.map(item => { %>
+                        <li class="gkt-sub-cate-name <%= item.active ? 'active': ''%>"><a class="float-left"
+                                href="<%= config.root %><%= item.path %>"><%= item.name %></a></li>
+                        <% })%>
+                    </ul>
+                    <% }; %>
                 </li>
-                <% }) %>
+                <% }); %>
             </ul>
         </nav>
     </div>
 </header>
-<div style="height: 52px"></div>
-<div class="hidden-xs" style="height: 48px"></div>
+<div style="height: 44px"></div>
+<div class="hidden-xs" style="height: 44px"></div>
 <script>
     (function () {
         window.addEventListener('scroll', function () {
@@ -97,5 +161,12 @@
             scrollTop > 50 && (nav.classList.add('hide'));
             scrollTop <= 50 && (nav.classList.remove('hide'));
         });
+        var cateNavs = document.querySelectorAll('#gkt-cate-nav>nav>ul>li');
+        [].slice.call(cateNavs).forEach(function (item) {
+            var sub = item.querySelector('.gkt-sub-cate');
+            if (!sub) return;
+            item.addEventListener('mouseenter', function (e) { sub.style.display = 'block'; }, false);
+            item.addEventListener('mouseleave', function (e) { sub.style.display = 'none'; }, false);
+        })
     })();
 </script>

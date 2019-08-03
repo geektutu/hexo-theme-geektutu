@@ -77,6 +77,7 @@
 
 .markdown-it summary {
   cursor: pointer;
+  font-weight: bold;
 }
 
 .markdown-it a:active,
@@ -86,6 +87,19 @@
 .markdown-it summary:hover,
 .markdown-it summary:focus {
   outline-width: 0;
+}
+
+.markdown-it details {
+  padding: 5px 10px;
+  border: 1px solid #e3e3e3;
+  border-bottom-color: #e0e0e0;
+  border-right-color: #ececec;
+  box-shadow: 1px 2px 1px rgba(0,0,0,.072);
+  -webkit-box-shadow: 1px 2px 1px rgba(0,0,0,.072);
+}
+
+.markdown-it details p {
+  margin-bottom: 0;
 }
 
 .markdown-it a:hover {
