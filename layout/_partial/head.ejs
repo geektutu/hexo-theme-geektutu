@@ -66,8 +66,13 @@
   <script>
     window.addEventListener('load', function () {
       globalAddScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', null, function (e) {
-        var article = document.querySelector('article');
-        article && (article.innerHTML = "<div class='text-center series_links extra-tips'>检测到有广告屏蔽插件，文章不能正常显示。<br>举手之劳的支持可以鼓励我创作更好的内容。</div>")
+        if (window.localStorage.getItem('gkt_marker')) {
+          var rec = document.querySelector('.gkt-rec-links');
+          rec && (rec.style.display = 'none');
+        } else {
+          var article = document.querySelector('article');
+          article && (article.innerHTML = "<div class='text-center series_links extra-tips'>检测到有广告屏蔽插件，文章不能正常显示。<br>举手之劳的支持可以鼓励我创作更好的内容。</div>")
+        }
       });
     })
   </script>
