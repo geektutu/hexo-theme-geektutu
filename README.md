@@ -20,6 +20,7 @@
 - [x] 添加点击页面出现彩蛋的特效。(2019-06-22)
 - [x] 侧边栏目录与专题可进行切换，完善内链功能，方便依次浏览所有同专题的文章，进一步强化专题。(2019-06-22)
 - [x] 添加文章置顶功能。(2019-06-17)
+- [x] 不蒜子统计。(2019-08-09)
 ## 2. Hexo 基础命令
 
 ```bash
@@ -179,6 +180,7 @@ post_tips:
 
 widgets:
   caidan: true  # 开启彩蛋，点击屏幕会随机弹出 '点个赞','留个言'等
+  busuanzi: true # 开启不蒜子统计 https://busuanzi.ibruce.info/
 
 ba_auto_push: true # Baidu 自动推送，以下均为可选配置
 ba_track_id: 1a0ec33b1aa # Baidu Analytics

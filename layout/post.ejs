@@ -120,6 +120,7 @@ layout: page
             </ul>
         </div>
         <% } %>
+        <%- partial('_widget/google-ad', {type: '700'}) %>
         <% if(page.github) { %>
         <blockquote>
             <p>源代码/数据集已上传到
@@ -130,7 +131,6 @@ layout: page
         </blockquote>
         <% } %>
         <% var file_name = page.path.split('/').reverse()[0] %>
-        <%- partial('_widget/google-ad', {type: '700'}) %>
         <%- page.content %>
         <!-- 文章末尾的提示 start -->
         <%- partial('_widget/google-ad', {type: 'inarticle'}) %>

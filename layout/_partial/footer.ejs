@@ -37,11 +37,27 @@
             </a>
         </small>
     </p>
+    <% if (config.widgets && config.widgets.busuanzi) { %>
+    <p>
+        <small>
+            <span id="busuanzi_container_site_pv">👁<span id="busuanzi_value_site_pv"></span></span> &nbsp;
+            <span id="busuanzi_container_page_pv">📚<span id="busuanzi_value_page_pv"></span></span>
+        </small>
+    </p>
+    <% } %>
     <% if (config.cnzz_track_id) { %>
     <p><small><span id="cnzz_stat_icon_<%= config.cnzz_track_id %>"></span></small></p>
     <% } %>
+
 </footer>
 
+<% if (config.widgets && config.widgets.busuanzi) { %>
+<script>
+    window.addEventListener('load', function () {
+        globalAddScript('//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js');
+    })
+</script>
+<% } %>
 <!-- Baidu Tongji -->
 <% if (config.ba_track_id) { %>
 <script>
