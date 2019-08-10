@@ -1,7 +1,21 @@
 /*https://github.com/chriskempson/tomorrow-theme*/
 
 $highlight_theme = hexo-config("highlight_theme") || "normal"
+$line-height-code-block = 1.8
 
+if $highlight_theme == "geektutu"
+  $highlight-background   = #f6f8fa
+  $highlight-current-line = #efefef
+  $highlight-selection    = #d6d6d6
+  $highlight-foreground   = #24292e
+  $highlight-comment      = #6a737d
+  $highlight-red          = #c82829
+  $highlight-orange       = #e36209
+  $highlight-yellow       = #eab700
+  $highlight-green        = #718c00
+  $highlight-aqua         = #6f42c1
+  $highlight-blue         = #4271ae
+  $highlight-purple       = #d73a49
 
 if $highlight_theme == "normal"
   $highlight-background   = #f7f7f7
@@ -136,6 +150,7 @@ $code-block {
 
 .post-container pre {
   @extend $code-block;
+  border-radius: 3px;
 
   code {
     padding: 0;

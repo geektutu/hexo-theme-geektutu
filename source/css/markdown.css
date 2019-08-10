@@ -8,7 +8,7 @@
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 1.8;
-  color: #333;
+  color: rgba(0,0,0,0.9);
   font-family: Arial,'Hiragino Sans GB',冬青黑,'Microsoft YaHei',微软雅黑,SimSun,宋体,Helvetica,Tahoma,'Arial sans-serif';
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
