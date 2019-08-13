@@ -33,7 +33,7 @@ layout: page
     }
 
     .sidebar-active {
-        color: #108ee9 !important;
+        color: #337ab7 !important;
         font-weight: bold;
     }
 
@@ -152,7 +152,7 @@ layout: page
                 <span><%- __('tags')%>: </span>
                 <% page.tags.each(function(tag) { %>
                 <a href="<%- config.root%>tags/#<%- tag.name%>">
-                    <code style="color: #333" key="<%- tag.name%>" class="post-label">#<%- tag.name%></code>
+                    <code key="<%- tag.name%>" class="post-label">#<%- tag.name%></code>
                 </a>
                 <% }) %>
             </p>
@@ -161,7 +161,7 @@ layout: page
                 <span><%- __('categories')%>: </span>
                 <% page.categories.each(function(category) { %>
                 <a href="<%- config.root%>series/#<%- category.name%>">
-                    <code style="color: #c7254e" key="<%- category.name%>" class="post-label"><%- category.name%></code>
+                    <code key="<%- category.name%>" class="post-label"><%- category.name%></code>
                 </a>
                 <% }) %>
             </p>

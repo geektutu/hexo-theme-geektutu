@@ -69,7 +69,7 @@
 }
 
 .markdown-it a {
-  color: #108ee9;
+  color: #337ab7;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -105,7 +105,7 @@
 
 .markdown-it a:hover {
   text-decoration: none;
-  color: #108ee9;
+  color: #337ab7;
 }
 
 .markdown-it a:not([href]) {
@@ -116,7 +116,7 @@
   margin: 1em 0;
   padding: 0.5em 1em;
   color: #666666;
-  border-left: .25em solid #108ee9;
+  border-left: .25em solid #337ab7;
   background-color: #f0f8ff;
   overflow: auto;
 }
@@ -135,17 +135,13 @@
   background-color: rgba(27,31,35,0.05);
   border-radius: 3px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  color: #c7254e;
+  color: #24292e;
 }
 
 .markdown-it code::before,
 .markdown-it code::after {
   letter-spacing: -0.2em;
   content: "\00a0";
-}
-
-.markdown-it p > code {
-  color: #c7254e;
 }
 
 .markdown-it dd {
