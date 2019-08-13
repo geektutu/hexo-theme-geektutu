@@ -120,7 +120,6 @@ layout: page
             </ul>
         </div>
         <% } %>
-        <%- partial('_widget/google-ad', {type: '700'}) %>
         <% if(page.github) { %>
         <blockquote>
             <p>源代码/数据集已上传到
@@ -133,7 +132,6 @@ layout: page
         <% var file_name = page.path.split('/').reverse()[0] %>
         <%- page.content %>
         <!-- 文章末尾的提示 start -->
-        <%- partial('_widget/google-ad', {type: 'inarticle'}) %>
         <% if (config.post_tips && config.post_tips.find_me ) {%>
         <p>
             本站永久域名<strong>「 <a href="<%= config.root %><%= page.path %>"><%= config.url.split('/').reverse()[0]%></a>
@@ -201,9 +199,6 @@ layout: page
         <!-- 标签列表 -->
         <%- partial('_widget/featured-tags') %>
     </div>
-    <div style="overflow: hidden;">
-        <%- partial('_widget/google-ad', {type: '700'}) %>
-    </div>
     <!-- 评论 -->
     <%- partial('_widget/comments') %>
 </div>
@@ -212,6 +207,7 @@ layout: page
     <div class="sidebar-wrapper">
         <section><%- partial('_partial/toc') %></section>
         <%- partial('_widget/google-ad', {type: 'custom'}) %>
+        <%- partial('_widget/google-ad', {type: '250'}) %>
         <%- partial('_widget/google-ad', {type: '250'}) %>
         <%- partial('_widget/google-ad', {type: '250'}) %>
     </div>
