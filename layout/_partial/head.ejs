@@ -69,21 +69,11 @@
       content: "本站显示不正常，可能因为您使用了广告拦截器。";
     }
   </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    onerror="googleloadError()"></script>
-  <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "<%- config.google_ad_client %>",
-        enable_page_level_ads: true
-      });
-  </script>
   <script>
     function googleloadError(e) {
       if (window.localStorage.getItem('gkt_marker')) {
-        window.addEventListener('load', function () {
-          var rec = document.querySelector('.gkt-rec-links');
-          rec && (rec.style.display = 'none');
-        })
+        var rec = document.querySelector('.gkt-rec-links');
+        rec && (rec.style.display = 'none');
         return
       }
       if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
@@ -97,6 +87,15 @@
       [].slice.call(linkNodes).forEach(function (item) { item.remove() });
       [].slice.call(asideNodes).forEach(function (item) { item.remove() });
     }
+  </script>
+  <script>
+    window.addEventListener('load', function () {
+      globalAddScript("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", "", googleloadError);
+    });
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "<%- config.google_ad_client %>",
+      enable_page_level_ads: true
+    });
   </script>
   <% } %>
 </head>
