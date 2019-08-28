@@ -27,7 +27,6 @@
         margin: 70px 0;
         overflow: hidden;
         padding-bottom: 10px;
-        border-bottom: 2px solid #e7e9ee;
     }
 
     #gitalk-related * {
@@ -37,6 +36,15 @@
         text-decoration: none;
         transform: none;
         -webkit-transform: none;
+    }
+
+    #gitalk-related .dis-divide {
+        border-top: 2px solid #e7e9ee;
+        width: 100%;
+        float: left;
+        padding: 5px 10px;
+        margin-top: 20px;
+        text-align: center;
     }
 
     #gitalk-related .dis-item {
@@ -61,6 +69,7 @@
         font-size: 0.85em;
     }
 
+    #gitalk-related .dis-divide a,
     #gitalk-related .dis-item-des,
     #gitalk-related .dis-item-user {
         color: rgba(30, 55, 70, .4);
@@ -106,6 +115,10 @@
                     .replace("${comment.body}", c.body)
                 wrapper.appendChild(div)
             })
+            var p = document.createElement('p')
+            p.innerHTML = '<a href="https://geektutu.com/post/blog-experience-7.html">Gitalk Plus</a>';
+            p.classList.add('dis-divide');
+            wrapper.appendChild(p);
             wrapper.classList.add('dis-wrapper')
         }
         function shuffle(a) {
@@ -116,7 +129,7 @@
             return a;
         }
         function get(str) { return document.querySelector(str) }
-        fetch('/tool/comments.json').then(function (r) { return r.json() }).then(render).catch(function (e) {})
+        fetch('/tool/comments.json').then(function (r) { return r.json() }).then(render).catch(function (e) { })
     })
 </script>
 <% } %>

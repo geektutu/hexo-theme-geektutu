@@ -61,6 +61,18 @@
   margin-bottom: 5px;
 }
 
+.markdown-it article p,
+.markdown-it article blockquote,
+.markdown-it article ul,
+.markdown-it article ol,
+.markdown-it article dl,
+.markdown-it article table,
+.markdown-it article pre,
+.markdown-it article details {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .markdown-it code,
 .markdown-it kbd,
 .markdown-it pre {
@@ -167,9 +179,15 @@
 .markdown-it h4,
 .markdown-it h5,
 .markdown-it h6 {
-  margin-top: -55px;
+  margin-top: 5px;
   margin-bottom: 5px;
   font-weight: 600;
+}
+
+.markdown-it article h1,
+.markdown-it article h2,
+.markdown-it article h3 {
+  margin-top: -55px;
   padding-top: 60px;
 }
 
@@ -326,7 +344,7 @@
 
 .markdown-it ul,
 .markdown-it ol {
-  padding-left: 1em;
+  padding-left: 1.5em;
 }
 
 .markdown-it ol ol,

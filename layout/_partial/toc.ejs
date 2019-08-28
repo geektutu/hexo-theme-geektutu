@@ -1,9 +1,8 @@
 <!-- Table of Contents -->
-<h3>目录</h3>
 <div id="sidebar-toc">
   <!-- TOC  -->
   <% if (toc(page.content) != ""){ %>
-  <%- toc(page.content, { "class": "toc-nav", "list_number": false, "max_depth": 3 }) %>
+  <%- toc(page.content, { "class": "toc-nav", "list_number": false, "max_depth": 2 }) %>
   <% } %>
 </div>
 

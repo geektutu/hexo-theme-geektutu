@@ -3,31 +3,43 @@ layout: page
 ---
 <style>
     .sidebar {
-        position: static;
+        background-color: transparent;
+    }
+
+    .sidebar,
+    .sidebar>div {
+        width: 320px;
         float: left;
-        font-size: 14px;
     }
 
-    .sidebar-left {
-        border-right: 1px solid #eaecef;
-        margin-right: 10px;
+    .sidebar section {
+        margin-left: 10px;
+        background: white;
+        overflow: auto;
+        margin-bottom: 8px;
+        padding: 8px 10px;
+        max-height: 380px;
+        -ms-overflow-style: none;
+        overflow: -moz-scrollbars-none;
     }
 
-    .sidebar-left,
-    .sidebar-left>div {
-        width: 280px;
+    .sidebar section::-webkit-scrollbar {
+        width: 0 !important;
     }
 
-    .sidebar-right,
-    .sidebar-right>div {
-        width: 260px;
+    .sidebar ul {
+        line-height: 1.35;
     }
 
-    .sidebar-wrapper li {
+    .sidebar ul>li {
         list-style-type: square;
     }
 
-    .sidebar-wrapper a {
+    .sidebar ol>li {
+        list-style-type: circle;
+    }
+
+    .sidebar a {
         color: rgba(0, 0, 0, 0.9);
         font-size: 14px;
     }
@@ -37,22 +49,21 @@ layout: page
         font-weight: bold;
     }
 
-    .sidebar-wrapper section {
-        margin-bottom: 10px;
-        margin-left: 10px;
-    }
-
     .sidebar-fixed {
         position: fixed;
-        top: 46px;
+        top: -70px;
         margin-top: 0;
-        max-height: 81%;
         z-index: 1;
+    }
+
+    .sidebar-rec {
+        text-align: center;
     }
 </style>
 <style>
     .post-container {
         overflow: hidden;
+        background: white;
     }
 
     .post-item-date {
@@ -70,39 +81,8 @@ layout: page
     }
 </style>
 <!-- Post Content -->
-<aside class="sidebar sidebar-left hidden-xs hidden-sm">
-    <div></div>
-    <div class="sidebar-wrapper" style="top: -60px">
-        <section><%- partial('_widget/summary') %></section>
-        <% var categories = (page.categories || []).map(item => item)%>
-        <% if (categories.length){  var category = categories[0] %>
-        <section>
-            <h3><%= category.name %></h3>
-            <ul>
-                <% category.posts.sort('date').map(function(post, index){ %>
-                <li>
-                    <a href="<%= config.root %><%- post.path %>"
-                        class="<%= post.path===page.path ? 'sidebar-active':''%>"><%= post.title.split(' - ').reverse()[0] %></a>
-                </li>
-                <% }) %>
-            </ul>
-        </section>
-        <% } %>
-        <% var recentSize = categories.length ? 5 : 10 %>
-        <section>
-            <h3>最近的文章</h3>
-            <ul>
-                <% site.posts.sort('date').reverse().slice(0, recentSize).map(function(post, index){ %>
-                <li>
-                    <a href="<%= config.root %><%- post.path %>"><%= post.title.split(' - ').reverse()[0] %></a>
-                </li>
-                <% }) %>
-            </ul>
-        </section>
-    </div>
-</aside>
-<div class="col-xs-12">
-    <article class="post-container">
+<div class="col-xs-12 post-container box-shadow">
+    <article class="col-xs-12">
         <h1> <%- page.title %> </h1>
 
         <% var categories = (page.categories || []).map(item => item)%>
@@ -175,7 +155,7 @@ layout: page
     <!-- 赞赏 -->
     <%- partial('_widget/reward') %>
     <!-- 推荐阅读三篇文章 -->
-    <div style="margin-top: 20px">
+    <div class="col-xs-12">
         <h3>推荐阅读</h3>
         <%  let randomInt = (max) => Math.floor(Math.random() * Math.floor(max));
                     let choices = []
@@ -195,37 +175,71 @@ layout: page
         <%- partial('_widget/post-preview', {post: post}) %>
         <% }}); %>
     </div>
-    <div style="margin: 20px 0">
+    <div class="col-xs-12">
         <!-- 标签列表 -->
         <%- partial('_widget/featured-tags') %>
     </div>
     <!-- 评论 -->
-    <%- partial('_widget/comments') %>
+    <div class="col-xs-12">
+        <%- partial('_widget/comments') %>
+    </div>
 </div>
-<aside class="sidebar sidebar-right hidden-md hidden-xs hidden-sm">
-    <div></div>
+<aside class="sidebar hidden-xs hidden-sm">
+    <div style="clear: both"></div>
     <div class="sidebar-wrapper">
-        <section><%- partial('_partial/toc') %></section>
-        <%- partial('_widget/google-ad', {type: 'custom'}) %>
-        <%- partial('_widget/google-ad', {type: '250'}) %>
-        <%- partial('_widget/google-ad', {type: '250'}) %>
-        <%- partial('_widget/google-ad', {type: '250'}) %>
+        <section class="box-shadow"><%- partial('_widget/summary') %></section>
+        <% var categories = (page.categories || []).map(item => item)%>
+        <% if (categories.length){  var category = categories[0] %>
+        <section class="sidebar-content box-shadow">
+            <strong><%= category.name %></strong>
+            <ul>
+                <% category.posts.sort('date').map(function(post, index){ %>
+                <li>
+                    <a href="<%= config.root %><%- post.path %>"
+                        class="<%= post.path===page.path ? 'sidebar-active':''%>"><%= post.title.split(' - ').reverse()[0] %></a>
+                    <% if(post.path == page.path) { %>
+                    <%- partial('_partial/toc') %>
+                    <% }; %>
+                </li>
+                <% }) %>
+            </ul>
+        </section>
+        <% } %>
+        <% var recentSize = categories.length ? 5 : 10 %>
+        <section class="box-shadow">
+            <strong>最近的文章</strong>
+            <ul>
+                <% site.posts.sort('date').reverse().slice(0, recentSize).map(function(post, index){ %>
+                <li>
+                    <a href="<%= config.root %><%- post.path %>"><%= post.title.split(' - ').reverse()[0] %></a>
+                </li>
+                <% }) %>
+            </ul>
+        </section>
+
+        <section class="box-shadow sidebar-rec">
+            <%- partial('_widget/google-ad', {type: '250'}) %>
+            <%- partial('_widget/google-ad', {type: '250'}) %>
+        </section>
     </div>
 </aside>
 <script>
     (function () {
-        [].slice.call(document.querySelectorAll('.sidebar .sidebar-wrapper')).forEach(function (ele, index) {
-            var last = 0
-            window.addEventListener("scroll", function (e) {
-                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                var isDown = scrollTop > last;
-                var pos = getPosition(ele).y - scrollTop;
-                var downLimit = index == 0 ? -50 : 40;
-                var upLimit = index == 0 ? -100 : 40;
-                isDown && pos <= downLimit && ele.classList.add("sidebar-fixed");
-                !isDown && pos > upLimit && ele.classList.remove("sidebar-fixed");
-                last = scrollTop
-            })
+        var ele = document.querySelector('.sidebar-content')
+        var wrapper = document.querySelector('.sidebar-wrapper')
+        var last = 0
+        window.addEventListener("scroll", function (e) {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var isDown = scrollTop > last;
+            var pos = getPosition(ele).y - scrollTop;
+            var downLimit = 50;
+            var upLimit = -100;
+
+            console.log(pos)
+
+            isDown && pos <= downLimit && wrapper.classList.add("sidebar-fixed");
+            !isDown && pos > upLimit && wrapper.classList.remove("sidebar-fixed");
+            last = scrollTop
         })
     })();
 </script>
