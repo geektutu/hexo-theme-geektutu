@@ -1,5 +1,5 @@
 body {
-  font-family: "-apple-system","Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
   tab-size: 4;
 }
 a {
@@ -36,6 +36,7 @@ a {
 .box-shadow {
   -webkit-box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
   box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
+  border-radius: 2px;
 }
 
 .bg-white {
@@ -48,10 +49,6 @@ body {
 }
 main {
   display: flex;
-  justify-content: space-between;
-}
-main>div {
-  overflow: hidden;
 }
 
 .gkt-header-container,
@@ -71,15 +68,18 @@ main>div {
   .main-container {
       padding-top: 0px;
   }
-  .post-container {
-      padding: 0 !important;
-  }
 }
 
 @media (min-width: 768px) {
   .gkt-header-container,
   .main-container {
       width: 750px;
+  }
+  .post-container {
+    padding: 10px 35px !important;
+  }
+  .post-container article {
+    padding: 0 !important;
   }
 
   .post-list {
@@ -92,12 +92,15 @@ main>div {
   .main-container {
       width: 990px;
   }
+  .post-container {
+    width: calc(100% - 320px);
+  }
 }
 @media (min-width: 1200px) {
   .gkt-header-container,
   .main-container {
       width: 100%;
-      max-width: 1100px;
+      max-width: 1150px;
   }
 }
 
@@ -320,6 +323,183 @@ main>div {
 .gkt-sub-cate-name {
     line-height: 30px;
 }
+
+/* start sidebar */
+.gkt-sidebar {
+  background-color: transparent;
+}
+
+.gkt-sidebar,
+.gkt-sidebar>div {
+  width: 320px;
+}
+
+.gkt-sidebar section {
+  margin-left: 10px;
+  background: white;
+  overflow: auto;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  max-height: 380px;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+.gkt-sidebar section::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+.gkt-sidebar ul {
+  line-height: 1.35;
+}
+
+.gkt-sidebar a {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 14px;
+}
+
+.gkt-sidebar-active {
+  color: #337ab7 !important;
+  font-weight: bold;
+}
+
+.gkt-sidebar-fixed {
+  position: fixed;
+  top: -70px;
+  margin-top: 0;
+  z-index: 1;
+}
+/* end sidebar */
+
+/* post container */
+.post-container {
+  overflow: hidden;
+  max-width: 830px;
+  background: white;
+}
+
+.post-container .post-item-date {
+  margin-left: 10px;
+  color: hsla(0, 0%, 71%, .9);
+  font-size: 0.85em;
+}
+
+.post-container .series_links {
+  border: 1px solid #eaecef;
+  padding: 15px;
+  background-color: #fff8dc;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.u-arrow-wrapper {
+  position: fixed;
+  width: 0;
+  left: 0;
+  top: 0;
+}
+
+.u-arrow-wrapper a:hover i {
+  border-color: #333;
+}
+
+.u-arrow-wrapper i {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-top: 3px solid #eee;
+  border-right: 3px solid #eee;
+  cursor: pointer;
+}
+
+.u-arrow-wrapper a {
+  height: 100vh;
+  line-height: 100vh;
+  width: 50px;
+  padding-left: 15px;
+}
+
+.u-arrow-left {
+  transform: rotate(-135deg);
+}
+
+.u-arrow-right {
+  transform: rotate(45deg);
+}
+/* post container */
+
+/* gitalk-related */
+#gitalk-related.dis-wrapper {
+  font-size: 14px;
+  margin: 70px 0;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
+
+#gitalk-related * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  transform: none;
+  -webkit-transform: none;
+}
+
+#gitalk-related .dis-divide {
+  border-top: 2px solid #e7e9ee;
+  width: 100%;
+  float: left;
+  padding: 5px 10px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#gitalk-related .dis-item {
+  width: 50%;
+  float: left;
+  padding: 0px 10px;
+  margin-top: 20px;
+  height: 108px;
+  overflow: hidden;
+}
+
+#gitalk-related .dis-item-title {
+  font-size: 16px;
+  color: #6190e8;
+  font-weight: 500;
+  max-height: 3em;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+#gitalk-related .dis-item-des {
+  font-size: 0.85em;
+}
+
+#gitalk-related .dis-divide a,
+#gitalk-related .dis-item-des,
+#gitalk-related .dis-item-user {
+  color: rgba(30, 55, 70, .4);
+}
+
+#gitalk-related .dis-item-img {
+  width: 30px;
+  height: 30px;
+  margin-top: 3px;
+}
+
+#gitalk-related .dis-item-content {
+  display: flex;
+}
+
+#gitalk-related .dis-item-content>p {
+  padding-left: 10px;
+  color: #333;
+  line-height: 1.4em;
+  max-height: 4.2em;
+  overflow: hidden;
+}
+/* gitalk-related*/
 
 /* highlight issue  */
 .markdown-it .highlight table tr {

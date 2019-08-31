@@ -1,6 +1,6 @@
-<p name="pagination">
+<p name="pagination" style="font-size: 1.2em">
     <% if (page.next){ %>
-    <a class="float-left" href="<%= config.root %><%- page.next.path %>">« 上一篇 <%- page.next.title %></a>
+    <a class="float-left" href="<%= config.root %><%- page.next.path %>">上一篇 « <%- page.next.title %></a>
     <% } %>
     <% if (page.prev){ %>
     <a class="float-right" href="<%= config.root %><%- page.prev.path %>">下一篇 » <%- page.prev.title %></a>

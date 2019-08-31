@@ -53,44 +53,18 @@
       }
       return { x: x, y: y };
     }
+    window.getDom = function (str) { return document.querySelector(str) }
   </script>
   <!-- google ad -->
   <% if (config.google_ad_client) { %>
-  <style>
-    header.gkt-ad::before {
-      display: block;
-      width: 100%;
-      height: 80px;
-      font-size: 26px;
-      line-height: 80px;
-      background: #e3e3e3;
-      text-align: center;
-      margin-top: 50px;
-      content: "本站显示不正常，可能因为您使用了广告拦截器。";
-    }
-  </style>
-  <script>
-    function googleloadError(e) {
-      if (window.localStorage.getItem('gkt_marker')) {
-        var rec = document.querySelector('.gkt-rec-links');
-        rec && (rec.style.display = 'none');
-        return
-      }
-      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-        return
-      }
-      var header = document.querySelector('header');
-      var linkNodes = document.querySelectorAll('link') || [];
-      var asideNodes = document.querySelectorAll('aside') || [];
-      header.innerHTML = '';
-      header.classList.add('gkt-ad');
-      [].slice.call(linkNodes).forEach(function (item) { item.remove() });
-      [].slice.call(asideNodes).forEach(function (item) { item.remove() });
-    }
-  </script>
   <script>
     window.addEventListener('load', function () {
-      globalAddScript("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", "", googleloadError);
+      globalAddScript("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", "", function (e) {
+        if (window.localStorage.getItem('gkt_marker')) {
+          var rec = document.querySelector('.gkt-rec-links');
+          rec && (rec.style.display = 'none');
+        }
+      });
     });
     (adsbygoogle = window.adsbygoogle || []).push({
       google_ad_client: "<%- config.google_ad_client %>",
