@@ -135,6 +135,11 @@ main {
   margin-top: 20px;
 }
 
+.post-list .post-item-parent a {
+  margin-top: -60px;
+  padding-top: 80px
+}
+
 .post-list a {
   color: #000000;
 }
@@ -335,7 +340,7 @@ main {
 }
 
 .gkt-sidebar section {
-  margin-left: 10px;
+  margin-left: 15px;
   background: white;
   overflow: auto;
   margin-bottom: 8px;
@@ -397,6 +402,8 @@ main {
   width: 0;
   left: 0;
   top: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .u-arrow-wrapper a:hover i {

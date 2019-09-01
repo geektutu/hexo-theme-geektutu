@@ -27,7 +27,7 @@
       for (var i = titleList.length - 1; i >= 0; i--) {
         if (scrollTop - titleList[i].offsetTop > 0) {
           var index = findLinkElement(titleList[i].id);
-          index != -1 && linkList[index].classList.add('sidebar-active');
+          index != -1 && linkList[index].classList.add('gkt-sidebar-active');
           break;
         }
       }
@@ -35,7 +35,7 @@
 
     window.addEventListener("scroll", function (e) {
       [].slice.call(linkList).forEach(function (link) {
-        link.classList.remove('sidebar-active');
+        link.classList.remove('gkt-sidebar-active');
       })
       activeLink(h2);
     })
