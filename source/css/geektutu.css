@@ -92,9 +92,6 @@ main {
   .main-container {
       width: 990px;
   }
-  .post-container {
-    width: calc(100% - 320px);
-  }
 }
 @media (min-width: 1200px) {
   .gkt-header-container,
@@ -378,7 +375,6 @@ main {
 
 /* post container */
 .post-container {
-  overflow: hidden;
   max-width: 830px;
   background: white;
 }
