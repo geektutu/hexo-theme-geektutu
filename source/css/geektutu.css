@@ -57,11 +57,18 @@ main {
   margin-left: auto;
   padding-top: 20px;
   padding-bottom: 30px;
+  overflow: hidden;
 }
 
 .post-list {
   line-height: 2.8em;
   border-left: 4px solid #f9f9f9;
+}
+
+.post-container {
+  background: white;
+  width: 100%;
+  max-width: 830px;
 }
 
 @media (max-width: 767px) {
@@ -76,7 +83,7 @@ main {
       width: 750px;
   }
   .post-container {
-    padding: 10px 35px !important;
+    padding: 10px 30px !important;
   }
   .post-container article {
     padding: 0 !important;
@@ -91,6 +98,9 @@ main {
   .gkt-header-container,
   .main-container {
       width: 990px;
+  }
+  .post-container {
+    width: calc(100% - 320px);
   }
 }
 @media (min-width: 1200px) {
@@ -374,11 +384,6 @@ main {
 /* end sidebar */
 
 /* post container */
-.post-container {
-  max-width: 830px;
-  background: white;
-}
-
 .post-container .post-item-date {
   margin-left: 10px;
   color: hsla(0, 0%, 71%, .9);
@@ -508,4 +513,42 @@ main {
 .markdown-it .highlight table tr {
   background-color: transparent;;
   border-top: none;
+}
+
+/* for cheat sheet part */
+
+.ppart {
+  float: left;
+  width: 47%;
+  margin-left: 3%;
+}
+
+@media (max-width: 767px) {
+  .ppart {
+    float: left;
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.ppart h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  color: #745fb5;
+}
+
+.ppart h3::after {
+  margin-left: 24px;
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right,rgba(116,95,181,0.2),transparent 80%);
+}
+
+.ppart figure {
+  border: 1px solid #eee;
+  box-shadow: 0 3px 4px rgba(102,119,136,.03);
 }
