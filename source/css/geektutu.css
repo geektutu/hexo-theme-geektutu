@@ -520,7 +520,7 @@ main {
 .ppart {
   float: left;
   width: 47%;
-  margin-left: 3%;
+  margin-right: 3%;
 }
 
 @media (max-width: 767px) {
