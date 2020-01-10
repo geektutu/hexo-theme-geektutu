@@ -40,10 +40,29 @@
     }
 </style>
 <div class="gkt-rec-links"></div>
-<%  let html = (config.custom_ads || []).map(item => {
+<%
+    let getRndInt = (min, max) => {
+        let ans = Math.floor(Math.random() * (max - min)) + min;
+        ans = Math.min(max, ans);
+        ans = Math.max(min, ans);
+        return ans
+    }
+%>
+<%  
+    let rnd = getRndInt(0, (config.custom_ads || []).length)
+    let selected = 0
+    let html = (config.custom_ads || []).map((item, i) => {
+        if (selected >= count) {
+            return ''
+        }
+        if (count === 1 && i !== rnd) {
+            return ''
+        }
+        selected += 1
         let img = item.img.startsWith('http') ? item.img : config.root + item.img;
         return `<div><a href="${item.link}"><img src="${img}" alt="rec"></a></div>`
-}).join(''); %>
+    }).join(''); 
+%>
 <script>
     document.querySelector('.gkt-rec-links').innerHTML = '<%- html %>'
 </script>
