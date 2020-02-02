@@ -1,8 +1,9 @@
+<%- js('js/qrious.min.js') %>
+<% if(config.widgets.mobile_qrcode) { %>
 <div class="hidden-xs col-xs-12 text-center">
     <canvas id="geektutu-post-qr"></canvas>
     <p style="margin-top: -10px;"><small>微信扫一扫，阅读/分享</small></p>
 </div>
-<%- js('js/qrious.min.js') %>
 <script>
     (function () {
         new QRious({
@@ -12,3 +13,4 @@
         });
     })();
 </script>
+<% } %>

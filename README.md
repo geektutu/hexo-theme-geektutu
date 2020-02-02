@@ -179,6 +179,7 @@ post_tips:
   zhihu_zhuanlan: https://zhuanlan.zhihu.com/geektutu # 欢迎关注我的「 知乎专栏 」，所有文章可在「 知乎APP 」查看。
 
 widgets:
+  mobile_qrcode: false # 开启移动端二维码，扫一扫，手机上阅读
   caidan: true  # 开启彩蛋，点击屏幕会随机弹出 '点个赞','留个言'等
   busuanzi: true # 开启不蒜子统计 https://busuanzi.ibruce.info/
 

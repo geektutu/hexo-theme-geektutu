@@ -1,0 +1,35 @@
+<% if (type === 'custom' && config.custom_ads) { %>
+<style>
+    .gkt-rec-links,
+    .gkt-rec-links div {
+        width: 250px;
+        margin: 0 auto;
+    }
+
+    .gkt-rec-links a>img {
+        width: 100%;
+        margin-left: 0;
+        transform: none;
+        -webkit-transform: none;
+    }
+</style>
+<div class="gkt-rec-links"></div>
+<%  
+    let len = (config.custom_ads || []).length
+    let adLists = (config.custom_ads || []).map((item, i) => {
+        let img = item.img.startsWith('http') ? item.img : config.root + item.img;
+        return `<div><a href=${item.link}><img src=${img} alt=rec></a></div>`
+    });
+    adLists = JSON.stringify(adLists)
+
+%>
+<script>
+    (function () {
+        function randomInt(low, high) { return Math.floor(Math.random() * (high - low) + low) };
+        var count = '<%- count %>', links = JSON.parse('<%- adLists %>'), childs = '';
+        var start = randomInt(0, links.length);
+        for (var i = 0; i < count; i++) { childs += links[(i + start) % links.length] };
+        document.querySelector('.gkt-rec-links').innerHTML = childs;
+    })()
+</script>
+<% }; %>

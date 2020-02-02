@@ -33,10 +33,7 @@ layout: layout
             <section class="bg-white box-shadow"><%- partial('_widget/summary') %></section>
             <section class="bg-white box-shadow"><%- partial('_widget/featured-tags') %></section>
             <section class="bg-white box-shadow text-center">
-                <%- partial('_widget/google-ad', {type: 'custom', count: 99}) %>
-                <% for(let i = 0; i < 10; i++) { %>
-                <%- partial('_widget/google-ad', {type: '250'}) %>
-                <% } %>
+                <%- partial('_widget/custom-ad', {type: 'custom', count: 6}) %>
             </section>
         </div>
     </div>
