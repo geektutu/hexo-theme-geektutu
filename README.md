@@ -156,6 +156,7 @@ deploy:
 gitalk:
   client_id: 'c1fdd456a4caae5f7df0'
   client_secret: 'b2674451e21feae50520f99337ec15d2aebe7879'
+  accessToken: 'xxxx'
   repo: 'hexo-theme-geektutu'
   owner: 'geektutu'
 

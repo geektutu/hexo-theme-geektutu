@@ -8,6 +8,7 @@
         const gitalk = new Gitalk({
             clientID: '<%- config.gitalk.client_id %>',
             clientSecret: '<%- config.gitalk.client_secret %>',
+            accessToken: '<%- config.gitalk.accessToken %>',
             repo: '<%- config.gitalk.repo %>',
             owner: '<%- config.gitalk.owner %>',
             admin: ['<%- config.gitalk.owner %>'],
