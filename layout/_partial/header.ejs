@@ -40,7 +40,7 @@
                 <% navList.map(name => {
                     let cates = navMap[name];
                     let cate = cates[0];
-                    cates.length > 1 && (name += ' ▼')
+                    cates.length > 1 && (name += ' ▾')
                     let active = cates.find(item => item.active)
                 %>
                 <li class="gkt-cate-name float-left <%= active ? 'active' : ''%>">

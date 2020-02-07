@@ -317,8 +317,9 @@ main {
 
 .gkt-sub-cate-name>a {
     color: #333;
-    padding: 8px 15px;
+    padding: 5px 10px;
     width: 100%;
+    font-size: 16px;
 }
 
 .gkt-sub-cate-name a:hover,
