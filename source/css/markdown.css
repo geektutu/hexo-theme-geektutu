@@ -9,6 +9,10 @@
   word-wrap: break-word;
 }
 
+.markdown-it code, .markdown-it pre {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
 @media (max-width: 767px) {
   .markdown-it {
     font-size: 14px;
