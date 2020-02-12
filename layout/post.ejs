@@ -54,7 +54,7 @@ layout: page
             </p>
             <% } %>
             <p>
-                <span>发表于<%= page.date.format('YYYY-MM-DD HH:mm:ss') %>，最后修改于<%= page.updated.format('YYYY-MM-DD HH:mm:ss') %>。</span>
+                <span>本文发表于 <%= page.date.format('YYYY-MM-DD') %>，最后修改于 <%= page.updated.format('YYYY-MM-DD') %>。</span>
             </p>
             <!-- 文章末尾的提示 start -->
             <% if (config.post_tips && config.post_tips.find_me ) {%>

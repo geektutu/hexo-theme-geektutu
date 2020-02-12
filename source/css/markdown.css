@@ -67,13 +67,6 @@
   margin-bottom: 10px;
 }
 
-.markdown-it code,
-.markdown-it kbd,
-.markdown-it pre {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-
 .markdown-it a {
   color: #337ab7;
   text-decoration: none;
@@ -144,8 +137,8 @@
   margin: 0;
   background-color: rgba(27,31,35,0.05);
   border-radius: 3px;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  color: #000;
+  color: #24292e;
+  font-size: 0.9em;
 }
 
 .markdown-it code::before,
@@ -258,7 +251,6 @@
   line-height: 10px;
   display: inline-block;
   padding: 3px 5px;
-  font: 11px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   line-height: 10px;
   color: #444d56;
   vertical-align: middle;
@@ -271,7 +263,6 @@
 
 .markdown-it pre {
   word-wrap: normal;
-  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
   padding: 16px;
   overflow: auto;
   line-height: 1.2;
