@@ -1,12 +1,23 @@
 /* for cheat sheet part */
+/* markdown */
 .post-container .highlight .gutter {
   display: none;
 }
+.post-container pre,
+.post-container .highlight {
+  font-size: 14px;
+}
+/* container */
 .post-container {
   width: 100% !important;
   max-width: 100% !important;
   background-color: transparent;
   padding: 10px 0px !important;
+}
+
+.post-container h2 {
+  width: 100%;
+  float: left;
 }
 .post-container article > * {
   padding-left: 15px;
@@ -43,7 +54,8 @@
 .post-container figure + p {
   background-color: #f6f8fa !important;
   margin-top: -21px !important;
-  padding: 5px 15px !important;
+  padding: 10px 15px !important;
+  font-size: 13px;
 }
 
 @media (min-width: 992px) {
@@ -55,7 +67,7 @@
 .related-sheet {
   margin: 20px 0;
 }
-.related-sheet h3{
+.related-sheet h3 {
   border-bottom: 1px solid #e9e9e9;
   margin-bottom: 20px;
 }
