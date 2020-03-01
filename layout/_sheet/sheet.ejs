@@ -1,0 +1,25 @@
+<!-- Sheet Content -->
+<link rel="stylesheet" href="/css/cheat_sheet.css" />
+<div class="float-left post-container padding-0">
+  <article class="col-xs-12 padding-0">
+    <h1><%- page.title %></h1>
+    <%- page.content %> <%-partial('_widget/generate-qrcode') %>
+  </article>
+  <!-- 赞赏 -->
+  <div class="col-xs-12 sheet-container">
+    <%- partial('_widget/reward') %>
+
+    <% let related_sheets = site.posts.filter(post => post.cheat_sheet && post.path !== page.path).sort('date')  %>
+    <% if (related_sheets.length > 0) { %>
+    <div class="col-xs-12 padding-0 related-sheet">  
+      <h3>推荐</h3>
+      <ul class="col-xs-12">
+        <% related_sheets.map(function(post, index){ %>
+        <li class="col-xs-12 col-sm-6"><a class="post-item-title" href="<%= config.root %><%- post.path %>"><%- post.title %></a></li>
+        <% }) %>
+      </ul>
+    </div>
+    <% } %>
+    <%- partial('_widget/comments') %>
+  </div>
+</div>

@@ -1,0 +1,178 @@
+<!-- Post Content -->
+<div class="float-left post-container box-shadow">
+    <div class="u-arrow-wrapper hidden-xs">
+        <% if (page.next){ %>
+        <a class="float-left" href="<%= config.root %><%- page.next.path %>"><i class="u-arrow-left"></i></a>
+        <% } %>
+        <% if (page.prev){ %>
+        <a class="float-right" href="<%= config.root %><%- page.prev.path %>"><i class="u-arrow-right"></i></a>
+        <% } %>
+    </div>
+    <article class="col-xs-12">
+        <h1> <%- page.title %> </h1>
+
+        <% var categories = (page.categories || []).map(item => item)%>
+
+        <% if (categories.length){  var category = categories[0] %>
+        <div class="hidden-lg hidden-md series_links">
+            <p> <strong> <%= category.name %>系列文章链接：</strong></p>
+            <ul>
+                <% category.posts.sort('date').map(function(post, index){ %>
+                <li>
+                    <a href="<%= config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
+                    <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+        <% } %>
+        <% if(page.github) { %>
+        <blockquote>
+            <p>源代码/数据集已上传到
+                <a href="<%= page.github %>" target="_blank" rel="noopener">
+                    Github - <%= page.github.split('/')[4] %>
+                </a>
+            </p>
+        </blockquote>
+        <% } %>
+        <% var file_name = page.path.split('/').reverse()[0] %>
+        <%- page.content %>
+        <%-partial('_widget/generate-qrcode') %>
+        <hr>
+        <div>
+            <% if ((page.categories || []).length){ %>
+            <p>
+                <span><%- __('categories')%>: </span>
+                <% page.categories.each(function(category) { %>
+                <a href="<%- config.root%>series/#<%- category.name%>">
+                    <code key="<%- category.name%>" class="post-label"><%- category.name%></code>
+                </a>
+                <% }) %>
+            </p>
+            <% } %>
+            <p>
+                <span>本文发表于 <%= page.date.format('YYYY-MM-DD') %>，最后修改于 <%= page.updated.format('YYYY-MM-DD') %>。</span>
+            </p>
+            <!-- 文章末尾的提示 start -->
+            <% if (config.post_tips && config.post_tips.find_me ) {%>
+            <p>
+                本站永久域名<strong>「 <a
+                        href="<%= config.root %><%= page.path %>"><%= config.url.split('/').reverse()[0]%></a>
+                    」</strong>，也可搜索<strong>「 <%= config.title %> 」</strong>找到我。
+            </p>
+            <% }%>
+            <% if (config.post_tips) { let plus = config.post_tips.zhihu_zhuanlan ? '和' : '' %>
+            <p>
+                期待关注我的
+                <% if (config.post_tips.zhihu_zhuanlan) {%><strong>「 <a href="<%= config.post_tips.zhihu_zhuanlan %>">知乎专栏</a> 」</strong><% }%>
+                <% if (config.post_tips.weibo) {%> <%= plus %>  <strong>「 <a href="<%= config.post_tips.weibo %>">微博</a> 」</strong><% }%>
+                ，查看最近的文章和动态。
+            </p>
+            <% }%>
+            <% if (config.post_tips && config.post_tips.gongzhonghao ) {%>
+            <p><img src="<%= config.post_tips.gongzhonghao %>" alt="geektutublog gongzhonghao"></p>
+            <% }%>
+                
+            <!-- 文章末尾的提示 end -->
+        </div>
+        <hr />
+        <%-partial('_partial/prev-next-post') %>
+    </article>
+    <!-- 赞赏 -->
+    <%- partial('_widget/reward') %>
+    <!-- 推荐阅读三篇文章 -->
+    <div class="col-xs-12">
+        <h3>推荐阅读</h3>
+        <%  let randomInt = (max) => Math.floor(Math.random() * Math.floor(max));
+                                        let choices = []
+                                        let posts = []
+                                        if (site.posts.length >= 3) {
+                                            while(choices.length < 3) {
+                                                let num = randomInt(site.posts.length);
+                                                choices.indexOf(num) === -1 && choices.push(num)
+                                            }
+                                        } else {
+                                            choices = [0, 1, 2]
+                                        }
+                                        site.posts.sort('date').reverse().each(function(post, i){
+                                            if (choices.indexOf(i) !== -1) { 
+                                
+                                        %>
+        <%- partial('_widget/post-preview', {post: post}) %>
+        <% }}); %>
+    </div>
+    <div class="col-xs-12">
+        <!-- 标签列表 -->
+        <%- partial('_widget/featured-tags') %>
+    </div>
+    <!-- 评论 -->
+    <div class="col-xs-12">
+        <%- partial('_widget/comments') %>
+    </div>
+</div>
+<aside class="float-left gkt-sidebar hidden-xs hidden-sm">
+    <div style="clear: both"></div>
+    <div class="gkt-sidebar-wrapper">
+        <section class="box-shadow"><%- partial('_widget/summary') %></section>
+        <% var categories = (page.categories || []).map(item => item)%>
+        <% if (categories.length){  var category = categories[0] %>
+        <section class="gkt-sidebar-content box-shadow">
+            <strong><%= category.name %></strong>
+            <ul>
+                <% category.posts.sort('date').map(function(post, index){ %>
+                <li>
+                    <a href="<%= config.root %><%- post.path %>"
+                        class="<%= post.path===page.path ? 'gkt-sidebar-active':''%>"><%= post.title.split(' - ').reverse()[0] %></a>
+                    <% if(post.path == page.path) { %>
+                    <%- partial('_partial/toc') %>
+                    <% }; %>
+                </li>
+                <% }) %>
+            </ul>
+        </section>
+        <% } %>
+        <% var recentSize = categories.length ? 3 : 10 %>
+        <section class="box-shadow">
+            <strong>最近的文章</strong>
+            <ul>
+                <% site.posts.sort('date').reverse().slice(0, recentSize).map(function(post, index){ %>
+                <li>
+                    <a href="<%= config.root %><%- post.path %>"><%= post.title.split(' - ').reverse()[0] %></a>
+                </li>
+                <% }) %>
+            </ul>
+        </section>
+        <section class="box-shadow text-center">
+            <%- partial('_widget/custom-ad', {type: 'custom', count: 3}) %>
+        </section>
+    </div>
+</aside>
+
+<script>
+    (function () {
+        var ele = getDom('.gkt-sidebar-content')
+        var wrapper = getDom('.gkt-sidebar-wrapper')
+        var last = 0
+        window.addEventListener("scroll", function (e) {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var isDown = scrollTop > last;
+            var pos = getPosition(ele).y - scrollTop;
+            var downLimit = 50;
+            var upLimit = -100;
+            // uarrow.style.marginTop = scrollTop + 'px';
+            isDown && pos <= downLimit && wrapper.classList.add("gkt-sidebar-fixed");
+            !isDown && pos > upLimit && wrapper.classList.remove("gkt-sidebar-fixed");
+            last = scrollTop
+        })
+    })();
+    (function () {
+        function resizeUArrow() {
+            var s = getDom('.u-arrow-wrapper').style
+            var pc = getDom('.post-container')
+            s.left = getPosition(pc).x + 'px';
+            s.width = pc.clientWidth + 'px';
+        }
+        resizeUArrow()
+        window.addEventListener('resize', resizeUArrow);
+    })();
+</script>

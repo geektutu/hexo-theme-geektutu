@@ -1,0 +1,61 @@
+/* for cheat sheet part */
+.post-container .highlight .gutter {
+  display: none;
+}
+.post-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  background-color: transparent;
+  padding: 10px 0px !important;
+}
+.post-container article > * {
+  padding-left: 15px;
+}
+.post-container article h3 {
+  white-space: nowrap;
+  color: #337ab7;
+  overflow: hidden;
+  font-size: 18px !important;
+}
+.post-container article h3::after {
+  margin-left: 24px;
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(116, 95, 181, 0.2),
+    transparent 75%
+  );
+}
+.post-container figure,
+.post-container figure + p {
+  -webkit-box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
+  box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
+  border-radius: 2px;
+}
+.post-container figure,
+.post-container figure pre {
+  background: white !important;
+}
+.post-container figure + p {
+  background-color: #f6f8fa !important;
+  margin-top: -21px !important;
+  padding: 5px 15px !important;
+}
+
+@media (min-width: 992px) {
+  .sheet-container {
+    width: calc(100% - 320px);
+    margin-left: 160px;
+  }
+}
+.related-sheet {
+  margin: 20px 0;
+}
+.related-sheet h3{
+  border-bottom: 1px solid #e9e9e9;
+  margin-bottom: 20px;
+}
