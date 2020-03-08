@@ -1,12 +1,21 @@
 <% if (config.gitalk) { %>
 <div class="col-xs-12 padding-0">
-    <div id="gitalk-container"></div>
+    <div id="gitalk-container">
+        <div class="gt-container text-center" style="margin-top: 50px;">
+            <button class="gt-btn gt-btn-public"><span class="gt-btn-text">去 Github 评论</span></button>
+        </div>
+    </div>
     <div id="gitalk-related"></div>
 </div>
 <%- css('css/gitalk.css') %>
 <%- js('js/gitalk.min.js') %>
 <script>
     window.addEventListener('load', function () {
+        function renderCommentUrl(data) {
+            var url = (data[window.location.pathname] || {}).url
+            url && getDom('#gitalk-container button').addEventListener('click', function (e) { window.open(url)})
+            url || (getDom('#gitalk-container').style.display = 'none')
+        }
         const gitalk = new Gitalk({
             clientID: '<%- config.gitalk.client_id %>',
             clientSecret: '<%- config.gitalk.client_secret %>',
@@ -17,8 +26,12 @@
             id: window.location.pathname,
             distractionFreeMode: false
         });
-        gitalk.render('gitalk-container');
-        document.querySelector('#gitalk-container').addEventListener('click', function (e) {
+        fetch("https://api.github.com/user").then(function(resp){
+            gitalk.render('gitalk-container');
+        }).catch(function(e){
+            fetch('/tool/issues.json').then(function (r) { return r.json() }).then(renderCommentUrl).catch(function (e) { })
+        })
+        getDom('#gitalk-container').addEventListener('click', function (e) {
             e && e.stopPropagation && e.stopPropagation();
         });
     })
@@ -31,7 +44,7 @@
                 '<div class="dis-item-content"><img class="dis-item-img" src="${comment.icon}" alt="icon"><p><b><span class="dis-item-user">${comment.user}</span></b>&nbsp;——&nbsp;${comment.body}</p></div>' +
                 '</a>'
 
-            var wrapper = get('#gitalk-related');
+            var wrapper = getDom('#gitalk-related');
             comments = shuffle(comments);
             comments.slice(0, 4).forEach(function (c) {
                 var div = document.createElement('div');
@@ -58,7 +71,6 @@
             }
             return a;
         }
-        function get(str) { return document.querySelector(str) }
         fetch('/tool/comments.json').then(function (r) { return r.json() }).then(render).catch(function (e) { })
     })
 </script>
