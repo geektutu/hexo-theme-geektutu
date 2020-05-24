@@ -106,9 +106,11 @@
         <%- partial('_widget/featured-tags') %>
     </div>
     <!-- 评论 -->
+    <% if (page.comment !== false) { %>
     <div class="col-xs-12">
         <%- partial('_widget/comments') %>
     </div>
+    <% } %>
 </div>
 <aside class="float-left gkt-sidebar hidden-xs hidden-sm">
     <div style="clear: both"></div>
