@@ -144,9 +144,11 @@
                 <% }) %>
             </ul>
         </section>
+        <% if((config.custom_ads || []).length > 0) { %>
         <section class="box-shadow text-center">
-            <%- partial('_widget/custom-ad', {type: 'custom', count: 3}) %>
+            <%- partial('_widget/custom-ad', {type: 'custom', count: 0}) %>
         </section>
+        <% } %>
     </div>
 </aside>
 
@@ -155,7 +157,8 @@
         var ele = getDom('.gkt-sidebar-content')
         var wrapper = getDom('.gkt-sidebar-wrapper')
         var last = 0
-        window.addEventListener("scroll", function (e) {
+        ele.style.maxHeight = ((window.innerHeight || 798) - 200) + 'px'
+        var f = function (e) {
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             var isDown = scrollTop > last;
             var pos = getPosition(ele).y - scrollTop;
@@ -165,7 +168,9 @@
             isDown && pos <= downLimit && wrapper.classList.add("gkt-sidebar-fixed");
             !isDown && pos > upLimit && wrapper.classList.remove("gkt-sidebar-fixed");
             last = scrollTop
-        })
+        }
+        f()
+        window.addEventListener("scroll", f)
     })();
     (function () {
         function resizeUArrow() {

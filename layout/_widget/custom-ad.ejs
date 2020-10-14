@@ -27,6 +27,7 @@
     (function () {
         function randomInt(low, high) { return Math.floor(Math.random() * (high - low) + low) };
         var count = '<%- count %>', links = JSON.parse('<%- adLists %>'), childs = '';
+        count == 0 && (count = links.length);
         var start = randomInt(0, links.length);
         for (var i = 0; i < count; i++) { childs += links[(i + start) % links.length] };
         document.querySelector('.gkt-rec-links').innerHTML = childs;

@@ -203,6 +203,7 @@ main {
   display: flex;
   flex-direction: row;
   height: max-content;
+  padding: 6px 10px;
 }
 
 .post-preview .text-gray {
@@ -241,10 +242,6 @@ main {
 @media (min-width: 768px) {
   .post-preview .post-img {
       width: 120px;
-  }
-
-  .post-preview .post-info {
-      padding-right: 30px;
   }
 }
 
@@ -353,7 +350,6 @@ main {
   overflow: auto;
   margin-bottom: 8px;
   padding: 8px 10px;
-  max-height: 380px;
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
 }
