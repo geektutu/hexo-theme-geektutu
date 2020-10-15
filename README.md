@@ -99,17 +99,17 @@ npm start  # http://localhost:4000 可以看到效果
     "deploy": "hexo deploy"
   },
   "dependencies": {
-    "hexo": "^3.8.0",
-    "hexo-deployer-git": "^1.0.0",
-    "hexo-generator-category": "^0.1.3",
-    "hexo-generator-feed": "^1.2.2",
-    "hexo-generator-index": "^0.2.1",
-    "hexo-generator-sitemap": "1.1.2",
-    "hexo-generator-tag": "^0.2.0",
-    "hexo-renderer-ejs": "^0.2.0",
-    "hexo-renderer-marked": "^1.0.1",
-    "hexo-renderer-stylus": "^0.3.3",
-    "hexo-server": "^0.3.3"
+    "hexo": "^3.9.0",
+    "hexo-deployer-git": "^2.1.0",
+    "hexo-generator-category": "^1.0.0",
+    "hexo-generator-feed": "3.0.0",
+    "hexo-generator-index": "1.0.0",
+    "hexo-generator-sitemap": "2.0.0",
+    "hexo-generator-tag": "1.0.0",
+    "hexo-renderer-ejs": "1.0.0",
+    "hexo-renderer-marked": "2.0.0",
+    "hexo-renderer-stylus": "1.1.0",
+    "hexo-server": "1.0.0"
   }
 }
 ```
@@ -191,6 +191,14 @@ ba_track_id: 1a0ec33b1aa # Baidu Analytics
 cnzz_track_id: 123649 # CNZZ Analytics
 google_analysis: UA-141425-1 # Google Analytics
 google_ad_client: ca-pub-939225546 # Google Ad
+
+feed:
+  enable: true
+  limit: 0
+  type: rss2
+  content: false
+  path: feed.xml
+  icon: img/icon.png
 ```
 
 ### 4.3 md参考
