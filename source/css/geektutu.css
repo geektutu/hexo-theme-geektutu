@@ -69,6 +69,11 @@ main {
   background: white;
   width: 100%;
   max-width: 830px;
+  padding: 0 15px;
+}
+
+.post-container > .col-xs-12 {
+    padding: 0;
 }
 
 @media (max-width: 767px) {
@@ -198,12 +203,12 @@ main {
 
 .post-preview {
   width: 100%;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   height: max-content;
-  padding: 6px 10px;
 }
 
 .post-preview .text-gray {
