@@ -340,3 +340,7 @@
 .markdown-it ul {
   list-style-type: square;
 }
+
+.markdown-it ol.toc-nav {
+    list-style-type: circle;
+}
