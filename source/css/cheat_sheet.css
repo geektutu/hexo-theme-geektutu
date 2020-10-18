@@ -15,6 +15,10 @@
   padding: 10px 0px !important;
 }
 
+.post-container > .col-xs-12 {
+  padding: 0 15px;
+}
+
 .post-container h2 {
   width: 100%;
   float: left;
