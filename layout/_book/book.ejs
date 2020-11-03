@@ -3,6 +3,10 @@
   body {
     background: white;
   }
+  .markdown-it article h1, .markdown-it article h2, .markdown-it article h3 {
+    padding-top: 5px;
+    margin-top: 0px;
+  }
   .main-container {
     width: 100%;
     padding-top: 0;
@@ -68,8 +72,9 @@
 <div class="gkt-book">
   <aside class="gkt-book-menu hidden-xs">
     <nav>
+      <% var first = site.posts.sort('date').map(p => p).find(p => p.book === page.book) %>
       <h3 class="text-center">
-        <a class="gkt-book-title" href="#"><%- page.book %></a>
+        <a class="gkt-book-title" href="<%- config.root %><%- first.path %>"><%- page.book %></a>
       </h3>
       <% if(config.related_links) { %>
       <ul class="col-xs-12 text-center">
