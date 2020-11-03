@@ -5,10 +5,7 @@
 <%- partial('_partial/head') %>
 
 <body>
-    <% if (!page.book) { %>
     <%- partial('_partial/header',{cache: true}) %>
-    <% } %>
-
     <!-- Main Content -->
     <div class="main-container">
         <%- body %>
