@@ -11,9 +11,16 @@
     width: 100%;
     padding-top: 0;
   }
+  .post-container {
+    padding: 0 !important;
+    width: 100%;
+  }
+  .post-container article {
+    padding: 0 15px !important;
+  }
   .gkt-book {
     max-width: 80rem;
-    margin: 0 auto;
+    margin: 1rem auto;
     display: flex;
   }
   .gkt-book-title {
@@ -22,12 +29,12 @@
   }
   .gkt-sidebar-wrapper {
     position: fixed;
-    margin-top: 20px;
+    margin-top: 15px;
   }
   .gkt-book-menu {
     flex: 0 0 16rem;
-    padding: 10px 15px;
-    overflow-y: scroll;
+    padding-left: 15px;
+    padding-top: 5px;
   }
   .gkt-book-menu a {
     color: #343a40;
@@ -37,10 +44,23 @@
   }
   .gkt-book-menu > nav {
     position: fixed;
-    overflow: scroll;
+    overflow: auto;
+    padding-right: 15px;
     height: 95%;
     font-size: 0.85em;
     line-height: 2;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+  }
+  .gkt-book-menu > nav::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-left: 1px solid #eee;
+  }
+  .gkt-book-menu > nav::-webkit-scrollbar-thumb {
+      background-color: #c1c1c1;
+  }
+  .gkt-book-menu > nav::-webkit-scrollbar {
+    width: 5px !important;
   }
   .gkt-book-menu hr {
     padding: 2px;
@@ -63,13 +83,13 @@
   }
   .gkt-book .series_links {
     border: 1px solid #eaecef;
-    padding: 15px;
+    padding: 0 15px;
     background-color: #fff8dc;
     margin-bottom: 20px;
     border-radius: 5px;
   }
 </style>
-<div class="gkt-book">
+<div class="gkt-book post-container">
   <aside class="gkt-book-menu hidden-xs">
     <nav>
       <% var first = site.posts.sort('date').map(p => p).find(p => p.book === page.book) %>
@@ -86,8 +106,18 @@
       <% } %>
       <hr />
       <% var categories = site.categories.filter(function(category, index){ 
-        return category.posts.sort('date').filter((p, index) => p.book && p.book === page.book).length > 0
-      }) %>
+           return category.posts.sort('date').filter((p, index) => p.book && p.book === page.book).length > 0
+         })
+        var categories = site.posts.sort('date').map(p => p).filter(p => p.book === page.book).map(p => p.categories.map(c => c)[0])
+        visited = {}
+        categories = categories.filter(c => {
+          if (visited[c.name]){
+            return false
+          }
+          visited[c.name] = true
+          return true
+        })
+      %>
       <ul>
         <% categories.forEach(function(category, index){ %>
         <li>
