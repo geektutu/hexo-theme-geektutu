@@ -30,6 +30,7 @@ layout: layout
     <% } else { %>
     <%- body %>
     <% } %>
+<% if (!page.book) { %>
 <script>
     (function () {
         var ele = getDom('.gkt-sidebar-content')
@@ -52,4 +53,5 @@ layout: layout
         window.addEventListener("scroll", f)
     })();
 </script>
+<% } %>
 </main>

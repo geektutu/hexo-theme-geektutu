@@ -3,6 +3,8 @@ layout: page
 ---
 <% if (page.cheat_sheet) { %>
     <%- partial('_sheet/sheet') %>
+<% } else if (page.book) { %>
+    <%- partial('_book/book') %>
 <% } else { %>
     <%- partial('_post/post') %>
 <% } %>

@@ -1,8 +1,9 @@
 <!-- Table of Contents -->
 <div id="sidebar-toc">
   <!-- TOC  -->
+  <% if (typeof depth === 'undefined') { depth = 2 } %>
   <% if (toc(page.content) != ""){ %>
-  <%- toc(page.content, { "class": "toc-nav", "list_number": false, "max_depth": 2 }) %>
+  <%- toc(page.content, { "class": "toc-nav", "list_number": false, "max_depth": depth }) %>
   <% } %>
 </div>
 

@@ -1,0 +1,164 @@
+<!-- Post Content -->
+<style>
+  body {
+    background: white;
+  }
+  .main-container {
+    width: 100%;
+    padding-top: 0;
+  }
+  .gkt-book {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+  }
+  .gkt-book-title {
+    color: #343a40;
+    font-size: 1.2em;
+  }
+  .gkt-sidebar-wrapper {
+    position: fixed;
+    margin-top: 20px;
+  }
+  .gkt-book-menu {
+    flex: 0 0 16rem;
+    padding: 10px 15px;
+    overflow-y: scroll;
+  }
+  .gkt-book-menu a {
+    color: #343a40;
+  }
+  .gkt-book-menu a.active {
+    color: #337ab7;
+  }
+  .gkt-book-menu > nav {
+    position: fixed;
+    overflow: scroll;
+    height: 95%;
+    font-size: 0.85em;
+    line-height: 2;
+  }
+  .gkt-book-menu hr {
+    padding: 2px;
+  }
+  .gkt-book-menu > nav > ul {
+    padding-left: 0;
+  }
+  .gkt-book-menu > nav ul,
+  .gkt-book-toc ul,
+  .gkt-book-toc ol {
+    list-style: none !important;
+  }
+  .gkt-book-page {
+    min-width: 20rem;
+    flex-grow: 1;
+  }
+  .gkt-book-toc {
+    flex: 0 0 16rem;
+    font-size: 0.85em;
+  }
+  .gkt-book .series_links {
+    border: 1px solid #eaecef;
+    padding: 15px;
+    background-color: #fff8dc;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+</style>
+<div class="gkt-book">
+  <aside class="gkt-book-menu hidden-xs">
+    <nav>
+      <h3 class="text-center">
+        <a class="gkt-book-title" href="#"><%- page.book %></a>
+      </h3>
+      <% if(config.related_links) { %>
+      <ul class="col-xs-12 text-center">
+        <li><a href="<%= config.root %>"><%= config.title %></a></li>
+        <% config.related_links.forEach(function(item){ %>
+        <li><a href="<%= item.link %>"><%= item.name %></a></li>
+        <% }) %>
+      </ul>
+      <% } %>
+      <hr />
+      <% var categories = site.categories.filter(function(category, index){ 
+        return category.posts.sort('date').filter((p, index) => p.book && p.book === page.book).length > 0
+      }) %>
+      <ul>
+        <% categories.forEach(function(category, index){ %>
+        <li>
+          <a><%= category.name %></a>
+          <ul>
+            <% category.posts.sort('date').map(function(p, index){ %>
+            <li><a href="<%= config.root %><%- p.path %>" class="<%- p.path === page.path ? 'active' : '' %> "><%- p.book_title || p.title.split(' - ')[p.title.split(' - ').length-1] %></a></li>
+            <% }) %>
+          </ul>
+        </li>
+        <% }) %>
+      </ul>
+    </nav>
+  </aside>
+  <div class="gkt-book-page">
+    <div class="u-arrow-wrapper hidden-xs">
+        <% if (page.next){ %>
+        <a class="float-left" href="<%= config.root %><%- page.next.path %>"><i class="u-arrow-left"></i></a>
+        <% } %>
+        <% if (page.prev){ %>
+        <a class="float-right" href="<%= config.root %><%- page.prev.path %>"><i class="u-arrow-right"></i></a>
+        <% } %>
+    </div>
+    <article class="col-xs-12">
+      <h1><%- page.title %></h1>
+      <% var categories = (page.categories || []).map(item => item)%> <% if
+      (categories.length){ var category = categories[0] %>
+      <div class="hidden-lg hidden-md hidden-sm series_links">
+        <p><strong> <%= category.name %>系列文章链接：</strong></p>
+        <ul>
+          <% category.posts.sort('date').map(function(post, index){ %>
+          <li>
+            <a href="<%= config.root %><%- post.path %>"><%- post.title %></a>
+            <span class="post-item-date">(<%= post.date.format('ll') %>)</span>
+          </li>
+          <% }) %>
+        </ul>
+      </div>
+      <% } %> <% if(page.github) { %>
+      <blockquote>
+        <p>
+          源代码/数据集已上传到
+          <a href="<%= page.github %>" target="_blank" rel="noopener">
+            Github - <%= page.github.split('/')[4] %>
+          </a>
+        </p>
+      </blockquote>
+      <% } %> <% var file_name = page.path.split('/').reverse()[0] %> <%-
+      page.content %> <%-partial('_widget/generate-qrcode') %>
+      <hr />
+    </article>
+    <!-- 赞赏 -->
+    <%- partial('_widget/reward') %>
+    <!-- 评论 -->
+    <% if (page.comment !== false) { %>
+    <div class="col-xs-12">
+      <%- partial('_widget/comments') %>
+    </div>
+    <% } %>
+  </div>
+  <aside class="gkt-book-toc hidden-xs hidden-sm">
+    <div style="clear: both"></div>
+    <div class="gkt-sidebar-wrapper">
+      <%- partial('_partial/toc', { depth: 4}) %>
+    </div>
+  </aside>
+</div>
+<script>
+    (function () {
+        function resizeUArrow() {
+            var s = getDom('.u-arrow-wrapper').style
+            var pc = getDom('.gkt-book-page')
+            s.left = getPosition(pc).x - 15 + 'px';
+            s.width = pc.clientWidth + 30 + 'px';
+        }
+        resizeUArrow()
+        window.addEventListener('resize', resizeUArrow);
+    })();
+</script>
