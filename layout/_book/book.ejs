@@ -81,6 +81,10 @@
     min-width: 20rem;
     flex-grow: 1;
   }
+  .gkt-page-tips {
+    color: #555;
+    margin-top: -10px;
+  }
   .gkt-book-toc {
     flex: 0 0 16rem;
     font-size: 0.85em;
@@ -171,6 +175,10 @@
       <%- page.content %>
       <%-partial('_widget/generate-qrcode') %>
       <hr />
+      <p>
+        <% if(page.github_page) { %><a href="<%- page.github_page %>"><span class="float-left gkt-page-tips">edit this page</span></a><% } %>
+        <span class="float-right gkt-page-tips">last updated at <%- page.updated.format('YYYY-MM-DD') %></span>
+      </p>
     </article>
     <!-- 赞赏 -->
     <%- partial('_widget/reward') %>
