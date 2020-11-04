@@ -164,13 +164,12 @@
       <blockquote>
         <p>
           源代码/数据集已上传到
-          <a href="<%= page.github %>" target="_blank" rel="noopener">
-            Github - <%= page.github.split('/')[4] %>
-          </a>
+          <a href="<%= page.github %>" target="_blank" rel="noopener">Github - <%= page.github.split('/')[4] %></a>
         </p>
       </blockquote>
-      <% } %> <% var file_name = page.path.split('/').reverse()[0] %> <%-
-      page.content %> <%-partial('_widget/generate-qrcode') %>
+      <% } %>
+      <%- page.content %>
+      <%-partial('_widget/generate-qrcode') %>
       <hr />
     </article>
     <!-- 赞赏 -->
@@ -199,5 +198,9 @@
         }
         resizeUArrow()
         window.addEventListener('resize', resizeUArrow);
+        var nav = getDom('.gkt-book-menu nav');
+        var key = 'gkt_book_<%- page.book %>_' + parseInt(new Date().getTime()/1000/3600/24/7)
+        nav.scrollTo(0, localStorage.getItem(key) * 1)
+        nav.addEventListener('scroll', function(){ localStorage.setItem(key, nav.scrollTop) })
     })();
 </script>

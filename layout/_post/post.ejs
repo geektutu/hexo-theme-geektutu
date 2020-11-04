@@ -10,9 +10,7 @@
     </div>
     <article class="col-xs-12">
         <h1> <%- page.title %> </h1>
-
         <% var categories = (page.categories || []).map(item => item)%>
-
         <% if (categories.length){  var category = categories[0] %>
         <div class="hidden-lg hidden-md series_links">
             <p> <strong> <%= category.name %>系列文章链接：</strong></p>
@@ -29,13 +27,10 @@
         <% if(page.github) { %>
         <blockquote>
             <p>源代码/数据集已上传到
-                <a href="<%= page.github %>" target="_blank" rel="noopener">
-                    Github - <%= page.github.split('/')[4] %>
-                </a>
+                <a href="<%= page.github %>" target="_blank" rel="noopener">Github - <%= page.github.split('/')[4] %></a>
             </p>
         </blockquote>
         <% } %>
-        <% var file_name = page.path.split('/').reverse()[0] %>
         <%- page.content %>
         <%-partial('_widget/generate-qrcode') %>
         <hr>
