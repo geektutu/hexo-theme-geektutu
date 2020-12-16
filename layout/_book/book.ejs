@@ -39,7 +39,6 @@
     flex: 0 0 16rem;
     padding-left: 15px;
     padding-top: 5px;
-    margin-left: 0;
   }
   .gkt-book-menu a {
     color: #343a40;
@@ -102,11 +101,8 @@
   .gkt-book-menu-icon {
     padding: 0 15px;
     font-size: 16px;
-  }
-  .gkt-book-menu-icon img {
-    margin-left: 0;
-    transform: none;
-    -webkit-transform: none;
+    overflow: hidden;
+    cursor: pointer;
   }
   @media (max-width: 767px) {
     .gkt-book-menu-hidden {
@@ -166,7 +162,7 @@
   <div class="gkt-book-page">
     <div class="hidden-sm hidden-md hidden-lg gkt-book-menu-icon">
       <label for="book-menu">
-        <img class="float-left" name="book-menu" src="<%- config.root %>icon/menu.svg" alt="book menu">
+        <svg class="float-left" name="book-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
       </label>
       <strong class="float-right"><%- page.book %></strong>
     </div>
@@ -241,7 +237,7 @@
         nav.addEventListener('scroll', function(){ localStorage.setItem(key, nav.scrollTop) })
     })();
     (function(){
-      getDom(".gkt-book-menu-icon img").addEventListener('click', function() {
+      getDom(".gkt-book-menu-icon").addEventListener('click', function() {
         var menu = getDom(".gkt-book-menu").classList
         var article = getDom(".gkt-book-page").classList
         if (menu.contains("gkt-book-menu-hidden")) {
