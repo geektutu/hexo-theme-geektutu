@@ -39,6 +39,7 @@
     flex: 0 0 16rem;
     padding-left: 15px;
     padding-top: 5px;
+    margin-left: 0;
   }
   .gkt-book-menu a {
     color: #343a40;
@@ -80,6 +81,8 @@
   .gkt-book-page {
     min-width: 20rem;
     flex-grow: 1;
+    transition: .2s ease-in-out;
+    transition-property: opacity;
   }
   .gkt-page-tips {
     color: #555;
@@ -96,9 +99,29 @@
     margin-bottom: 20px;
     border-radius: 5px;
   }
+  .gkt-book-menu-icon {
+    padding: 0 15px;
+    font-size: 16px;
+  }
+  .gkt-book-menu-icon img {
+    margin-left: 0;
+    transform: none;
+    -webkit-transform: none;
+  }
+  @media (max-width: 767px) {
+    .gkt-book-menu-hidden {
+      margin-left: -16rem;
+    }
+  }
+  .gkt-book-menu-checked {
+    opacity: 0.4;
+    margin-right: -16rem;
+    transition: .2s ease-in-out;
+    transition-property: opacity;
+  }
 </style>
 <div class="gkt-book post-container">
-  <aside class="gkt-book-menu hidden-xs">
+  <aside class="gkt-book-menu gkt-book-menu-hidden">
     <nav>
       <% var first = site.posts.sort('date').map(p => p).find(p => p.book === page.book) %>
       <h3 class="text-center">
@@ -141,6 +164,12 @@
     </nav>
   </aside>
   <div class="gkt-book-page">
+    <div class="hidden-sm hidden-md hidden-lg gkt-book-menu-icon">
+      <label for="book-menu">
+        <img class="float-left" name="book-menu" src="<%- config.root %>icon/menu.svg" alt="book menu">
+      </label>
+      <strong class="float-right"><%- page.book %></strong>
+    </div>
     <div class="u-arrow-wrapper hidden-xs">
         <% if (page.next){ %>
         <a class="float-left" href="<%= config.root %><%- page.next.path %>"><i class="u-arrow-left"></i></a>
@@ -210,5 +239,18 @@
         var key = 'gkt_book_<%- page.book %>_' + parseInt(new Date().getTime()/1000/3600/24/7)
         nav.scrollTo(0, localStorage.getItem(key) * 1)
         nav.addEventListener('scroll', function(){ localStorage.setItem(key, nav.scrollTop) })
+    })();
+    (function(){
+      getDom(".gkt-book-menu-icon img").addEventListener('click', function() {
+        var menu = getDom(".gkt-book-menu").classList
+        var article = getDom(".gkt-book-page").classList
+        if (menu.contains("gkt-book-menu-hidden")) {
+          menu.remove('gkt-book-menu-hidden')
+          article.add('gkt-book-menu-checked')
+        } else {
+          menu.add('gkt-book-menu-hidden')
+          article.remove('gkt-book-menu-checked')
+        }
+      })
     })();
 </script>
