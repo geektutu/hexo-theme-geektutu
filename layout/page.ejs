@@ -20,6 +20,11 @@ layout: layout
         <div class="gkt-sidebar-wrapper">
             <section class="bg-white box-shadow"><%- partial('_widget/summary') %></section>
             <section class="gkt-sidebar-content bg-white box-shadow"><%- partial('_widget/featured-tags') %></section>
+            <% if((config.index_rec || []).length > 0) { %>
+            <section class="bg-white box-shadow">
+                <% config.index_rec.map(function(item){  %><p><a href="<%= item.link %>" title="<%= item.name %>"><%= item.name %></a></p><% }) %>
+            </section>
+            <% } %>
             <% if((config.custom_ads || []).length > 0) { %>
             <section class="bg-white box-shadow text-center">
                 <%- partial('_widget/custom-ad', {type: 'custom', count: 0}) %>
