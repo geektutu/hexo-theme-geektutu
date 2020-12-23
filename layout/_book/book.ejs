@@ -77,9 +77,13 @@
   .gkt-book-toc ol {
     list-style: none !important;
   }
+  @media (min-width: 992px) {
+    .gkt-book-page {
+      width: calc(100% - 32rem);
+    }
+  }
   .gkt-book-page {
     min-width: 20rem;
-    flex-grow: 1;
     transition: .2s ease-in-out;
     transition-property: opacity;
   }
