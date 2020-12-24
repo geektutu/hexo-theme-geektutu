@@ -23,7 +23,7 @@
     <% } %>
   </title>
 
-  <link rel="canonical" href="<%= config.root %><%= (page.path||'').replace('index.html', '') %>">
+  <link rel="canonical" href="<%= (config.url||'') %><%= config.root %><%= (page.path||'').replace('index.html', '') %>">
   <%- css('css/geektutu')%>
   <!-- global function -->
   <script>

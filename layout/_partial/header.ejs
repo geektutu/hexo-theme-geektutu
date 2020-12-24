@@ -1,3 +1,18 @@
+<% if (page.book) { %>
+<style>
+    body {
+        background: white;
+    }
+    .gkt-header-placeholder, .gkt-header {
+        display: none;
+    }
+    .main-container {
+        width: 100%;
+        padding-top: 0;
+        max-width: 100%;
+    }
+</style>
+<% } %>
 <header class="gkt-header col-xs-12 padding-0">
     <div id="gkt-nav" class="gkt-header-container">
         <a href="<%= config.root %>" class="gkt-header-title float-left">

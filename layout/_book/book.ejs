@@ -1,19 +1,8 @@
 <!-- Post Content -->
 <style>
-  body {
-    background: white;
-  }
-  .gkt-header-placeholder, .gkt-header {
-    display: none;
-  }
   .markdown-it article h1, .markdown-it article h2, .markdown-it article h3 {
     padding-top: 5px;
     margin-top: 0px;
-  }
-  .main-container {
-    width: 100%;
-    padding-top: 0;
-    max-width: 100%;
   }
   .post-container {
     padding: 0 !important;
@@ -201,6 +190,7 @@
         </p>
       </blockquote>
       <% } %>
+      <div class="gkt-article-start"></div>
       <%- page.content %>
       <%-partial('_widget/generate-qrcode') %>
       <hr />
