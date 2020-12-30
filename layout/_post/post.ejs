@@ -34,7 +34,7 @@
         <div class="gkt-article-start"></div>
         <%- page.content %>
         <%-partial('_widget/generate-qrcode') %>
-        <hr>
+        <hr style="margin-top: 2rem;">
         <div>
             <% if ((page.categories || []).length){ %>
             <p>
@@ -50,25 +50,25 @@
                 <span>本文发表于 <%= page.date.format('YYYY-MM-DD') %>，最后修改于 <%= page.updated.format('YYYY-MM-DD') %>。</span>
             </p>
             <!-- 文章末尾的提示 start -->
-            <% if (config.post_tips && config.post_tips.find_me ) {%>
+            <% if (config.post_tips && config.post_tips.find_me ) { %>
             <p>
-                本站永久域名<strong>「 <a
+                本站永久域名「 <a
                         href="<%= config.root %><%= page.path %>"><%= config.url.split('/').reverse()[0]%></a>
-                    」</strong>，也可搜索<strong>「 <%= config.title %> 」</strong>找到我。
+                    」，也可搜索「 <%= config.title %> 」找到我。
             </p>
             <% }%>
             <% if (config.post_tips) { let plus = config.post_tips.zhihu ? '和' : '' %>
             <p>
                 欢迎关注我的
-                <% if (config.post_tips.zhihu_zhuanlan) {%><strong>「 <a href="<%= config.post_tips.zhihu_zhuanlan %>">知乎</a> 」</strong><% }%>
-                <% if (config.post_tips.zhihu) {%><strong>「 <a href="<%= config.post_tips.zhihu %>">知乎</a> 」</strong><% }%>
-                <% if (config.post_tips.weibo) {%> <%= plus %>  <strong>「 <a href="<%= config.post_tips.weibo %>">微博</a> 」</strong><% }%>
+                <% if (config.post_tips.zhihu_zhuanlan) { %>「 <a href="<%= config.post_tips.zhihu_zhuanlan %>">知乎</a> 」<% } %>
+                <% if (config.post_tips.zhihu) { %>「 <a href="<%= config.post_tips.zhihu %>">知乎</a> 」<% } %>
+                <% if (config.post_tips.weibo) { %> <%= plus %>「 <a href="<%= config.post_tips.weibo %>">微博</a> 」<% } %>
                 ，或通过「 <a href="<%= config.root %>feed.xml">RSS</a> 」订阅本站。
             </p>
-            <% }%>
-            <% if (config.post_tips && config.post_tips.gongzhonghao ) {%>
+            <% } %>
+            <% if (config.post_tips && config.post_tips.gongzhonghao ) { %>
             <p><img src="<%= config.post_tips.gongzhonghao %>" alt="geektutublog gongzhonghao"></p>
-            <% }%>
+            <% } %>
                 
             <!-- 文章末尾的提示 end -->
         </div>
