@@ -1,0 +1,7 @@
+<% if(config.related_links) { %>
+<div class="col-xs-12 text-center" style="margin-top: 30px;">
+    <% config.related_links.forEach(function(item){ %>
+    <a style="display:inline-block;" href="<%= item.link %>" title="<%= item.name %>"><img style="padding:5px;width:30px;margin-left:0;transform:none;-webkit-transform:none;" src="<%= config.root %><%= item.img %>" /></a>
+    <% }) %>
+</div>
+<% } %>
