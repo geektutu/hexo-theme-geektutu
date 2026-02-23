@@ -229,8 +229,8 @@
         window.addEventListener('resize', resizeUArrow);
         var nav = getDom('.gkt-book-menu nav');
         var key = 'gkt_book_<%- page.book %>_' + parseInt(new Date().getTime()/1000/3600/24/7)
-        nav.scrollTo(0, localStorage.getItem(key) * 1)
-        nav.addEventListener('scroll', function(){ localStorage.setItem(key, nav.scrollTop) })
+        nav.scrollTo(0, window.localStorage.getItem(key) * 1)
+        nav.addEventListener('scroll', function(){ window.localStorage.setItem(key, nav.scrollTop) })
     })();
     (function(){
       getDom(".gkt-book-menu-icon").addEventListener('click', function() {
